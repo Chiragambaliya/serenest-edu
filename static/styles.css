@@ -409,6 +409,56 @@ body[data-page="conference"] .nav-links {
     line-height: 1.6;
 }
 
+.important-note {
+    margin-top: 48px;
+    padding: 28px 32px;
+    border: 1px solid var(--rule);
+    background: rgba(255, 255, 255, 0.35);
+    max-width: 720px;
+}
+
+.important-note-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--sage-dark);
+}
+
+.important-note p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: none;
+}
+
+.important-note-inline {
+    margin-top: 16px;
+    font-size: 10px;
+    line-height: 1.55;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+}
+
+.foot-disclaimer {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    max-width: 720px;
+}
+
+.foot-disclaimer span {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--sage-dark);
+}
+
+.foot-disclaimer p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
 .page-eyebrow {
     color: var(--sage-dark);
     display: inline-block;
