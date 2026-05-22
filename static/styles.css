@@ -399,6 +399,16 @@ body[data-page="conference"] .nav-links {
     line-height: 1.5;
 }
 
+.cert-trust-note {
+    margin-top: 20px;
+    max-width: 640px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    line-height: 1.6;
+}
+
 .page-eyebrow {
     color: var(--sage-dark);
     display: inline-block;
