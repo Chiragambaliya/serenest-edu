@@ -10,10 +10,14 @@
 
     const COURSES = [
         'Foundations of Mental Health Counselling',
-        'Intergenerational Trauma & Indian Family Systems',
-        'Multilingual Therapy & Somatic Idioms of Distress',
-        'Queer-Affirmative & Neurodivergent Practice',
-        'Private Practice Setup & MHCA 2017 Compliance',
+        'Suicide Risk Assessment Basics',
+        'Mental Status Examination Simplified',
+        'Basic CBT Skills for Beginners',
+        'Addiction Counselling & Relapse Prevention',
+        'Telecounselling & Digital Mental Healthcare',
+        'Indian Family Dynamics & Emotional Wellbeing',
+        'Psychopharmacology for Psychologists',
+        'Private Practice Basics for Counsellors',
     ];
 
     const DEFAULT_SETTINGS = {
