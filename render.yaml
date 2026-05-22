@@ -1,0 +1,23 @@
+# Serenest Education — https://serenest.academy
+# After deploy: Render Dashboard → serenest-education → Settings → Custom Domains
+#   Add serenest.academy + www.serenest.academy (see DNS below)
+
+services:
+  - type: web
+    name: serenest-education
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./static
+    domains:
+      - serenest.academy
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+    routes:
+      - type: rewrite
+        source: /admin
+        destination: /admin.html

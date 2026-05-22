@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenest Education — Clinical Training & Resources for Indian Psychologists</title>
+    <meta name="description" content="Evidence-based clinical courses, verified internship directory, RCI pathway navigators, practice calculators, and interactive simulators for Indian psychologists and psychology students.">
+    <link rel="canonical" href="https://serenest.academy/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://serenest.academy/">
+    <meta property="og:title" content="Serenest Education — Clinical Training for Indian Psychologists">
+    <meta property="og:description" content="Free clinical cohorts, case conferences, and student tools — built for how India actually practices.">
+    <meta property="og:site_name" content="Serenest Education">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#F2EDE3">
+    
+    <!-- Google Fonts: Fraunces (serif display), Newsreader (serif body), JetBrains Mono (monospaced details) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+
+    <!-- Header Navigation -->
+    <nav class="nav">
+        <div class="container nav-row">
+            <a href="#" class="brand" id="brandLink">Serenest <em>Education</em></a>
+            
+            <!-- Page navigation -->
+            <div class="nav-links" role="tablist" aria-label="Site pages">
+                <button type="button" class="nav-tab-btn active" data-tab="home" role="tab" aria-selected="true">Home</button>
+                <button type="button" class="nav-tab-btn" data-tab="courses" role="tab" aria-selected="false">Courses</button>
+                <button type="button" class="nav-tab-btn" data-tab="about" role="tab" aria-selected="false">About</button>
+                <button type="button" class="nav-tab-btn" data-tab="library" role="tab" aria-selected="false">Library</button>
+                <button type="button" class="nav-tab-btn" data-tab="sanctuary" role="tab" aria-selected="false">Sanctuary</button>
+                <button type="button" class="nav-tab-btn" data-tab="conference" role="tab" aria-selected="false">Conference</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN APP VIEWPORTS -->
+    <main class="main-viewport">
+
+        <!-- PAGE: HOME -->
+        <section class="viewport-tab page-band page-band--home active" id="viewport-home" data-page="home">
+            <!-- Hero Header -->
+            <header class="hero">
+                <span class="hero-mark">Se</span>
+                <div class="container">
+                    <span class="mono hero-eyebrow rise">serenest.academy · For psychologists &amp; students</span>
+                    <h1 class="display hero-headline rise delay-1">The training your degree <em>didn't</em> give you.</h1>
+                    <p class="hero-sub rise delay-2">Evidence-based clinical courses and interactive practice simulators built for the realities of Indian psychology — with real supervision, Indian cases, and faculty who still see patients.</p>
+                    <div class="hero-ctas rise delay-3">
+                        <button type="button" class="btn nav-switch-trigger" data-target="conference">Free Case Conference <span class="arrow">→</span></button>
+                        <button type="button" class="btn btn-ghost nav-switch-trigger" data-target="courses">Explore Courses</button>
+                        <button type="button" class="btn btn-ghost" id="heroWhatsAppBtn">Join on WhatsApp</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Thesis Section -->
+            <section class="thesis">
+                <div class="container thesis-grid">
+                    <div class="thesis-label">
+                        <span class="mono">§ 01 — The Thesis</span>
+                    </div>
+                    <p class="thesis-body">Indian psychology training ends at the degree. The system assumes the rest comes from supervisors who don't exist, in clinics that don't teach, with cases nobody discusses. <em>Serenest Education is the part that comes after.</em></p>
+                </div>
+            </section>
+        </section>
+
+        <!-- PAGE: COURSES -->
+        <section class="viewport-tab page-band page-band--courses" id="viewport-courses" data-page="courses" hidden>
+            <header class="page-intro">
+                <div class="container">
+                    <span class="mono page-eyebrow">§ Academy · Phase 01</span>
+                    <h2 class="display page-intro-title">Clinical <em>cohorts</em></h2>
+                    <p class="page-intro-lede">Five Indian-centric modules — from live supervised foundations to MHCA compliance and queer-affirmative practice.</p>
+                </div>
+            </header>
+            <section class="courses-section" id="courses">
+                <div class="container">
+                    <div class="courses-list-container">
+                        
+                        <!-- Course 1: Flagship -->
+                        <div class="course-item flagship-item" data-course-id="foundations">
+                            <div class="course-num">01 / Flagship</div>
+                            <div class="course-main-content">
+                                <span class="flagship-badge">Cohort · Live Supervision</span>
+                                <h3 class="course-title">Foundations of Clinical Practice</h3>
+                                <p class="course-desc">A twelve-week structured program covering intake, formulation, basic CBT, suicide risk assessment, legal documentation, and clinical ethics. Limited to thirty seats per cohort.</p>
+                                
+                                <!-- Hidden Syllabus Drawer -->
+                                <div class="syllabus-drawer" id="drawer-foundations">
+                                    <div class="syllabus-divider"></div>
+                                    <h4 class="mono syllabus-header">Curriculum Highlights</h4>
+                                    <ul class="syllabus-modules">
+                                        <li><strong>Week 1-3:</strong> Clinical Intake & Multilingual Case Formulation (Indian context).</li>
+                                        <li><strong>Week 4-6:</strong> Cognitive Behavior Therapy (CBT) adapted for Indian client profiles.</li>
+                                        <li><strong>Week 7-9:</strong> Suicide Risk Assessments & MHCA 2017 legal safety compliance.</li>
+                                        <li><strong>Week 10-12:</strong> Ethics, boundaries, record keeping, and MCI Telemedicine Guidelines.</li>
+                                    </ul>
+                                    <div class="syllabus-meta-row">
+                                        <span><strong>Duration:</strong> 12 Weeks (Live + Recorded)</span>
+                                        <span><strong>Supervision:</strong> Real case reviews by senior faculty</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-meta-data">
+                                12 weeks · Live + recorded<br>
+                                Supervision included<br>
+                                Certificate of completion
+                            </div>
+                            <div class="course-pricing-action">
+                                <span class="course-access mono">Free · 30 seats</span>
+                                <div class="course-action-btns">
+                                    <button type="button" class="btn btn-compact btn-toggle-syllabus">View Syllabus</button>
+                                    <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="Foundations of Clinical Practice">Register via WhatsApp</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course 2 -->
+                        <div class="course-item" data-course-id="family-dynamics">
+                            <div class="course-num">02</div>
+                            <div class="course-main-content">
+                                <h3 class="course-title">Intergenerational Trauma &amp; Indian Family Systems</h3>
+                                <p class="course-desc">Eight weeks of intensive training on counseling collectivist systems—resolving parent enmeshment, joint family friction, marriage boundaries, and familial guilt.</p>
+                                
+                                <!-- Hidden Syllabus Drawer -->
+                                <div class="syllabus-drawer" id="drawer-family-dynamics">
+                                    <div class="syllabus-divider"></div>
+                                    <h4 class="mono syllabus-header">Curriculum Highlights</h4>
+                                    <ul class="syllabus-modules">
+                                        <li><strong>Module 1:</strong> Systemic Family Therapy frameworks adapted for Indian joint homes.</li>
+                                        <li><strong>Module 2:</strong> Codependency vs. culturally congruent interdependency.</li>
+                                        <li><strong>Module 3:</strong> Negotiating boundaries with intrusive parents in clinical counseling.</li>
+                                        <li><strong>Module 4:</strong> Intergenerational trauma transmission and narrative therapy solutions.</li>
+                                    </ul>
+                                    <div class="syllabus-meta-row">
+                                        <span><strong>Duration:</strong> 8 Weeks (Self-Paced)</span>
+                                        <span><strong>Interactive:</strong> 4 Live Case Q&A sessions</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-meta-data">
+                                8 weeks · Self-paced<br>
+                                4 Live Faculty Q&As
+                            </div>
+                            <div class="course-pricing-action">
+                                <span class="course-access mono">Free access</span>
+                                <div class="course-action-btns">
+                                    <button type="button" class="btn btn-compact btn-toggle-syllabus">View Syllabus</button>
+                                    <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="Intergenerational Trauma &amp; Indian Family Systems">Register via WhatsApp</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course 3 -->
+                        <div class="course-item" data-course-id="multilingual">
+                            <div class="course-num">03</div>
+                            <div class="course-main-content">
+                                <h3 class="course-title">Multilingual Therapy &amp; Somatic Idioms of Distress</h3>
+                                <p class="course-desc">How to conduct clinical therapy when your client expresses distress through somatic descriptions (e.g. <em>"mann ghabrana"</em>, chest heaviness) and translating Western cognitive concepts into Hindi and regional languages.</p>
+                                
+                                <!-- Hidden Syllabus Drawer -->
+                                <div class="syllabus-drawer" id="drawer-multilingual">
+                                    <div class="syllabus-divider"></div>
+                                    <h4 class="mono syllabus-header">Curriculum Highlights</h4>
+                                    <ul class="syllabus-modules">
+                                        <li><strong>Module 1:</strong> Deconstructing somatic symptoms in semi-urban & rural Indian clients.</li>
+                                        <li><strong>Module 2:</strong> Translating CBT (thoughts, behaviors, beliefs) into vernacular Hindi/Gujarati/Marathi.</li>
+                                        <li><strong>Module 3:</strong> Expressive therapy & narrative techniques for non-English speakers.</li>
+                                        <li><strong>Module 4:</strong> Linguistic nuances: Navigating shame and stigma in native dialects.</li>
+                                    </ul>
+                                    <div class="syllabus-meta-row">
+                                        <span><strong>Duration:</strong> 6 Weeks (Self-Paced)</span>
+                                        <span><strong>Resource:</strong> Multilingual Translation Glossary Included</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-meta-data">
+                                6 weeks · Self-paced<br>
+                                Translation Guides
+                            </div>
+                            <div class="course-pricing-action">
+                                <span class="course-access mono">Free access</span>
+                                <div class="course-action-btns">
+                                    <button type="button" class="btn btn-compact btn-toggle-syllabus">View Syllabus</button>
+                                    <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="Multilingual Therapy &amp; Somatic Idioms of Distress">Register via WhatsApp</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course 4 -->
+                        <div class="course-item" data-course-id="queer-affirmative">
+                            <div class="course-num">04</div>
+                            <div class="course-main-content">
+                                <h3 class="course-title">Queer-Affirmative &amp; Neurodivergent Practice</h3>
+                                <p class="course-desc">A deep dive into clinical frameworks protecting queer, trans, and neurodivergent individuals in India—incorporating local legal landscapes (Post-377, Trans Act 2019) and hostile familial dynamics.</p>
+                                
+                                <!-- Hidden Syllabus Drawer -->
+                                <div class="syllabus-drawer" id="drawer-queer-affirmative">
+                                    <div class="syllabus-divider"></div>
+                                    <h4 class="mono syllabus-header">Curriculum Highlights</h4>
+                                    <ul class="syllabus-modules">
+                                        <li><strong>Module 1:</strong> Principles of Queer-Affirmative Cognitive Behavior Therapy.</li>
+                                        <li><strong>Module 2:</strong> Navigating gender dysphoria & supporting RCI letter-writing for medical transitions.</li>
+                                        <li><strong>Module 3:</strong> Neurodivergence (ADHD/Autism) in collectivist structures: masking & burnouts.</li>
+                                        <li><strong>Module 4:</strong> Legal safety, systemic ethics, and supportive family counseling protocols.</li>
+                                    </ul>
+                                    <div class="syllabus-meta-row">
+                                        <span><strong>Duration:</strong> 8 Weeks (Self-Paced)</span>
+                                        <span><strong>Ethics:</strong> Full local legal manual included</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-meta-data">
+                                8 weeks · Self-paced<br>
+                                Ethics Manual
+                            </div>
+                            <div class="course-pricing-action">
+                                <span class="course-access mono">Free access</span>
+                                <div class="course-action-btns">
+                                    <button type="button" class="btn btn-compact btn-toggle-syllabus">View Syllabus</button>
+                                    <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="Queer-Affirmative &amp; Neurodivergent Practice">Register via WhatsApp</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course 5 -->
+                        <div class="course-item" data-course-id="private-practice">
+                            <div class="course-num">05</div>
+                            <div class="course-main-content">
+                                <h3 class="course-title">Private Practice Setup &amp; MHCA 2017 Compliance</h3>
+                                <p class="course-desc">Everything clinical programs skip: registration, professional indemnity insurance, fee structures, local tax filings (GST), clinical note-taking, and RCI digital record-keeping compliance.</p>
+                                
+                                <!-- Hidden Syllabus Drawer -->
+                                <div class="syllabus-drawer" id="drawer-private-practice">
+                                    <div class="syllabus-divider"></div>
+                                    <h4 class="mono syllabus-header">Curriculum Highlights</h4>
+                                    <ul class="syllabus-modules">
+                                        <li><strong>Module 1:</strong> Legal entity options for solo practitioners vs. group therapy clinics.</li>
+                                        <li><strong>Module 2:</strong> Drafting Clinical Informed Consent sheets (Outpatient & Telehealth).</li>
+                                        <li><strong>Module 3:</strong> Tax filing (Section 44ADA presumptive taxation) and invoicing for psychologists.</li>
+                                        <li><strong>Module 4:</strong> Risk documentation guidelines under MHCA 2017 & Telehealth Guidelines 2020.</li>
+                                    </ul>
+                                    <div class="syllabus-meta-row">
+                                        <span><strong>Duration:</strong> 4 Weeks (Self-Paced)</span>
+                                        <span><strong>Assets:</strong> Ready-to-use legal consent templates</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-meta-data">
+                                4 weeks · Self-paced<br>
+                                Form Templates
+                            </div>
+                            <div class="course-pricing-action">
+                                <span class="course-access mono">Free access</span>
+                                <div class="course-action-btns">
+                                    <button type="button" class="btn btn-compact btn-toggle-syllabus">View Syllabus</button>
+                                    <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="Private Practice Setup &amp; MHCA 2017 Compliance">Register via WhatsApp</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- PAGE: ABOUT -->
+        <section class="viewport-tab page-band page-band--about" id="viewport-about" data-page="about" hidden>
+            <header class="page-intro">
+                <div class="container">
+                    <span class="mono page-eyebrow">§ Our approach</span>
+                    <h2 class="display page-intro-title">Built for <em>India</em></h2>
+                    <p class="page-intro-lede">Why Serenest Education exists — and who leads it.</p>
+                </div>
+            </header>
+
+            <!-- Structural Commitments Section -->
+            <section class="approach" id="approach">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="display section-title">Why this is <em>different</em>.</h2>
+                        <div class="section-meta">
+                            <span class="mono">Four commitments</span>
+                            Most online CE is content delivered into a void. Serenest Education is built so what you learn translates to what you do on Monday morning.
+                        </div>
+                    </div>
+
+                    <div class="pillars">
+                        <div class="pillar">
+                            <span class="mono pillar-num">— 01</span>
+                            <h3>Indian cases. Indian context.</h3>
+                            <p>Every clinical case discussed is drawn from real Indian outpatient scenarios—joint family boundaries, cultural trauma, somatic distress, regional language adaptations—taught by local experts, not translated from foreign textbooks.</p>
+                        </div>
+                        <div class="pillar">
+                            <span class="mono pillar-num">— 02</span>
+                            <h3>Real supervision, not just videos.</h3>
+                            <p>Cohort programs include active, small-group clinical supervision with senior practitioners. Bring your own anonymized cases, map formulations, address blindspots, and refine clinical boundaries.</p>
+                        </div>
+                        <div class="pillar">
+                            <span class="mono pillar-num">— 03</span>
+                            <h3>Built by clinicians still in practice.</h3>
+                            <p>Our faculty actively treat patients every week. There are no dry theoretical lectures from professionals who left active clinical spaces decades ago. All case files are current.</p>
+                        </div>
+                        <div class="pillar">
+                            <span class="mono pillar-num">— 04</span>
+                            <h3>Open access, serious standards.</h3>
+                            <p>All programmes are free during our launch phase. Cohort sizes stay small so supervision stays real — register via WhatsApp and we will confirm your seat with Zoom links and materials.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Clinical Founder Profile -->
+            <section class="founder" id="founder">
+                <div class="container founder-grid">
+                    <div>
+                        <span class="mono founder-eyebrow">§ Built by a clinician</span>
+                        <p class="founder-quote">"I built Serenest because rural Gujarat doesn't have psychiatrists. <em>I'm building Serenest Education because the psychologists we work with don't have anyone to teach them what comes after the degree.</em>"</p>
+                        <div class="founder-meta">
+                            <div class="founder-name">Dr. Chirag Ambaliya</div>
+                            <div class="founder-cred">MBBS, MD (Psychiatry) · Consultant Psychiatrist</div>
+                            <div class="founder-cred">Rudra Neuropsychiatry &amp; De-addiction Hospital, Deesa</div>
+                            <div class="founder-cred">Founder, Serenest</div>
+                        </div>
+                    </div>
+                    <div class="founder-aside">
+                        <span class="mono founder-eyebrow">§ The Serenest network</span>
+                        <h4>An ecosystem, not an island.</h4>
+                        <p>Serenest Education is a vertical of <a href="https://serenest.fit" target="_blank">serenest.fit</a> — a clinical-grade telepsychiatry platform connecting Indian patients with accredited psychiatrists, psychologists, and therapists. Education feeds practice. Practice informs education. The loop closes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Institutional CTA -->
+            <section class="cta-band">
+                <div class="container cta-grid">
+                    <div>
+                        <span class="mono founder-eyebrow">§ For Institutions</span>
+                        <h3>Hospitals, universities, NGOs — train your clinical teams together.</h3>
+                        <p>Bulk licensing, customized cohorts, and co-branded clinical curriculum programs for institutional buyers. We support mental health teams across India.</p>
+                    </div>
+                    <div>
+                        <button class="btn" id="btnTalkToUs">Talk to us <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- PAGE: CASE CONFERENCE (dark band) -->
+        <section class="viewport-tab page-band page-band--conference" id="viewport-conference" data-page="conference" hidden>
+            <section class="case-conf" id="case-conf">
+                <div class="container">
+                    <div class="case-grid">
+                        <div>
+                            <span class="mono">§ Free · Recurring</span>
+                            <h2>The <em>Serenest</em><br>Case Conference.</h2>
+                            <p class="lede">One real, anonymized clinical case study. Ninety minutes. Active faculty discussion on formulation, systemic roadblocks, and treatment strategies. Free, forever, for RCI practitioners and students.</p>
+                            <p class="case-next-date mono" id="nextCaseConferenceDate"></p>
+                            
+                            <form class="signup" id="caseSignupForm">
+                                <input type="text" id="caseName" placeholder="Your name" required>
+                                <input type="email" id="caseEmail" placeholder="Your academic/work email" required>
+                                <button type="submit" id="btnCaseSubmit">Reserve seat on WhatsApp</button>
+                            </form>
+                            <p class="signup-hint mono">Opens WhatsApp to +91 77776 36369 — tap Send to confirm. Free, no payment.</p>
+                            <p class="signup-success-note" id="signupSuccessNote"></p>
+                        </div>
+                        <div class="case-detail">
+                            <div class="case-detail-item">
+                                <span class="mono label">Frequency</span>
+                                <div class="value">Last Saturday<br>of every month</div>
+                            </div>
+                            <div class="case-detail-item">
+                                <span class="mono label">Format</span>
+                                <div class="value">Live · 90 minutes · Zoom</div>
+                            </div>
+                            <div class="case-detail-item">
+                                <span class="mono label">Audience</span>
+                                <div class="value">Indian psychologists &<br>Post-graduate students</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- PAGE: RESOURCE LIBRARY -->
+        <section class="viewport-tab page-band page-band--library" id="viewport-library" data-page="library" hidden>
+            <div class="container">
+                
+                <!-- Library Introduction Banner -->
+                <header class="library-header text-center">
+                    <span class="mono page-eyebrow">§ 02 — Student & Clinician Repository</span>
+                    <h2 class="display library-title">Resource <em>Library</em></h2>
+                    <p class="library-subtitle">Interactive diagnostic simulators, verified internship boards, and RCI exam preps built to support you from graduate student to clinical practitioner.</p>
+                </header>
+
+                <!-- Library sub-section quick nav -->
+                <nav class="library-subnav" aria-label="Resource library sections">
+                    <button type="button" class="library-subnav-btn active" data-library-section="all">Overview</button>
+                    <button type="button" class="library-subnav-btn" data-library-section="simulator">Practice Simulators</button>
+                    <button type="button" class="library-subnav-btn" data-library-section="internships">Internship Board</button>
+                    <button type="button" class="library-subnav-btn" data-library-section="exam-prep">Student Prep</button>
+                    <button type="button" class="library-subnav-btn" data-library-section="clinical-forms">Clinical Forms</button>
+                    <button type="button" class="library-subnav-btn" data-library-section="calculators">Clinician Tools</button>
+                </nav>
+
+                <!-- Dynamic Navigation Sub-Bar & Search Filter -->
+                <div class="library-toolbar">
+                    <div class="library-search-container">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="librarySearchInput" class="library-search-field" placeholder="Search templates, directories, entrance exams, or simulators...">
+                    </div>
+                    
+                    <div class="library-filter-chips">
+                        <button class="filter-chip active" data-filter="all">All Assets</button>
+                        <button class="filter-chip" data-filter="simulator">Practice Simulators</button>
+                        <button class="filter-chip" data-filter="internships">Internship Directory</button>
+                        <button class="filter-chip" data-filter="exam-prep">Entrance Exam Prep</button>
+                        <button class="filter-chip" data-filter="clinical-forms">Consent Templates</button>
+                        <button class="filter-chip" data-filter="calculators">Calculators</button>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC GRID PORTAL -->
+                <div class="library-grid-system" id="libraryGrid">
+                    
+                    <!-- 1. MSE Practice Simulator Card -->
+                    <div class="library-item-card" data-category="simulator">
+                        <span class="item-badge">Interactive Simulator</span>
+                        <h4 class="item-title">Mental Status Examination (MSE) Simulator</h4>
+                        <p class="item-desc">Watch/read clinical case drafts from Indian therapy clinics, select patient speech/behavior/mood markers, write your MSE observations, and compare directly with expert model reports.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">10 Case Studies</span>
+                            <button class="btn btn-compact btn-library-action" id="btnLaunchMSESimulator">Launch Simulator</button>
+                        </div>
+                    </div>
+
+                    <!-- 2. RCI Pathway Navigator Card -->
+                    <div class="library-item-card" data-category="simulator">
+                        <span class="item-badge">Interactive Wizard</span>
+                        <h4 class="item-title">RCI Licensing Pathway Navigator</h4>
+                        <p class="item-desc">Unsure of the steps to become an RCI-registered therapist? Input your degree details and career goals to get an immediate, personalized path (M.Phil, PsyD, PDCP).</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">Interactive Wizard</span>
+                            <button class="btn btn-compact btn-library-action" id="btnLaunchRCIWizard">Start Navigator</button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Internship Directory Card -->
+                    <div class="library-item-card" data-category="internships">
+                        <span class="item-badge">Verified Directory</span>
+                        <h4 class="item-title">Clinical Observer &amp; Internship Directory</h4>
+                        <p class="item-desc">A crowdsourced and verified database of government hospitals, NGOs, and psychiatric clinics across India currently offering supervised clinical training.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">20 Verified Centers</span>
+                            <button class="btn btn-compact btn-library-action" id="btnOpenInternships">Browse Locations</button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Practice Caseload Calculator Card -->
+                    <div class="library-item-card" data-category="calculators">
+                        <span class="item-badge">Interactive Tool</span>
+                        <h4 class="item-title">Private Practice Caseload &amp; Fee Calculator</h4>
+                        <p class="item-desc">Map out session fees, monthly supervision costs, tax buffers (Section 44ADA), and Tiered city overheads to structure a sustainable clinical career path.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">Financial Tool</span>
+                            <button class="btn btn-compact btn-library-action" id="btnOpenCaseloadCalculator">Open Calculator</button>
+                        </div>
+                    </div>
+
+                    <!-- 5. Consent & Intake Forms Card -->
+                    <div class="library-item-card" data-category="clinical-forms">
+                        <span class="item-badge">Printable Template</span>
+                        <h4 class="item-title">Informed Consent &amp; Telehealth Intake Templates</h4>
+                        <p class="item-desc">Legally compliant informed consent templates drafted under the Mental Healthcare Act 2017 and Telemedicine Guidelines 2020. Copy-paste or print immediately.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">Outpatient Consent</span>
+                            <button class="btn btn-compact btn-library-action" id="btnOpenConsentTemplate">Open Document</button>
+                        </div>
+                    </div>
+
+                    <!-- 6. Solved Entrance Prep Papers Card -->
+                    <div class="library-item-card" data-category="exam-prep">
+                        <span class="item-badge">Downloadable PDF</span>
+                        <h4 class="item-title">NIMHANS &amp; IHBAS M.Phil Entrance Solved Papers</h4>
+                        <p class="item-desc">Categorized previous-year entrance questions with high-fidelity, detailed clinical rationale for correct options to streamline exam prep.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">5 Year Papers</span>
+                            <button type="button" class="btn btn-compact btn-library-action" id="btnOpenMphilPrep">Open Prep Chest</button>
+                        </div>
+                    </div>
+
+                    <!-- 6b. DSM-5 Diagnostic Cheat Sheet -->
+                    <div class="library-item-card" data-category="exam-prep">
+                        <span class="item-badge">Reference Sheet</span>
+                        <h4 class="item-title">DSM-5 Diagnostic Criteria Cheat Sheet</h4>
+                        <p class="item-desc">Quick-reference diagnostic thresholds for mood, anxiety, trauma, and psychotic disorders — aligned with M.Phil entrance and RCI clinical exams.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">DSM-5 / ICD-11</span>
+                            <button type="button" class="btn btn-compact btn-library-action" id="btnOpenDsm5Sheet">View Cheat Sheet</button>
+                        </div>
+                    </div>
+
+                    <!-- 7. Suicide Safety Planning Checklist Card -->
+                    <div class="library-item-card" data-category="clinical-forms">
+                        <span class="item-badge">Outpatient Guide</span>
+                        <h4 class="item-title">Suicide Risk Safety Plan &amp; Crisis Checklist</h4>
+                        <p class="item-desc">A structured assessment worksheet for outpatient settings, aligned with the legal liabilities of the Mental Healthcare Act 2017.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">MHCA 2017 Aligned</span>
+                            <button class="btn btn-compact btn-library-action" id="btnOpenSuicideGuide">View Worksheet</button>
+                        </div>
+                    </div>
+
+                    <!-- 8. Somatic Translation Glossary Card -->
+                    <div class="library-item-card" data-category="exam-prep">
+                        <span class="item-badge">Vernacular Guide</span>
+                        <h4 class="item-title">Clinical Somatic Translation Glossary (Hindi/Gujarati/Marathi)</h4>
+                        <p class="item-desc">A translation reference bridging clinical terms (e.g. *depersonalization*, *dysphoria*) with local somatic idioms commonly reported in clinics.</p>
+                        <div class="item-footer">
+                            <span class="mono item-stat">PDF Ebook</span>
+                            <a href="#" class="btn btn-compact btn-library-action" download>Download Glossary</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE: THERAPIST SANCTUARY -->
+        <section class="viewport-tab page-band page-band--sanctuary" id="viewport-sanctuary" data-page="sanctuary" hidden>
+            <div class="container text-center">
+                <header class="sanctuary-header">
+                    <span class="mono page-eyebrow">§ 03 — The Clinician Sanctuary</span>
+                    <h2 class="display sanctuary-title">The <em>Sanctuary</em></h2>
+                    <p class="sanctuary-subtitle">A quiet, scroll-free space to let go of the emotional weight of intense clinical sessions. Breathe, vent, and return to center.</p>
+                </header>
+
+                <div class="sanctuary-split-layout">
+                    <!-- somatic breathing bubble -->
+                    <div class="sanctuary-card card glass-card">
+                        <span class="card-badge">Paced Somatics</span>
+                        <h3 class="card-headline">Guided Box Breathing</h3>
+                        <p class="card-desc">Ground your nervous system before your next intake. 4-4-4-4 rhythm.</p>
+                        
+                        <div class="grounding-bubble-container">
+                            <div class="breathing-outer-halo" id="sanctuaryHalo">
+                                <div class="breathing-core-bubble" id="sanctuaryBubble">
+                                    <span id="sanctuaryBreatheText" class="breathe-status">Start</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-secondary btn-full" id="btnSanctuaryBreatheToggle">Start Grounding</button>
+                    </div>
+
+                    <!-- text dissolution venting notepad -->
+                    <div class="sanctuary-card card glass-card text-left">
+                        <span class="card-badge">Emotional Release</span>
+                        <h3 class="card-headline">Emotional Vent Box</h3>
+                        <p class="card-desc">Typed statements are 100% anonymous, stored nowhere, and completely dissolved from this device when you press Release.</p>
+                        
+                        <div class="vent-pad-wrapper">
+                            <textarea id="ventTextArea" class="vent-textarea-input" placeholder="Type down the emotional residues, worries, or fatigue carrying from your previous therapy session here..."></textarea>
+                            <div class="particles-container" id="ventParticles"></div>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" id="btnReleaseVent">Release into the Wind</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== DIALOG MODALS & RESOURCE DRAWERS ==================== -->
+
+    <!-- Modals Overlay Backdrop -->
+    <div class="modal-backdrop" id="modalBackdrop">
+
+        <!-- 1. RCI Pathway Navigator Wizard Dialog -->
+        <div class="modal-card" id="rciNavigatorModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono">Tool 01 / Navigation Wizard</span>
+                <h3 class="modal-headline">RCI Licensing Route Navigator</h3>
+            </div>
+            <div class="modal-body">
+                <!-- Step 1 of Navigator -->
+                <div class="wizard-step active" data-step="1">
+                    <p class="wizard-question">1. What is your current highest qualification in psychology?</p>
+                    <div class="wizard-options">
+                        <button class="wizard-opt-btn" data-val="undergrad">B.A. / B.Sc. (Psychology student)</button>
+                        <button class="wizard-opt-btn" data-val="postgrad-ma">M.A. / M.Sc. in Psychology (Non-clinical)</button>
+                        <button class="wizard-opt-btn" data-val="postgrad-clinical">M.A. / M.Sc. in Clinical Psychology</button>
+                        <button class="wizard-opt-btn" data-val="mphil">M.Phil in Clinical Psychology</button>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="wizard-step" data-step="2">
+                    <p class="wizard-question">2. What clinical rights and license titles do you wish to practice under in India?</p>
+                    <div class="wizard-options">
+                        <button class="wizard-opt-btn" data-val="rci-licensed">RCI Registered Clinical Psychologist (Independent Practice & DSM/ICD diagnosis)</button>
+                        <button class="wizard-opt-btn" data-val="associate">Associate Clinical Psychologist (Outpatient setting, counseling therapy)</button>
+                        <button class="wizard-opt-btn" data-val="counselor">Counseling Psychologist (No RCI needed, wellness support, school therapy)</button>
+                    </div>
+                </div>
+                <!-- Step 3 (Calculated Output) -->
+                <div class="wizard-step" data-step="3">
+                    <h4 class="mono result-eyebrow">Your Recommended Route</h4>
+                    <div class="result-roadmap-box" id="rciRoadmapOutput">
+                        <!-- Path dynamically mapped by javascript -->
+                    </div>
+                    <div class="result-navigation-row">
+                        <button class="btn btn-compact" id="btnRestartWizard">Restart Quiz</button>
+                        <button class="btn btn-compact btn-ghost" id="btnCloseWizard">Finish Navigator</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Interactive Mental Status Examination (MSE) Simulator Dialog -->
+        <div class="modal-card large-modal" id="mseSimulatorModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono">Simulator 01 / Diagnostics Practice</span>
+                <h3 class="modal-headline">Mental Status Examination Practice Pad</h3>
+            </div>
+            <div class="modal-body mse-simulator-layout">
+                <!-- Case Study Details Column -->
+                <div class="mse-case-column">
+                    <span class="mono case-number-label">Active Case: Case #04 (Outpatient, Surat)</span>
+                    <h4 class="case-subject-header">A 28-year-old Corporate Associate</h4>
+                    <p class="case-paragraph-detail">
+                        "The client sits at the edge of the chair, continuously tapping their foot on the marble floor. They wear their clinical appointment slip in a tight grip, their knuckles turning pale white. When asked about their sleep patterns, they answer in rapid, short sentences: 'Sleep is... gone. Completely went. Not there. Four days maybe five? I watch the fan rotate. One, two, three. If I close my eyes, my brain says I will miss the deadlines. My manager is sending emails in my head even when the computer is shut. The emails are... everywhere. Ticking. Ticking like bombs.' 
+                        Their facial muscles are visibly tense, and they occasionally glance towards the cabin door, starting at any distant corridor sound."
+                    </p>
+                </div>
+                <!-- Student Interactive Checklists Column -->
+                <div class="mse-interactive-column">
+                    <h4 class="mono column-sub-header">Select Observed Clinical Markers</h4>
+                    <form id="msePracticeForm" class="mse-practice-grid">
+                        <div class="form-checkbox-group">
+                            <label class="form-chk-label">
+                                <input type="checkbox" name="marker" value="psychomotor-agitation">
+                                <span class="custom-checkbox-styled"></span>
+                                Psychomotor Agitation (Foot tapping, knuckle grip)
+                            </label>
+                        </div>
+                        <div class="form-checkbox-group">
+                            <label class="form-chk-label">
+                                <input type="checkbox" name="marker" value="pressured-speech">
+                                <span class="custom-checkbox-styled"></span>
+                                Pressured Speech (Rapid, short sentences)
+                            </label>
+                        </div>
+                        <div class="form-checkbox-group">
+                            <label class="form-chk-label">
+                                <input type="checkbox" name="marker" value="thought-broadcasting">
+                                <span class="custom-checkbox-styled"></span>
+                                Thought Broadcasting
+                            </label>
+                        </div>
+                        <div class="form-checkbox-group">
+                            <label class="form-chk-label">
+                                <input type="checkbox" name="marker" value="hypervigilance">
+                                <span class="custom-checkbox-styled"></span>
+                                Hypervigilance / Startle Response
+                            </label>
+                        </div>
+                        <div class="form-checkbox-group">
+                            <label class="form-chk-label">
+                                <input type="checkbox" name="marker" value="flat-affect">
+                                <span class="custom-checkbox-styled"></span>
+                                Flat Affect
+                            </label>
+                        </div>
+                        
+                        <div class="form-group-full">
+                            <label class="mono text-label">Your Clinical Observation Formulation:</label>
+                            <textarea id="mseObservationsReport" placeholder="Type down your clinical report observations (e.g. Speech, Affect, Thought stream)..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-full">Submit Observations</button>
+                    </form>
+                    <p class="mono mse-score-summary" id="mseScoreSummary" aria-live="polite"></p>
+
+                    <!-- Hidden Side-by-Side Diagnostic Feedback -->
+                    <div class="mse-expert-feedback-box" id="mseExpertFeedback">
+                        <h4 class="mono feedback-headline">Side-by-Side Analysis Comparison</h4>
+                        <div class="sxs-grid">
+                            <div class="student-observations-copy">
+                                <h5>Your Observations:</h5>
+                                <div id="userObservationsCopyText"></div>
+                            </div>
+                            <div class="expert-observations-report">
+                                <h5>Clinician Formulation (Model):</h5>
+                                <p><strong>Motor Behavior:</strong> Marked psychomotor agitation (foot tapping, tense posture, hyperkinetic movements).</p>
+                                <p><strong>Speech:</strong> Rapid, pressured, responsive but rushed.</p>
+                                <p><strong>Mood/Affect:</strong> Mood reported as extremely anxious. Affect is tense, congruent, restricted in range.</p>
+                                <p><strong>Thought Process:</strong> Linear but highly anxious, focused on somatic somatic/corporate catastrophic fears. No hallucinations or thought broadasting observed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Internship Directory Dialog -->
+        <div class="modal-card large-modal" id="internshipsModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono">Directory 01 / Clinical Training</span>
+                <h3 class="modal-headline">Verified Indian Clinical Internship Board</h3>
+            </div>
+            <div class="modal-body">
+                <div class="directory-toolbar-filters">
+                    <input type="text" id="internshipSearch" class="directory-search-input" placeholder="Filter by City, Hospital name, or NGO (e.g. Mumbai, NIMHANS)...">
+                </div>
+                <div class="directory-table-container">
+                    <table class="directory-table">
+                        <thead>
+                            <tr>
+                                <th>Institution / Clinic</th>
+                                <th>Location</th>
+                                <th>Training Focus</th>
+                                <th>Affiliation / Standard</th>
+                                <th>Duration &amp; Seats</th>
+                            </tr>
+                        </thead>
+                        <tbody id="internshipTableBody">
+                            <!-- Populated dynamically via Javascript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Caseload & Fee Calculator Dialog -->
+        <div class="modal-card" id="caseloadCalculatorModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono">Tool 02 / Professional Sustainability</span>
+                <h3 class="modal-headline">Clinician Fee &amp; Caseload Calculator</h3>
+            </div>
+            <div class="modal-body calculator-grid-layout">
+                <!-- City tier presets -->
+                <div class="calc-tier-presets">
+                    <span class="mono calc-tier-label">City tier presets</span>
+                    <div class="calc-tier-btns">
+                        <button type="button" class="calc-tier-btn" data-tier="1">Tier 1 · Mumbai / Delhi / Bangalore</button>
+                        <button type="button" class="calc-tier-btn" data-tier="2">Tier 2 · Pune / Ahmedabad / Jaipur</button>
+                        <button type="button" class="calc-tier-btn" data-tier="3">Tier 3 · Deesa / Tier-2 towns</button>
+                    </div>
+                </div>
+                <!-- Slider Inputs Column -->
+                <div class="calc-inputs">
+                    <div class="calc-group">
+                        <label class="slider-label-row">
+                            <span>Target Monthly Income</span>
+                            <span class="value-highlight">₹<span id="labelTargetIncome">75,000</span></span>
+                        </label>
+                        <input type="range" class="calculator-range-slider" id="calcTargetIncome" min="30000" max="250000" step="5000" value="75000">
+                    </div>
+                    <div class="calc-group">
+                        <label class="slider-label-row">
+                            <span>Average Session Fee (Outpatient)</span>
+                            <span class="value-highlight">₹<span id="labelSessionFee">1,500</span></span>
+                        </label>
+                        <input type="range" class="calculator-range-slider" id="calcSessionFee" min="600" max="5000" step="100" value="1500">
+                    </div>
+                    <div class="calc-group">
+                        <label class="slider-label-row">
+                            <span>Monthly Supervision Cost</span>
+                            <span class="value-highlight">₹<span id="labelSupervisionCost">8,000</span></span>
+                        </label>
+                        <input type="range" class="calculator-range-slider" id="calcSupervisionCost" min="2000" max="25000" step="500" value="8000">
+                    </div>
+                    <div class="calc-group">
+                        <label class="slider-label-row">
+                            <span>City Tier &amp; Room Rent (Monthly)</span>
+                            <span class="value-highlight">₹<span id="labelRentCost">12,000</span></span>
+                        </label>
+                        <input type="range" class="calculator-range-slider" id="calcRentCost" min="0" max="40000" step="1000" value="12000">
+                    </div>
+                </div>
+                <!-- Calculations Outputs Display -->
+                <div class="calc-outputs">
+                    <div class="output-value-block">
+                        <span class="mono output-label-text">Weekly Clients Required</span>
+                        <div class="output-headline" id="outputWeeklyClients">16 Clients</div>
+                        <p class="output-small-desc">Calculated at 4 weeks per month, assuming a sustainable 4-client caseload per day limit.</p>
+                    </div>
+                    <div class="output-divider"></div>
+                    <div class="output-tax-info">
+                        <h5 class="mono sub-output-label">Presumptive Taxation Buffer (Section 44ADA)</h5>
+                        <p class="tax-desc-para">Under Indian Law, 50% of your gross earnings are considered tax-free profit, keeping your effective tax brackets extremely low.</p>
+                        <div class="gross-calculation-row">
+                            <span>Required Gross Revenue:</span>
+                            <strong>₹<span id="outputGrossRevenue">95,000</span> / month</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. General Document Viewer Modal Drawer (Consent Sheets, suicide safety planning guides) -->
+        <div class="modal-card large-modal" id="documentViewerModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono" id="docViewerCategory">Resource File</span>
+                <h3 class="modal-headline" id="docViewerTitle">Clinical Template</h3>
+            </div>
+            <div class="modal-body document-sheet-wrapper">
+                <div class="document-toolbar-panel">
+                    <button class="btn btn-compact btn-ghost" id="btnCopyDocument">Copy Content</button>
+                    <button class="btn btn-compact btn-ghost" id="btnPrintDocument">Print Document</button>
+                </div>
+                <!-- Document Body Container -->
+                <article class="printable-article-sheet" id="docViewerBody">
+                    <!-- Dynamic Document Markdown/HTML injected by Javascript -->
+                </article>
+            </div>
+        </div>
+
+        <!-- 6. Course registration (no payment) -->
+        <div class="modal-card" id="courseRegisterModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono">Free registration</span>
+                <h3 class="modal-headline" id="courseRegisterTitle">Register via WhatsApp</h3>
+            </div>
+            <div class="modal-body">
+                <form id="courseRegisterForm" class="contact-form-layout">
+                    <div class="form-input-pair">
+                        <label class="mono">Full name</label>
+                        <input type="text" class="modal-text-field" id="courseRegisterName" placeholder="Your name" required>
+                    </div>
+                    <div class="form-input-pair">
+                        <label class="mono">Email</label>
+                        <input type="email" class="modal-text-field" id="courseRegisterEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-input-pair">
+                        <label class="mono">Background (optional)</label>
+                        <textarea class="modal-textarea-field" id="courseRegisterNote" placeholder="e.g. M.A. Psychology student, Ahmedabad · RCI trainee"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-full" id="btnCourseRegisterSubmit">Send registration on WhatsApp</button>
+                </form>
+                <p class="form-whatsapp-hint mono">Opens WhatsApp to +91 77776 36369 — tap Send to complete registration.</p>
+                <div class="contact-success-box" id="courseRegisterSuccess">
+                    <span class="mono success-badge">Almost done</span>
+                    <p id="courseRegisterSuccessText">WhatsApp should have opened. Tap Send on the pre-filled message — we will reply with cohort dates and Zoom links. No payment required.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Institutional Contact Modal -->
+        <div class="modal-card" id="institutionalModal">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <span class="mono">Collaboration / Bulk Licensing</span>
+                <h3 class="modal-headline">Talk to Serenest Education</h3>
+            </div>
+            <div class="modal-body">
+                <form id="contactFormSubmit" class="contact-form-layout">
+                    <div class="form-input-pair">
+                        <label class="mono">Institution / Organization Name</label>
+                        <input type="text" class="modal-text-field" id="institutionName" placeholder="e.g. Symbiosis University, Pune" required>
+                    </div>
+                    <div class="form-input-pair">
+                        <label class="mono">Contact Person Email</label>
+                        <input type="email" class="modal-text-field" id="institutionEmail" placeholder="e.g. registrar@symbiosis.edu" required>
+                    </div>
+                    <div class="form-input-pair">
+                        <label class="mono">Project Scope Details</label>
+                        <textarea class="modal-textarea-field" id="institutionDetails" placeholder="Tell us about your student cohorts, training needs, or bulk license inquiries..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-full">Send inquiry on WhatsApp</button>
+                </form>
+                <div class="contact-success-box" id="contactSuccessNote">
+                    <span class="mono success-badge">Almost done</span>
+                    <p>WhatsApp should have opened. Tap Send on the pre-filled message — our team will reply within 48 hours.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Minimalist Footer -->
+    <footer class="foot-section">
+        <div class="container">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">Serenest <em>Education</em></div>
+                    <p class="foot-tagline">Clinical training built for how India actually practices.</p>
+                </div>
+                <div class="foot-col">
+                    <h5>Learn</h5>
+                    <button class="footer-link-btn active-tab-trigger" data-target="courses">All courses</button>
+                    <button class="footer-link-btn active-tab-trigger" data-target="conference">Case conference</button>
+                    <button class="footer-link-btn active-tab-trigger" data-target="about">Our approach</button>
+                </div>
+                <div class="foot-col">
+                    <h5>Network</h5>
+                    <a href="https://serenest.fit" target="_blank">Serenest platform</a>
+                    <button class="footer-link-btn" id="footBtnInstitutions">For institutions</button>
+                    <button class="footer-link-btn" id="footBtnFaculty">Become faculty</button>
+                </div>
+                <div class="foot-col">
+                    <h5>Contact</h5>
+                    <a href="https://wa.me/917777636369" target="_blank" rel="noopener noreferrer">WhatsApp · +91 77776 36369</a>
+                    <a href="mailto:hello@serenest.academy">hello@serenest.academy</a>
+                    <a href="https://www.linkedin.com/company/serenest" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="mailto:hello@serenest.academy?subject=Newsletter">Newsletter</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <div>© 2026 Serenest · <a href="https://serenest.academy" class="foot-admin-link">serenest.academy</a></div>
+                <div class="foot-bottom-links">
+                    <a href="admin.html" class="foot-admin-link">Admin</a>
+                    <a href="https://serenest.fit" target="_blank" class="serenest-link">SERENEST.FIT ↗</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp quick contact -->
+    <a href="https://wa.me/917777636369" class="whatsapp-fab" id="whatsappFab" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp +91 77776 36369">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Core Javascript Code -->
+    <script src="app.js"></script>
+</body>
+</html>
