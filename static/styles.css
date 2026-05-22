@@ -472,6 +472,12 @@ body[data-page="conference"] .nav-links {
     line-height: 1.45;
 }
 
+.hero-sub--secondary {
+    margin-top: -36px;
+    margin-bottom: 56px;
+    font-size: 19px;
+}
+
 .hero-ctas {
     display: flex;
     gap: 14px;
