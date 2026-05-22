@@ -9,7 +9,7 @@
     const SESSION_KEY = 'serenest_admin_session';
 
     const COURSES = [
-        'Foundations of Clinical Practice',
+        'Foundations of Mental Health Counselling',
         'Intergenerational Trauma & Indian Family Systems',
         'Multilingual Therapy & Somatic Idioms of Distress',
         'Queer-Affirmative & Neurodivergent Practice',
