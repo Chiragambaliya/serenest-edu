@@ -6,6 +6,7 @@ services:
   - type: web
     name: serenest-education
     runtime: static
+    plan: starter
     buildCommand: ""
     staticPublishPath: ./static
     domains:
