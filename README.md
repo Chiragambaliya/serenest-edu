@@ -1,16 +1,36 @@
-# React + Vite
+# Dr. Chirag Ambaliya — Personal Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal brand hub built with **React + Vite**. It brings together
+consultation, academics, blog, CV, and social links in a single, fast,
+responsive one-page site.
 
-Currently, two official plugins are available:
+## Sections
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Hero / About** — introduction, focus areas, and skills
+- **Consultation** — services offered, with a "book a consultation" CTA
+- **Academics** — publications and research
+- **Blog** — writing and essays
+- **CV** — experience & education timeline, plus a downloadable CV
+- **Contact** — email and all social media links
 
-## React Compiler
+## Editing content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+All copy lives in one place: [`src/data.js`](src/data.js). Update the text,
+links, publications, blog posts, and CV entries there — no component changes
+needed. To enable the **Download CV** button, drop a `cv.pdf` into `public/`
+and set `profile.cvUrl` to `/cv.pdf` in `src/data.js`.
 
-## Expanding the ESLint configuration
+## Develop
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev      # start the dev server
+npm run build    # production build → dist/
+npm run preview  # preview the production build
+```
+
+## Deploy
+
+The repo includes `netlify.toml` (build `npm run build`, publish `dist/`,
+with SPA redirects). Any static host that serves the `dist/` folder works —
+Netlify, Vercel, GitHub Pages, Render, etc.

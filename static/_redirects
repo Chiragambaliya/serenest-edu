@@ -1,3 +1,0 @@
-# SPA-style admin shortcut + apex domain (Netlify)
-/admin    /admin.html   200
-https://www.serenest.academy/*  https://serenest.academy/:splat  301!
