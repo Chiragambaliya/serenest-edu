@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+# Clean URL for the EMR app (existing files like /emr.html are served first)
+[[redirects]]
+  from = "/emr"
+  to = "/emr.html"
+  status = 200
+
 # SPA fallback so client-side anchors/routes resolve
 [[redirects]]
   from = "/*"
