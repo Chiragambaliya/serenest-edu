@@ -1,4 +1,6 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { AcademyFallback } from './academy/AcademyFallback'
 import { Layout } from './components/Layout'
 import { ScrollToTop } from './components/ScrollToTop'
 import { AboutPage } from './pages/AboutPage'
@@ -11,11 +13,21 @@ import { ProgrammesPage } from './pages/ProgrammesPage'
 import { WhatWeDoPage } from './pages/WhatWeDoPage'
 import './App.css'
 
+const AcademyApp = lazy(() => import('./academy/AcademyApp'))
+
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
+        <Route
+          path="academy"
+          element={
+            <Suspense fallback={<AcademyFallback />}>
+              <AcademyApp />
+            </Suspense>
+          }
+        />
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
