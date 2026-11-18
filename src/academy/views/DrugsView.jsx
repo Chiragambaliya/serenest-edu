@@ -73,13 +73,15 @@ export function DrugsView() {
         })}
       </div>
 
-      <div className="ac-drug-intro">
+      <article className="bento bento--glass ac-drug-head">
         <div className="ac-badges">
           <span className="ac-badge ac-badge--mint">✓ Independent · No Sponsor</span>
           <span className="ac-badge ac-badge--amber">0.5 CME Points [Pending Accreditation]</span>
         </div>
         <h2 className="ac-editorial ac-drug-title">{drug.name}</h2>
-      </div>
+        <p className="ac-muted">{drug.mechanism}</p>
+        <p className="ac-fit">{drug.clinicalFit}</p>
+      </article>
 
       <div className="ac-drug-grid">
         <article className="bento bento--glass ac-dial">
@@ -162,11 +164,6 @@ export function DrugsView() {
           </button>
         </article>
       </div>
-
-      <article className="bento bento--glass ac-drug-head">
-        <p className="ac-muted">{drug.mechanism}</p>
-        <p className="ac-fit">{drug.clinicalFit}</p>
-      </article>
 
       <p className="ac-disclaimer">
         Educational reference for qualified clinicians. Doses here are a study aid, not a prescription or a substitute for

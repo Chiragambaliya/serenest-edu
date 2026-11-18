@@ -1,19 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useAcademy } from '../context'
 
-const SECTION_TITLES = {
-  learn: 'Study',
-  drugs: 'Drug guides',
-  network: 'Network',
-  verify: 'Verify',
-}
-
 export function AcademyHeader() {
-  const { isDoctor, setRole, tab } = useAcademy()
+  const { isDoctor, setRole } = useAcademy()
 
   return (
     <header className="ac-header">
-      <h1 className="ac-header__section">{SECTION_TITLES[tab]}</h1>
       <div className="ac-brand">
         <div className="ac-mark" aria-hidden="true">
           S

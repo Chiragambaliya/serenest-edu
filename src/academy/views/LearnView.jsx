@@ -148,12 +148,6 @@ export function LearnView() {
           </div>
         </div>
 
-        <div className="ac-dots" aria-label="Question progress">
-          {QUESTIONS.map((item, index) => (
-            <span key={item.topic} className={index === qIdx ? 'ac-dots__dot ac-dots__dot--on' : 'ac-dots__dot'} />
-          ))}
-        </div>
-
         <p className="ac-stem">{question.stem}</p>
         <div className="ac-options">
           {question.options.map((option, index) => {
@@ -180,9 +174,7 @@ export function LearnView() {
             <div className="ac-rationale__label">Clinical &amp; Exam Rationale</div>
             <p>{question.rationale}</p>
           </div>
-        ) : (
-          <p className="ac-muted ac-keyhint">Keys 1–4 answer the current item.</p>
-        )}
+        ) : null}
       </article>
 
       <div className="ac-courses-block">
@@ -193,8 +185,8 @@ export function LearnView() {
           </div>
           <div className="ac-filters" role="tablist" aria-label="Course filters">
             {COURSE_FILTERS.map((item) => {
-              const count = item.id === 'all' ? SHORT_COURSES.length : SHORT_COURSES.filter((course) => course.cat === item.id).length
               const on = filter === item.id
+              const label = item.id === 'all' ? `${item.label} (${SHORT_COURSES.length})` : item.label
               return (
                 <button
                   key={item.id}
@@ -203,7 +195,7 @@ export function LearnView() {
                   aria-pressed={on}
                   onClick={() => setFilter(item.id)}
                 >
-                  {item.label} ({count})
+                  {label}
                 </button>
               )
             })}

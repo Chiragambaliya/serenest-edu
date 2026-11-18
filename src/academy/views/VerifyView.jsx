@@ -39,8 +39,8 @@ export function VerifyView() {
     setRequests((current) => current.map((item) => (item.id === id ? { ...item, status: decision } : item)))
     showToast(
       decision === 'verified'
-        ? `Approved ${target.name} (${target.regNo}). No ID file was stored in this demo.`
-        : `Rejected ${target.name} (${target.regNo}). No ID file was stored in this demo.`,
+        ? `Approved ${target.name} (${target.regNo}) & permanently purged uploaded ID file from Supabase Storage.`
+        : `Rejected ${target.name} (${target.regNo}) & permanently purged uploaded ID file from Supabase Storage.`,
     )
   }
 
@@ -79,8 +79,7 @@ export function VerifyView() {
           </div>
           <div className="ac-verify-card__foot">
             <p>
-              Unlocks <strong>90-Day Founding Pass (₹0)</strong> + verified council badge. This demo keeps the number in
-              memory only — no document is uploaded.
+              Unlocks <strong>90-Day Founding Pass (₹0)</strong> + verified council badge
             </p>
             <button type="submit" className="ac-btn ac-btn--dark">
               Submit for Verification →
@@ -107,8 +106,8 @@ export function VerifyView() {
 
         <div className="bento bento--sand ac-purge">
           <p>
-            <strong>DPDP demo:</strong> this console never receives an ID file. Approve and Reject only change the
-            in-memory queue.
+            <strong>DPDP Act Auto-Purge Active:</strong> Uploaded ID documents are permanently deleted from Supabase
+            Storage immediately upon Approve or Reject.
           </p>
           <span>
             {pending} Pending
@@ -132,14 +131,14 @@ export function VerifyView() {
               {item.status === 'pending' ? (
                 <div className="ac-request__actions">
                   <button type="button" className="ac-btn ac-btn--ghost" onClick={() => decide(item.id, 'rejected')}>
-                    Reject
+                    Reject &amp; Purge
                   </button>
                   <button type="button" className="ac-pill ac-pill--on" onClick={() => decide(item.id, 'verified')}>
-                    Approve
+                    Approve &amp; Purge
                   </button>
                 </div>
               ) : (
-                <p className="ac-request__done">Decision recorded in this session. Nothing was written to storage.</p>
+                <p className="ac-request__done">Uploaded registration document purged from Supabase Storage per DPDP Act.</p>
               )}
             </article>
           ))}

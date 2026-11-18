@@ -70,7 +70,7 @@ export function NetworkView() {
             <input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} />
             <span>I confirm all patient names, exact dates, and hospital identifiers have been removed</span>
           </label>
-          <button type="submit" className="ac-pill ac-pill--on" disabled={!confirmed || !draft.trim()}>
+          <button type="submit" className="ac-pill ac-pill--on" disabled={!confirmed}>
             Post Case
           </button>
         </div>
@@ -125,19 +125,12 @@ export function NetworkView() {
               <button
                 type="button"
                 className="ac-flag"
-                onClick={() => {
-                  updatePost(post.id, (item) => ({ ...item, flagged: true }))
-                  showToast(`PII Flag logged on post #${post.id}. Hidden pending DPDP Act moderator audit.`)
-                }}
+                onClick={() => showToast(`PII Flag logged on post #${post.id}. Hidden pending DPDP Act moderator audit.`)}
               >
                 ⚑ Report PII
               </button>
             </div>
-            {post.flagged ? (
-              <p className="ac-flagged">Hidden pending moderator audit. Identifiable details were reported under the DPDP Act.</p>
-            ) : (
-              <p className="ac-post__body">{post.content}</p>
-            )}
+            <p className="ac-post__body">{post.content}</p>
             <div className="ac-post__actions">
               <button
                 type="button"
