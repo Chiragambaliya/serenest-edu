@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })} · 6:00 PM IST`;
     }
 
+    document.getElementById('btnRequestGlossary')?.addEventListener('click', () => {
+        openWhatsApp('Hi Serenest Education, please send me the Clinical Somatic Translation Glossary (Hindi/Gujarati/Marathi) PDF.');
+    });
+
     document.getElementById('heroWhatsAppBtn')?.addEventListener('click', () => {
         openWhatsApp([
             'Hi Serenest Education,',
@@ -67,7 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.nav-tab-btn');
     const viewports = document.querySelectorAll('.viewport-tab');
 
-    function switchViewport(targetTabId) {
+    const TAB_TITLES = {
+        home: "Serenest Academy — Building India's Future Mental Health Workforce",
+        courses: 'Courses & Programs — Serenest Academy',
+        about: 'About — Serenest Academy',
+        library: 'Resource Library — Serenest Academy',
+        sanctuary: 'The Clinician Sanctuary — Serenest Academy',
+        conference: 'SerenestCase Conference — Serenest Academy',
+    };
+
+    function switchViewport(targetTabId, { push = true, smooth = true } = {}) {
+        if (!TAB_TITLES[targetTabId]) targetTabId = 'home';
+        if (push) {
+            const url = targetTabId === 'home' ? window.location.pathname : `#${targetTabId}`;
+            if ((window.location.hash.slice(1) || 'home') !== targetTabId) {
+                history.pushState({ tab: targetTabId }, '', url);
+            }
+        }
+        document.title = TAB_TITLES[targetTabId];
+
         tabs.forEach(t => {
             const isActive = t.getAttribute('data-tab') === targetTabId;
             t.classList.toggle('active', isActive);
@@ -84,8 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
     }
+
+    function tabFromHash() {
+        return window.location.hash.replace('#', '').toLowerCase() || 'home';
+    }
+    window.addEventListener('popstate', () => switchViewport(tabFromHash(), { push: false, smooth: false }));
+    if (tabFromHash() !== 'home') switchViewport(tabFromHash(), { push: false, smooth: false });
 
     document.getElementById('brandLink')?.addEventListener('click', (e) => {
         e.preventDefault();
