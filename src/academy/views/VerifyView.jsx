@@ -1,47 +1,26 @@
 import { useState } from 'react'
 import { useAcademy } from '../context'
-import { INITIAL_REQUESTS, VERIFY_ROLES, fieldForRole } from '../data/verification'
+import { VERIFY_ROLES, fieldForRole } from '../data/verification'
 
 export function VerifyView() {
   const { tab, showToast } = useAcademy()
   const active = tab === 'verify'
   const [roleValue, setRoleValue] = useState(VERIFY_ROLES[0].value)
   const [regNo, setRegNo] = useState('')
-  const [status, setStatus] = useState('Status: Verified')
-  const [requests, setRequests] = useState(INITIAL_REQUESTS)
+  const [receipt, setReceipt] = useState(null)
   const field = fieldForRole(roleValue)
-  const pending = requests.filter((item) => item.status === 'pending').length
 
   function submit(event) {
     event.preventDefault()
     const trimmed = regNo.trim()
     if (!trimmed) return
-    setRequests((current) => [
-      {
-        id: `v-${Date.now()}`,
-        name: 'New Applicant (Self-Submitted)',
-        role: roleValue,
-        council: field.council,
-        regNo: trimmed,
-        submitted: 'Just now',
-        status: 'pending',
-      },
-      ...current,
-    ])
+    setReceipt({
+      role: roleValue,
+      council: field.council,
+      regNo: trimmed,
+    })
     setRegNo('')
-    setStatus('Status: Queued for Review')
-    showToast(`Submitted ${trimmed} for verification. Added to Admin Console below.`)
-  }
-
-  function decide(id, decision) {
-    const target = requests.find((item) => item.id === id)
-    if (!target) return
-    setRequests((current) => current.map((item) => (item.id === id ? { ...item, status: decision } : item)))
-    showToast(
-      decision === 'verified'
-        ? `Approved ${target.name} (${target.regNo}) & permanently purged uploaded ID file from Supabase Storage.`
-        : `Rejected ${target.name} (${target.regNo}) & permanently purged uploaded ID file from Supabase Storage.`,
-    )
+    showToast(`Saved ${trimmed} on this device only. It is not sent to a register.`)
   }
 
   return (
@@ -52,7 +31,7 @@ export function VerifyView() {
             <span className="ac-kicker ac-kicker--ink">Profile Verification &amp; 90-Day Pass</span>
             <h2 className="ac-editorial">Council &amp; ID Verification</h2>
           </div>
-          <span className="ac-status-pill">{status}</span>
+          <span className="ac-status-pill">{receipt ? 'Saved on this device' : 'Not submitted'}</span>
         </div>
         <form onSubmit={submit}>
           <div className="ac-form-grid">
@@ -79,70 +58,39 @@ export function VerifyView() {
           </div>
           <div className="ac-verify-card__foot">
             <p>
-              Unlocks <strong>90-Day Founding Pass (₹0)</strong> + verified council badge
+              Unlocks the <strong>90-Day Founding Pass (₹0)</strong> once a council confirms the number. This preview
+              keeps it on your device only.
             </p>
             <button type="submit" className="ac-btn ac-btn--dark">
-              Submit for Verification →
+              Save number →
             </button>
           </div>
         </form>
       </div>
 
-      <div className="ac-admin">
-        <div className="ac-section-head">
-          <div>
-            <h3 className="ac-editorial">Admin Verification Console</h3>
-            <p className="ac-muted">Verify council numbers on official registers before approving</p>
-          </div>
-          <div className="ac-admin__links">
-            <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" target="_blank" rel="noreferrer">
-              NMC Register ↗
-            </a>
-            <a href="https://rehabcouncil.nic.in/" target="_blank" rel="noreferrer">
-              RCI Register ↗
-            </a>
-          </div>
-        </div>
-
-        <div className="bento bento--sand ac-purge">
-          <p>
-            <strong>DPDP Act Auto-Purge Active:</strong> Uploaded ID documents are permanently deleted from Supabase
-            Storage immediately upon Approve or Reject.
-          </p>
-          <span>
-            {pending} Pending
-          </span>
-        </div>
-
-        <div className="ac-queue">
-          {requests.map((item) => (
-            <article key={item.id} className="bento bento--glass ac-request">
-              <div className="ac-request__head">
-                <div>
-                  <div className="ac-post__author">{item.name}</div>
-                  <div className="ac-post__badge">{item.role}</div>
-                  <div className="ac-request__reg">
-                    {item.council} · <strong>{item.regNo}</strong>
-                    <span> · {item.submitted}</span>
-                  </div>
-                </div>
-                <span className={`ac-request__status ac-request__status--${item.status}`}>{item.status}</span>
+      {receipt ? (
+        <article className="bento bento--glass ac-request">
+          <div className="ac-request__head">
+            <div>
+              <div className="ac-post__author">Your number</div>
+              <div className="ac-post__badge">{receipt.role}</div>
+              <div className="ac-request__reg">
+                {receipt.council} · <strong>{receipt.regNo}</strong>
               </div>
-              {item.status === 'pending' ? (
-                <div className="ac-request__actions">
-                  <button type="button" className="ac-btn ac-btn--ghost" onClick={() => decide(item.id, 'rejected')}>
-                    Reject &amp; Purge
-                  </button>
-                  <button type="button" className="ac-pill ac-pill--on" onClick={() => decide(item.id, 'verified')}>
-                    Approve &amp; Purge
-                  </button>
-                </div>
-              ) : (
-                <p className="ac-request__done">Uploaded registration document purged from Supabase Storage per DPDP Act.</p>
-              )}
-            </article>
-          ))}
-        </div>
+            </div>
+            <span className="ac-request__status ac-request__status--pending">saved</span>
+          </div>
+          <p className="ac-request__done">Nothing was uploaded, and no one else can open this from the site.</p>
+        </article>
+      ) : null}
+
+      <div className="ac-admin__links">
+        <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" target="_blank" rel="noreferrer">
+          Check NMC Register ↗
+        </a>
+        <a href="https://rehabcouncil.nic.in/" target="_blank" rel="noreferrer">
+          Check RCI Register ↗
+        </a>
       </div>
     </section>
   )

@@ -5,7 +5,7 @@ const TABS = [
   { id: 'learn', label: 'Learn', Icon: IconLearn },
   { id: 'drugs', label: 'Drugs', Icon: IconDrugs },
   { id: 'network', label: 'Network', Icon: IconNetwork },
-  { id: 'verify', label: 'Verify/Admin', Icon: IconVerify },
+  { id: 'verify', label: 'Verify', Icon: IconVerify },
 ]
 
 export function BottomDock() {

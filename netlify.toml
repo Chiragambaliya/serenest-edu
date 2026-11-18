@@ -4,11 +4,6 @@
   command = "echo Static site ready"
 
 [[redirects]]
-  from = "/admin"
-  to = "/admin.html"
-  status = 200
-
-[[redirects]]
   from = "https://www.serenest.academy/*"
   to = "https://serenest.academy/:splat"
   status = 301

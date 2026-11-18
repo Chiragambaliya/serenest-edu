@@ -36,36 +36,6 @@ export const VERIFY_ROLES = [
   },
 ]
 
-export const INITIAL_REQUESTS = [
-  {
-    id: 'v1',
-    name: 'Dr. Vikramaditya Desai',
-    role: 'Psychiatrist · Rx Ads Eligible',
-    council: 'Gujarat Medical Council',
-    regNo: 'G-51920',
-    submitted: '2h ago',
-    status: 'pending',
-  },
-  {
-    id: 'v2',
-    name: 'Sneha Nair',
-    role: 'Clinical Psychologist',
-    council: 'RCI Central Register',
-    regNo: 'A89431',
-    submitted: '5h ago',
-    status: 'pending',
-  },
-  {
-    id: 'v3',
-    name: 'Dr. Aarav Joshi',
-    role: 'PG Resident (MD Psychiatry) · Rx Ads Eligible',
-    council: 'Maharashtra Medical Council',
-    regNo: 'MMC-2024/04912',
-    submitted: 'Yesterday',
-    status: 'pending',
-  },
-]
-
 export function fieldForRole(value) {
   return VERIFY_ROLES.find((role) => role.value === value) ?? VERIFY_ROLES[0]
 }
