@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAcademy } from '../context'
-import { IconPause, IconPlay } from '../components/Icons'
+import { VideoModule } from '../components/VideoModule'
 import { COURSE_FILTERS, SHORT_COURSES } from '../data/courses'
 import { QUESTIONS, accuracyPercent } from '../data/questions'
 
@@ -10,8 +10,6 @@ export function LearnView() {
   const { tab, setTab, showToast } = useAcademy()
   const active = tab === 'learn'
 
-  const [playing, setPlaying] = useState(false)
-  const [progress, setProgress] = useState(68)
   const [qIdx, setQIdx] = useState(0)
   const [answered, setAnswered] = useState(false)
   const [chosen, setChosen] = useState(null)
@@ -38,17 +36,6 @@ export function LearnView() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [active, answered, question])
-
-  function toggleLecture() {
-    setPlaying((current) => {
-      const next = !current
-      if (next) {
-        setProgress(74)
-        showToast('Playing Lecture 7: Antipsychotics — Receptor Profiles')
-      }
-      return next
-    })
-  }
 
   function selectAnswer(index) {
     if (answered) return
@@ -109,28 +96,7 @@ export function LearnView() {
         </button>
       </div>
 
-      <article className="bento bento--glass ac-lecture">
-        <div className="ac-lecture__row">
-          <button type="button" className="ac-play" aria-label={playing ? 'Pause lecture preview' : 'Play lecture preview'} onClick={toggleLecture}>
-            {playing ? <IconPause /> : <IconPlay />}
-          </button>
-          <div className="ac-lecture__copy">
-            <span className="ac-kicker ac-kicker--mint">Lecture 7 of 24 · MD / DNB Psychiatry</span>
-            <h3>Antipsychotics — Receptor Profiles</h3>
-            <p className="ac-muted">
-              {playing
-                ? 'Playing HD stream · Receptor binding affinity curves (74%)'
-                : progress > 68
-                  ? 'Paused at 31:05 / 42:00 · Progress saved'
-                  : 'D2, 5-HT1A & 5-HT2A binding affinities · 28:40 / 42:00 watched'}
-            </p>
-          </div>
-          <span className="ac-lecture__pct">{progress}%</span>
-        </div>
-        <div className="ac-progress" aria-hidden="true">
-          <div className="ac-progress__bar" style={{ width: `${progress}%` }} />
-        </div>
-      </article>
+      <VideoModule />
 
       <article className="bento bento--glass ac-qbank">
         <div className="ac-qbank__head">
