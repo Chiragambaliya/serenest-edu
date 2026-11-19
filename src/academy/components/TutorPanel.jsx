@@ -1,12 +1,13 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { replyTo, suggestionsFor } from '../ai/tutor'
+import { pairReply } from '../ai/pair'
+import { suggestionsFor } from '../ai/tutor'
 import { useAcademy } from '../context'
 
 const WELCOME = {
   id: 'welcome',
   from: 'tutor',
   paragraphs: [
-    'Ask about a lecture, a drug card, an exam rationale, or a short course. I use only the notes already in the Academy.',
+    'Cursor finds the Academy note. Claude answers only from that note. Nothing is sent off this page.',
   ],
   source: null,
 }
@@ -40,11 +41,12 @@ export function TutorPanel() {
   function ask(text) {
     const question = text.trim()
     if (!question) return
-    const answer = replyTo(question)
+    const answer = pairReply(question)
     setMessages((current) => [
       ...current,
       { id: `you-${current.length}`, from: 'you', paragraphs: [question], source: null },
-      { id: `tutor-${current.length}`, from: 'tutor', paragraphs: answer.paragraphs, source: answer.source },
+      { id: `cursor-${current.length}`, from: 'cursor', ...answer.cursor },
+      { id: `claude-${current.length}`, from: 'claude', ...answer.claude },
     ])
     setDraft('')
   }
@@ -60,9 +62,9 @@ export function TutorPanel() {
         <section className="ac-tutor" role="dialog" aria-modal="false" aria-labelledby={titleId}>
           <header className="ac-tutor__head">
             <div>
-              <span className="ac-kicker ac-kicker--mint">Built in · Academy notes</span>
+              <span className="ac-kicker ac-kicker--mint">On this page</span>
               <h2 id={titleId} className="ac-editorial">
-                Academy tutor
+                Claude &amp; Cursor
               </h2>
             </div>
             <button type="button" className="ac-tutor__close" onClick={() => setOpen(false)} aria-label="Close tutor">
@@ -71,7 +73,7 @@ export function TutorPanel() {
           </header>
           <div className="ac-tutor__log" ref={listRef}>
             {messages.map((message) => (
-              <article key={message.id} className={message.from === 'you' ? 'ac-tutor__msg ac-tutor__msg--you' : 'ac-tutor__msg'}>
+              <article key={message.id} className={`ac-tutor__msg ac-tutor__msg--${message.from}`}>
                 {message.source ? <span className="ac-kicker ac-kicker--mint">{message.source}</span> : null}
                 {message.paragraphs.map((paragraph, index) => (
                   <p key={`${message.id}-${index}`}>{paragraph}</p>
@@ -101,7 +103,7 @@ export function TutorPanel() {
               Ask
             </button>
           </form>
-          <p className="ac-tutor__note">Study aid only. Not a prescription or a personal clinical opinion.</p>
+          <p className="ac-tutor__note">Both stay on the notes in this page. Not a prescription or a personal clinical opinion.</p>
         </section>
       ) : null}
       <button

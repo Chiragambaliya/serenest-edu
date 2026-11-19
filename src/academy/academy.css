@@ -1802,6 +1802,11 @@
   color: #fff;
 }
 
+.ac-tutor__msg--claude {
+  background: #fff;
+  border: 1px solid rgba(23, 25, 28, 0.1);
+}
+
 .ac-tutor__chips {
   display: flex;
   gap: 6px;
