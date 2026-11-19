@@ -100,7 +100,7 @@ export function DrugsView() {
                   <stop offset="100%" stopColor="#F59E0B" />
                 </linearGradient>
               </defs>
-              <circle cx="120" cy="120" r="94" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="13" strokeLinecap="round" strokeDasharray={`${DIAL_ARC} ${DIAL_CYCLE}`} />
+              <circle cx="120" cy="120" r="94" fill="none" stroke="rgba(20,23,26,0.12)" strokeWidth="13" strokeLinecap="round" strokeDasharray={`${DIAL_ARC} ${DIAL_CYCLE}`} />
               <circle
                 cx="120"
                 cy="120"
