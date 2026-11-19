@@ -13,10 +13,8 @@ export function AcademyHeader() {
         <div>
           <div className="ac-brand__row">
             <span className="ac-brand__name">Serenest Academy</span>
-            <span className="ac-pass-chip">90-Day Free Founding Pass</span>
           </div>
           <p className="ac-brand__meta">
-            serenest.academy · India’s Mental Health Workforce
             <Link to="/" className="ac-back">
               Education site
             </Link>
@@ -29,17 +27,19 @@ export function AcademyHeader() {
           type="button"
           className={isDoctor ? 'ac-pill ac-pill--on' : 'ac-pill ac-pill--off'}
           aria-pressed={isDoctor}
+          aria-label="Verified Doctor (NMC/SMC)"
           onClick={() => setRole('doctor')}
         >
-          Verified Doctor (NMC/SMC)
+          Doctor
         </button>
         <button
           type="button"
           className={!isDoctor ? 'ac-pill ac-pill--on' : 'ac-pill ac-pill--off'}
           aria-pressed={!isDoctor}
+          aria-label="RCI, PG, or student"
           onClick={() => setRole('learner')}
         >
-          RCI / PG / Student
+          RCI / PG
         </button>
       </div>
     </header>

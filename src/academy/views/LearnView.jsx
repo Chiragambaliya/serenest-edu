@@ -62,38 +62,24 @@ export function LearnView() {
 
   return (
     <section id="view-learn" className="ac-view ac-view--learn" role="tabpanel" aria-labelledby="dock-learn" hidden={!active}>
-      <div className="ac-metrics">
-        <article className="bento bento--glass ac-metric">
-          <div className="ac-metric__value ac-metric__value--mint">12</div>
-          <div className="ac-metric__label">Day Streak</div>
-        </article>
-        <article className="bento bento--glass ac-metric">
-          <div className="ac-metric__value">#214</div>
-          <div className="ac-metric__label">All-India Rank</div>
-        </article>
-        <article className="bento bento--glass ac-metric">
-          <div className="ac-metric__value ac-metric__value--amber" aria-live="polite">
-            {accuracy}%
-          </div>
-          <div className="ac-metric__label">Accuracy</div>
-        </article>
-      </div>
-
-      <div className="bento bento--ivory ac-pass">
-        <div>
-          <div className="ac-pass__chips">
-            <span className="ac-kicker">Active · ₹0 for 90 Days</span>
-            <span className="ac-pass__hint">No YouTube Code Needed</span>
-          </div>
-          <h2 className="ac-pass__title">Founding Member Pass Auto-Unlocked via Council/ID Verification</h2>
-          <p className="ac-pass__copy">
-            Full MD, DNB &amp; NEET SS question bank, unlisted lectures, and all 8 short practical courses are open free
-            for 90 days.
-          </p>
-        </div>
-        <button type="button" className="ac-btn ac-btn--dark" onClick={() => setTab('verify')}>
-          Manage Badge →
-        </button>
+      <div className="ac-strip">
+        <p className="ac-strip__stats">
+          <span>
+            <strong>12</strong> day streak
+          </span>
+          <span>
+            <strong>#214</strong> rank
+          </span>
+          <span>
+            <strong aria-live="polite">{accuracy}%</strong> accuracy
+          </span>
+        </p>
+        <p className="ac-strip__pass">
+          90-day pass is open. Lectures, the question bank, and 8 courses are ₹0.
+          <button type="button" className="ac-textlink" onClick={() => setTab('verify')}>
+            Manage
+          </button>
+        </p>
       </div>
 
       <VideoModule />
@@ -102,7 +88,7 @@ export function LearnView() {
         <div className="ac-qbank__head">
           <div>
             <span className="ac-kicker ac-kicker--mint">{question.topic}</span>
-            <h3 className="ac-editorial">MD / DNB Question Bank</h3>
+            <h3 className="ac-section-title">Question bank</h3>
           </div>
           <div className="ac-qbank__tools">
             <span className="ac-score">
@@ -146,8 +132,8 @@ export function LearnView() {
       <div className="ac-courses-block">
         <div className="ac-section-head">
           <div>
-            <h3 className="ac-editorial">Practical Short Courses (8)</h3>
-            <p className="ac-muted">Included at ₹0 with Founding Pass · Regular INR pricing shown</p>
+            <h3 className="ac-section-title">Short courses</h3>
+            <p className="ac-muted">Eight practical courses, ₹0 on the pass. Regular price is listed beside each one.</p>
           </div>
           <div className="ac-filters" role="tablist" aria-label="Course filters">
             {COURSE_FILTERS.map((item) => {
@@ -168,28 +154,23 @@ export function LearnView() {
           </div>
         </div>
         <div className="ac-courses">
-          {courses.map((course, index) => {
-            const sand = index % 3 === 1
+          {courses.map((course) => {
             const isEnrolled = enrolled.has(course.id)
             return (
-              <article key={course.id} className={sand ? 'bento bento--sand ac-course' : 'bento bento--glass ac-course'}>
+              <article key={course.id} className="bento bento--glass ac-course">
                 <div>
-                  <div className="ac-course__meta">
-                    <span>{course.dur}</span>
-                    <span>Regular {course.price}</span>
-                  </div>
                   <h4>{course.title}</h4>
+                  <p className="ac-course__meta">
+                    {course.dur} · {course.price}
+                  </p>
                 </div>
-                <div className="ac-course__foot">
-                  <span className="ac-mono">₹0 Founding Pass</span>
-                  {isEnrolled ? (
-                    <span className="ac-enrolled">✓ Enrolled</span>
-                  ) : (
-                    <button type="button" className="ac-btn ac-btn--light" onClick={() => enrol(course)}>
-                      Enrol Free
-                    </button>
-                  )}
-                </div>
+                {isEnrolled ? (
+                  <span className="ac-enrolled">Enrolled</span>
+                ) : (
+                  <button type="button" className="ac-btn ac-btn--dark" onClick={() => enrol(course)}>
+                    Enrol free
+                  </button>
+                )}
               </article>
             )
           })}

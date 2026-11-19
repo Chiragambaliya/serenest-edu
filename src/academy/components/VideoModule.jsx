@@ -129,7 +129,6 @@ export function VideoModule() {
               onChange={onScrub}
             />
           </label>
-          <p className="ac-muted">Title cards for this module. The full lecture opens with the founding pass.</p>
         </div>
       </div>
 

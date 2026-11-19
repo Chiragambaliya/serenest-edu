@@ -105,7 +105,7 @@
 
 .ac-view {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   animation: ac-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -237,11 +237,11 @@
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  font-family: var(--ac-mono);
-  font-size: 0.68rem;
+  font-family: var(--ac-sans);
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .ac-pass-chip {
@@ -778,11 +778,11 @@
 
 .ac-rationale__label {
   color: #064e3b;
-  font-family: var(--ac-mono);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--ac-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .ac-keyhint {
@@ -809,21 +809,60 @@
 
 .ac-course {
   display: flex;
-  min-height: 148px;
-  flex-direction: column;
+  min-height: 0;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 16px;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.ac-section-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.ac-strip {
+  display: grid;
+  gap: 4px;
+}
+
+.ac-strip__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.ac-strip__stats strong {
+  font-weight: 800;
+}
+
+.ac-strip__pass {
+  color: var(--ac-muted);
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.ac-strip__pass .ac-textlink {
+  margin-left: 8px;
+  color: var(--ac-ink);
 }
 
 .ac-course__meta {
-  color: inherit;
-  opacity: 0.72;
-  font-family: var(--ac-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  color: var(--ac-muted);
+  font-family: var(--ac-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 1;
 }
 
 .ac-course__foot {
@@ -1022,8 +1061,8 @@
   margin-bottom: 2px;
   font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   opacity: 0.7;
 }
 
@@ -1559,8 +1598,7 @@
     column-gap: 18px;
   }
 
-  .ac-metrics,
-  .ac-pass,
+  .ac-strip,
   .ac-courses-block {
     grid-column: 1 / -1;
   }
@@ -1578,7 +1616,7 @@
   }
 
   .ac-courses {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: 1fr 1fr;
   }
 
   .ac-view--network {
@@ -1684,16 +1722,18 @@
 .ac-tutor-launch {
   position: fixed;
   z-index: 37;
-  right: 16px;
+  right: auto;
+  left: 16px;
   bottom: 108px;
   border: 0;
   border-radius: 999px;
-  padding: 12px 16px;
-  background: var(--ac-ivory);
+  padding: 8px 12px;
+  background: #fff;
   color: var(--ac-ink);
-  font-size: 0.86rem;
+  border: 1px solid rgba(23, 25, 28, 0.14);
+  font-size: 0.78rem;
   font-weight: 800;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
 }
 
 .ac-tutor {
@@ -1796,6 +1836,8 @@
 @media (min-width: 980px) {
   .ac-tutor-launch {
     bottom: 22px;
+    left: auto;
+    right: 22px;
   }
 
   .ac-tutor {
