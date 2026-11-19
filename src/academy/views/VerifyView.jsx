@@ -24,7 +24,7 @@ export function VerifyView() {
   }
 
   return (
-    <section id="view-verify" className="ac-view" role="tabpanel" aria-labelledby="dock-verify" hidden={!active}>
+    <section id="view-verify" className="ac-view ac-view--verify" role="tabpanel" aria-labelledby="dock-verify" hidden={!active}>
       <div className="bento bento--ivory ac-verify-card">
         <div className="ac-verify-card__head">
           <div>
@@ -84,14 +84,18 @@ export function VerifyView() {
         </article>
       ) : null}
 
-      <div className="ac-admin__links">
-        <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" target="_blank" rel="noreferrer">
-          Check NMC Register ↗
-        </a>
-        <a href="https://rehabcouncil.nic.in/" target="_blank" rel="noreferrer">
-          Check RCI Register ↗
-        </a>
-      </div>
+      <aside className="ac-verify-aside">
+        <span className="ac-kicker ac-kicker--mint">Public registers</span>
+        <p className="ac-muted">Open the council site and check a number there. This page does not send what you typed.</p>
+        <div className="ac-admin__links">
+          <a href="https://www.nmc.org.in/information-desk/indian-medical-register/" target="_blank" rel="noreferrer">
+            Check NMC Register ↗
+          </a>
+          <a href="https://rehabcouncil.nic.in/" target="_blank" rel="noreferrer">
+            Check RCI Register ↗
+          </a>
+        </div>
+      </aside>
     </section>
   )
 }

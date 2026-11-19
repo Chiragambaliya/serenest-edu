@@ -25,9 +25,11 @@ export default function AcademyApp() {
         <div className="academy__grain" aria-hidden="true" />
         <ToastBanner />
         <div className="academy__frame">
-          <BottomDock />
           <div className="academy__shell">
-            <AcademyHeader />
+            <div className="ac-mast">
+              <AcademyHeader />
+              <BottomDock />
+            </div>
             <main className="academy__main">
               <LearnView />
               <DrugsView />

@@ -87,14 +87,28 @@
 }
 
 .academy__shell {
+  position: relative;
   padding: 16px;
   border: 1px solid var(--ac-line);
   border-radius: 34px;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.1), rgba(11, 28, 23, 0.55));
   box-shadow:
     0 28px 56px -14px rgba(2, 10, 8, 0.72),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.academy__shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.1), rgba(11, 28, 23, 0.55));
   backdrop-filter: blur(22px) saturate(160%);
+}
+
+.academy__shell > * {
+  position: relative;
 }
 
 .academy__main {
@@ -1473,6 +1487,141 @@
   .ac-drug-grid {
     align-items: stretch;
   }
+}
+
+@media (min-width: 980px) {
+  .academy {
+    padding: 22px 28px 56px;
+  }
+
+  .academy__frame {
+    max-width: 1120px;
+  }
+
+  .academy__shell {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .academy__shell::before {
+    display: none;
+  }
+
+  .ac-mast {
+    position: sticky;
+    top: 14px;
+    z-index: 30;
+    display: grid;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .ac-mast .ac-header {
+    position: static;
+    margin-bottom: 0;
+  }
+
+  .ac-dock {
+    position: relative;
+    inset: auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  .ac-dock__list {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .ac-dock__btn {
+    flex-direction: row;
+    width: auto;
+    gap: 8px;
+    padding: 10px 16px;
+    font-size: 0.86rem;
+  }
+
+  .ac-view--learn {
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.72fr);
+    align-items: start;
+    column-gap: 18px;
+  }
+
+  .ac-metrics,
+  .ac-pass,
+  .ac-courses-block {
+    grid-column: 1 / -1;
+  }
+
+  .ac-video {
+    grid-column: 1;
+  }
+
+  .ac-qbank {
+    grid-column: 2;
+  }
+
+  .ac-video__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-courses {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ac-view--network {
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    align-items: start;
+    column-gap: 18px;
+  }
+
+  .ac-view--network > .ac-filters {
+    grid-column: 1 / -1;
+  }
+
+  .ac-view--network > .ac-feed {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+  }
+
+  .ac-view--verify {
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.7fr);
+    align-items: start;
+    column-gap: 18px;
+  }
+
+  .ac-verify-card,
+  .ac-view--verify > .ac-request {
+    grid-column: 1;
+  }
+
+  .ac-verify-aside {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    padding: 18px;
+    border: 1px solid var(--ac-line);
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.075);
+  }
+
+  .ac-drug-grid {
+    grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+    gap: 18px;
+  }
+}
+
+.ac-verify-aside {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.ac-verify-aside .ac-admin__links {
+  flex-wrap: wrap;
 }
 
 @media (prefers-reduced-motion: reduce) {

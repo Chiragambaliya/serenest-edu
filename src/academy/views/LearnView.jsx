@@ -61,7 +61,7 @@ export function LearnView() {
   }
 
   return (
-    <section id="view-learn" className="ac-view" role="tabpanel" aria-labelledby="dock-learn" hidden={!active}>
+    <section id="view-learn" className="ac-view ac-view--learn" role="tabpanel" aria-labelledby="dock-learn" hidden={!active}>
       <div className="ac-metrics">
         <article className="bento bento--glass ac-metric">
           <div className="ac-metric__value ac-metric__value--mint">12</div>

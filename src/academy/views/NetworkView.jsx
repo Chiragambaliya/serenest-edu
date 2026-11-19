@@ -42,7 +42,7 @@ export function NetworkView() {
   }
 
   return (
-    <section id="view-network" className="ac-view" role="tabpanel" aria-labelledby="dock-network" hidden={!active}>
+    <section id="view-network" className="ac-view ac-view--network" role="tabpanel" aria-labelledby="dock-network" hidden={!active}>
       <div className="ac-filters" role="tablist" aria-label="Network specialties">
         {NETWORK_FILTERS.map((item) => {
           const on = filter === item

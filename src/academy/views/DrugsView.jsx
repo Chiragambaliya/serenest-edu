@@ -55,7 +55,7 @@ export function DrugsView() {
   }
 
   return (
-    <section id="view-drugs" className="ac-view" role="tabpanel" aria-labelledby="dock-drugs" hidden={!active}>
+    <section id="view-drugs" className="ac-view ac-view--drugs" role="tabpanel" aria-labelledby="dock-drugs" hidden={!active}>
       <div className="ac-filters" role="tablist" aria-label="Molecules">
         {DRUGS.map((item) => {
           const on = item.slug === slug

@@ -8,6 +8,7 @@ const OPEN_ON = LECTURES.findIndex((item) => item.number === 7)
 export function VideoModule() {
   const { showToast } = useAcademy()
   const videoRef = useRef(null)
+  const placed = useRef(false)
   const [index, setIndex] = useState(OPEN_ON)
   const [playing, setPlaying] = useState(false)
   const [time, setTime] = useState(LECTURES[OPEN_ON].start)
@@ -48,7 +49,25 @@ export function VideoModule() {
     video.play().catch(() => setPlaying(false))
   }
 
+  function placeOpening(video) {
+    if (placed.current) return
+    const start = LECTURES[OPEN_ON].start
+    if (Math.abs(video.currentTime - start) <= 0.25) {
+      placed.current = true
+      return
+    }
+    video.addEventListener(
+      'seeked',
+      () => {
+        placed.current = true
+      },
+      { once: true },
+    )
+    video.currentTime = start
+  }
+
   function onTime(event) {
+    if (!placed.current) return
     const now = event.currentTarget.currentTime
     setTime(now)
     const found = LECTURES.findIndex((item) => now >= item.start && now < item.end)
@@ -72,11 +91,11 @@ export function VideoModule() {
         <div className="ac-stage">
           <video
             ref={videoRef}
-            src={LECTURE_SRC}
+            src={`${LECTURE_SRC}#t=${LECTURES[OPEN_ON].start}`}
             preload="metadata"
             playsInline
             onLoadedMetadata={(event) => {
-              event.currentTarget.currentTime = LECTURES[OPEN_ON].start
+              placeOpening(event.currentTarget)
             }}
             onTimeUpdate={onTime}
             onPlay={() => setPlaying(true)}
