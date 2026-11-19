@@ -3,6 +3,7 @@ import { AcademyProvider } from './AcademyContext'
 import { AcademyHeader } from './components/AcademyHeader'
 import { BottomDock } from './components/BottomDock'
 import { ToastBanner } from './components/ToastBanner'
+import { TutorPanel } from './components/TutorPanel'
 import { DrugsView } from './views/DrugsView'
 import { LearnView } from './views/LearnView'
 import { NetworkView } from './views/NetworkView'
@@ -36,6 +37,7 @@ export default function AcademyApp() {
               <NetworkView />
               <VerifyView />
             </main>
+            <TutorPanel />
           </div>
         </div>
       </div>
