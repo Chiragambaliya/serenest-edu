@@ -22,6 +22,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="glass.css">
+    <link rel="stylesheet" href="home.css">
     <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -213,92 +214,130 @@
 
         <!-- PAGE: HOME -->
         <section class="viewport-tab page-band page-band--home active" id="viewport-home" data-page="home">
-            <!-- Hero Header -->
-            <header class="hero">
-                <span class="hero-mark">Se</span>
-                <div class="container">
-                    <div class="hero-art" aria-hidden="true">
-                        <span class="ha-spark"></span>
-                        <div class="ha-dial">
-                            <span class="ha-label"><span>Drug brief · titration</span><span>2 of 4</span></span>
-                            <div class="ha-ring">
-                                <svg viewBox="0 0 240 240"><defs><linearGradient id="haG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9fe3e4"/><stop offset=".55" stop-color="#fbf6e6"/><stop offset="1" stop-color="#f7c878"/></linearGradient></defs>
-                                    <circle cx="120" cy="120" r="94" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="14" stroke-linecap="round" stroke-dasharray="443 591"/>
-                                    <circle cx="120" cy="120" r="94" fill="none" stroke="url(#haG)" stroke-width="14" stroke-linecap="round" stroke-dasharray="222 591"/></svg>
-                                <div class="ha-core"><small>Target</small><b>10–15 mg</b></div>
-                            </div>
-                            <span class="ha-name">Aripiprazole</span>
+            <div class="h-wrap">
+
+                <!-- HERO -->
+                <header class="h-hero">
+                    <div class="h-hero-copy">
+                        <span class="h-chip"><i class="h-spark"></i>Psychiatrist-led · Built for India</span>
+                        <h1 class="h-title">Learn medicine and mental health <em>the way it's practised.</em></h1>
+                        <p class="h-lede">Short video lessons, clear notes and exam-style questions, from Anatomy to Psychiatry. Free in the Serenest Academy app, on any phone.</p>
+                        <div class="h-tracks">
+                            <a class="h-track h-track--mh" href="/app/#learn">
+                                <span class="h-track-kicker">Track 1</span>
+                                <span class="h-track-title">Mental health</span>
+                                <span class="h-track-meta" data-count="mh">Full courses for counsellors &amp; clinicians</span>
+                                <span class="h-track-go" aria-hidden="true">→</span>
+                            </a>
+                            <a class="h-track h-track--mbbs" href="/app/#learn/mbbs">
+                                <span class="h-track-kicker">Track 2</span>
+                                <span class="h-track-title">MBBS &amp; NEET-PG</span>
+                                <span class="h-track-meta" data-count="mbbs">Anatomy to Radiology, 19 subjects</span>
+                                <span class="h-track-go" aria-hidden="true">→</span>
+                            </a>
                         </div>
-                        <span class="ha-chip">✦ New: 9 full courses · videos &amp; quizzes</span>
-                        <div class="ha-conf"><i></i><div><b>SerenestCase Conference</b><span>Free · last Saturday · 6 PM IST</span></div></div>
-                    </div>
-                    <span class="mono hero-eyebrow rise">Psychiatrist-led · Built for India</span>
-                    <h1 class="display hero-headline rise delay-1">Building India's Future <em>Mental Health</em> Workforce</h1>
-                    <p class="hero-sub rise delay-2">Serenest Academy is a practical mental health learning platform for psychology students, counsellors, early-career therapists, and mental health professionals.</p>
-                    <p class="hero-sub hero-sub--secondary rise delay-2">Our programs focus on real-world counselling skills, psychiatric understanding, clinical documentation, ethical practice, supervision, and digital mental healthcare exposure.</p>
-                    <div class="hero-ctas rise delay-3">
-                        <button type="button" class="btn nav-switch-trigger" data-target="courses">Explore Programs <span class="arrow">→</span></button>
-                        <button type="button" class="btn btn-ghost" id="heroWhatsAppBtn">Register via WhatsApp</button>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Thesis Section -->
-            <section class="thesis">
-                <div class="container thesis-grid">
-                    <div class="thesis-label">
-                        <span class="mono">§ 01 — The Thesis</span>
-                    </div>
-                    <p class="thesis-body">We aim to bridge the gap between academic learning and real-world mental healthcare practice in India. <em>Serenest Academy is where that bridge begins.</em></p>
-                </div>
-            </section>
-
-            <!-- Start here -->
-            <section class="home-paths" aria-labelledby="homePathsTitle">
-                <div class="container">
-                    <div class="home-paths-head">
-                        <h2 class="home-paths-title" id="homePathsTitle">Three ways to <em>start learning</em> with Serenest.</h2>
-                        <span class="mono">§ 02 — Start here</span>
-                    </div>
-                    <div class="home-path-grid">
-                        <button type="button" class="home-path nav-switch-trigger" data-target="courses">
-                            <span class="home-path-kicker">Flagship · 8 weeks</span>
-                            <span class="home-path-title">Foundations of Mental Health Counselling</span>
-                            <span class="home-path-desc">A live, supervised cohort covering therapeutic communication, basic CBT, suicide risk awareness, ethics, and referral — plus nine full self-paced courses and four short courses.</span>
-                            <span class="home-path-link">See all programs →</span>
-                        </button>
-                        <button type="button" class="home-path nav-switch-trigger" data-target="conference">
-                            <span class="home-path-kicker">Free · Monthly</span>
-                            <span class="home-path-title">The SerenestCase Conference</span>
-                            <span class="home-path-desc">One real, anonymized case. Ninety minutes of faculty discussion on formulation and treatment. Last Saturday of every month, on Zoom.</span>
-                            <span class="home-path-link">Reserve a seat →</span>
-                        </button>
-                        <button type="button" class="home-path nav-switch-trigger" data-target="library">
-                            <span class="home-path-kicker">Free · Self-paced</span>
-                            <span class="home-path-title">Resource Library</span>
-                            <span class="home-path-desc">An MSE practice simulator, RCI licensing navigator, internship directory, fee calculator, and MHCA-aligned clinical templates.</span>
-                            <span class="home-path-link">Open the library →</span>
-                        </button>
+                        <div class="h-ctas">
+                            <a class="btn h-btn-main" href="/app/">Open the free app <span class="arrow">→</span></a>
+                            <button type="button" class="btn btn-ghost" id="heroWhatsAppBtn">Ask on WhatsApp</button>
+                        </div>
                     </div>
 
-                    <div class="home-facts">
-                        <div class="home-fact"><span class="home-fact-num">9</span><span class="home-fact-label">Full self-paced courses with videos &amp; quizzes</span></div>
-                        <div class="home-fact"><span class="home-fact-num">1</span><span class="home-fact-label">Flagship cohort with live supervision</span></div>
-                        <div class="home-fact"><span class="home-fact-num">90<small style="font-size:.5em">min</small></span><span class="home-fact-label">Free case conference, every month</span></div>
-                        <div class="home-fact"><span class="home-fact-num">MD</span><span class="home-fact-label">Psychiatrist-led curriculum</span></div>
+                    <div class="h-hero-art" aria-hidden="true">
+                        <div class="h-phone">
+                            <div class="h-phone-top"><span class="h-phone-mark"></span><b>Today</b><small data-today></small></div>
+                            <div class="h-phone-dial">
+                                <svg viewBox="0 0 240 240"><defs><linearGradient id="hpG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9fe3e4"/><stop offset=".55" stop-color="#fbf6e6"/><stop offset="1" stop-color="#f7c878"/></linearGradient></defs>
+                                    <circle cx="120" cy="120" r="94" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="14" stroke-linecap="round" stroke-dasharray="443 591"/>
+                                    <circle cx="120" cy="120" r="94" fill="none" stroke="url(#hpG)" stroke-width="14" stroke-linecap="round" stroke-dasharray="300 591"/></svg>
+                                <div class="h-phone-core"><small>Daily goal</small><b>3 of 4</b><span>lessons</span></div>
+                            </div>
+                            <div class="h-phone-row"><span>Continue</span><b>Lithium: levels &amp; toxicity</b><i style="--w:70%"></i></div>
+                            <div class="h-phone-row h-phone-row--teal"><span>Next quiz</span><b>Brachial plexus · 3 MCQs</b></div>
+                        </div>
+                        <div class="h-float h-float--conf"><i class="h-spark h-spark--gold"></i><div><b>SerenestCase Conference</b><span data-conf-short>Free · last Saturday · 6 PM IST</span></div></div>
+                        <div class="h-float h-float--chip">✦ <span data-count="lessons">Video lessons</span></div>
                     </div>
-                </div>
-            </section>
+                </header>
 
-            <!-- Founder -->
-            <section class="home-quote">
-                <div class="container">
+                <!-- CONTINUE (returning learners) -->
+                <section class="h-continue" data-continue hidden aria-label="Continue learning"></section>
+
+                <!-- STATS -->
+                <section class="h-stats" aria-label="Serenest Academy in numbers">
+                    <div><b data-stat="courses">–</b><span>full courses</span></div>
+                    <div><b data-stat="lessons">–</b><span>video lessons</span></div>
+                    <div><b data-stat="questions">–</b><span>exam-style questions</span></div>
+                    <div><b data-stat="subjects">–</b><span>MBBS subjects live</span></div>
+                </section>
+
+                <!-- TRACK: MENTAL HEALTH -->
+                <section class="h-section" aria-labelledby="hMhTitle">
+                    <div class="h-head">
+                        <div><span class="h-kicker">Track 1 · Mental health</span><h2 id="hMhTitle">Courses that go <em>beyond the textbook</em></h2></div>
+                        <a class="h-link" href="/app/#learn">All courses →</a>
+                    </div>
+                    <div class="h-rail" data-mh-cards></div>
+                </section>
+
+                <!-- TRACK: MBBS -->
+                <section class="h-section h-section--mbbs" aria-labelledby="hMbbsTitle">
+                    <div class="h-head">
+                        <div><span class="h-kicker">Track 2 · MBBS &amp; NEET-PG</span><h2 id="hMbbsTitle">Anatomy to Radiology, <em>one subject at a time</em></h2></div>
+                        <a class="h-link" href="/app/#learn/mbbs">Open the track →</a>
+                    </div>
+                    <div class="h-subjects" data-mbbs-grid></div>
+                </section>
+
+                <!-- HOW IT WORKS -->
+                <section class="h-section" aria-labelledby="hHowTitle">
+                    <div class="h-head"><div><span class="h-kicker">How it works</span><h2 id="hHowTitle">Fifteen minutes a day, <em>built to stick</em></h2></div></div>
+                    <ol class="h-steps">
+                        <li><span class="h-step-n">01</span><b>Watch</b><p>A one-minute video for every lesson, in a calm, clear design.</p></li>
+                        <li><span class="h-step-n">02</span><b>Read</b><p>Short notes and key points written by clinicians, for Indian practice.</p></li>
+                        <li><span class="h-step-n">03</span><b>Test</b><p>Exam-style questions that explain every answer, right or wrong.</p></li>
+                        <li><span class="h-step-n">04</span><b>Return</b><p>Daily goals, streaks and progress rings bring you back tomorrow.</p></li>
+                    </ol>
+                </section>
+
+                <!-- TRY A QUESTION + VIDEO -->
+                <section class="h-duo">
+                    <div class="h-quiz" data-quiz aria-live="polite"></div>
+                    <figure class="h-video">
+                        <div class="h-video-tabs" data-video-tabs role="tablist" aria-label="Drug brief videos"></div>
+                        <video data-video controls preload="metadata" playsinline></video>
+                        <figcaption>Drug briefs: start dose to maximum, Indian brands and cost, in 44 seconds.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- CONFERENCE -->
+                <section class="h-conf" aria-labelledby="hConfTitle">
+                    <div>
+                        <span class="h-kicker">Free · monthly · live on Zoom</span>
+                        <h2 id="hConfTitle">The SerenestCase <em>Conference</em></h2>
+                        <p>One real, anonymised case. Ninety minutes of faculty discussion on formulation and treatment. Last Saturday of every month, 6 PM IST.</p>
+                        <button type="button" class="btn nav-switch-trigger" data-target="conference">Reserve a free seat <span class="arrow">→</span></button>
+                    </div>
+                    <div class="h-count" data-countdown aria-label="Time until the next conference"></div>
+                </section>
+
+                <!-- FOUNDER -->
+                <section class="h-founder">
                     <figure>
                         <blockquote>“I built Serenest because rural Gujarat doesn't have psychiatrists. I'm building Serenest Education because the psychologists we work with don't have anyone to teach them what comes after the degree.”</blockquote>
-                        <figcaption><strong>Dr. Chirag Ambaliya</strong> · MBBS, MD (Psychiatry) · Founder, Serenest</figcaption>
+                        <figcaption><span class="h-avatar">CA</span><span><strong>Dr. Chirag Ambaliya</strong>MBBS, MD (Psychiatry) · Founder, Serenest</span></figcaption>
                     </figure>
-                </div>
-            </section>
+                </section>
+
+                <!-- FINAL CTA -->
+                <section class="h-final">
+                    <h2>Start your first lesson <em>in the next minute.</em></h2>
+                    <p>No sign-up needed. Your progress stays on your phone.</p>
+                    <div class="h-ctas">
+                        <a class="btn h-btn-dark" href="/app/">Open Serenest Academy <span class="arrow">→</span></a>
+                        <button type="button" class="btn btn-ghost nav-switch-trigger" data-target="courses">See all programs</button>
+                    </div>
+                </section>
+            </div>
         </section>
 
         <!-- PAGE: COURSES -->
@@ -1261,5 +1300,11 @@
 
     <!-- Core Javascript Code -->
     <script src="app.js"></script>
+    <script src="/app/data.js" defer></script>
+    <script src="/app/courses-content.js" defer></script>
+    <script src="/app/courses-content-2.js" defer></script>
+    <script src="/app/mbbs-content.js" defer></script>
+    <script src="/app/mbbs-content-2.js" defer></script>
+    <script src="home.js" defer></script>
 </body>
 </html>
