@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Render one short "Drug Brief" video per molecule in the Academy Drugs tab.
 //
-//   node tools/drug-videos/render.mjs --data src/academy/data/drugs.js --out static/app/videos
-//   node tools/drug-videos/render.mjs --only lithium --stills   # quick PNG checks, no video
+//   node tools/drug-videos/render.mjs --data static/app/data.js
+//   node tools/drug-videos/render.mjs --data static/app/data.js --only lithium --stills   # quick PNG checks
 //
-// Needs Playwright (Chromium) and ffmpeg on PATH. The look is copied from the
-// Drugs tab (src/academy/academy.css), and all text comes from drugs.js, so
-// regenerate after editing that file.
+// Needs Playwright (Chromium) and ffmpeg on PATH. The look matches the Academy
+// app (static/app/app.css), and all text comes from the data file, so
+// regenerate after editing it.
 
 import { spawn } from 'node:child_process'
 import { mkdirSync, readFileSync } from 'node:fs'
@@ -26,7 +26,7 @@ const opt = (name, fallback) => {
 }
 const flag = (name) => args.includes(`--${name}`)
 
-const dataPath = resolve(opt('data', 'src/academy/data/drugs.js'))
+const dataPath = resolve(opt('data', 'static/app/data.js'))
 const outDir = resolve(opt('out', 'static/app/videos'))
 const fps = Number(opt('fps', 30))
 const only = opt('only', null)
