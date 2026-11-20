@@ -267,9 +267,9 @@
         <span class="label">Titration · step ${step + 1} of ${drug.steps.length}</span>
         <div class="dial">
           <svg viewBox="0 0 240 240" aria-hidden="true">
-            <defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58bfc7"/><stop offset=".6" stop-color="#f4f0e3"/><stop offset="1" stop-color="#eaa152"/></linearGradient></defs>
-            <circle cx="120" cy="120" r="94" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width="13" stroke-linecap="round" stroke-dasharray="${DIAL_ARC} ${DIAL_CYCLE}"/>
-            <circle cx="120" cy="120" r="94" fill="none" stroke="url(#dg)" stroke-width="13" stroke-linecap="round" stroke-dasharray="${dash} ${DIAL_CYCLE}" style="transition:stroke-dasharray .4s"/>
+            <defs><linearGradient id="dg" gradientUnits="userSpaceOnUse" x1="53.53" y1="186.47" x2="120" y2="26"><stop offset="0" stop-color="#58bfc7"/><stop offset=".6" stop-color="#f4f0e3"/><stop offset="1" stop-color="#eaa152"/></linearGradient></defs>
+            <path d="M53.53 186.47A94 94 0 1 1 186.47 186.47" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width="13" stroke-linecap="round"/>
+            <path d="M53.53 186.47A94 94 0 1 1 186.47 186.47" fill="none" stroke="url(#dg)" stroke-width="13" stroke-linecap="round" pathLength="${DIAL_ARC}" stroke-dasharray="${dash} ${DIAL_CYCLE}" style="transition:stroke-dasharray .4s"/>
           </svg>
           <div class="dial-core"><span class="stage">${esc(s.stage)}</span><span class="dose">${esc(s.dose)}</span><span class="ind">${esc(s.ind)}</span></div>
         </div>
