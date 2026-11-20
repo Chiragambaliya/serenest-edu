@@ -21,6 +21,11 @@
   const state = Object.assign({ name: '', role: '', goal: 4, done: {}, log: {}, theme: null, drug: null, specialty: 'psychiatry' }, load());
   function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* private mode */ } }
+  const requestedSpecialty = new URLSearchParams(location.search).get('specialty');
+  if (requestedSpecialty && SPECIALTIES.some((s) => s.id === requestedSpecialty)) {
+    state.specialty = requestedSpecialty;
+    save();
+  }
 
   /* ---------- dates ---------- */
   const dayKey = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;

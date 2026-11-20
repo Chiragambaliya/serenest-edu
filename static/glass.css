@@ -80,6 +80,38 @@ body::before { display: none; }
     font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 11.5px;
 }
 
+/* ---------- specialty desks ---------- */
+.home-specs { padding: 28px 0 8px; }
+.spec-pills { display: flex; gap: 8px; overflow-x: auto; padding: 6px 0 18px; scrollbar-width: none; }
+.spec-pills::-webkit-scrollbar { display: none; }
+.spec-pill {
+    padding: 10px 16px; border-radius: 999px; border: 1px solid var(--g-edge);
+    background: var(--g-glass); color: var(--ink); font-weight: 700; font-size: 14px;
+    white-space: nowrap; cursor: pointer;
+}
+.spec-pill[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.spec-preview {
+    display: grid; grid-template-columns: 1.4fr auto; gap: 28px; align-items: end;
+    padding: 28px 32px; border-radius: 28px;
+    background: var(--g-glass); border: 1px solid var(--g-edge);
+    box-shadow: var(--g-shadow);
+}
+.spec-preview h3 {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 36px;
+    line-height: 1.12; margin: 8px 0 10px;
+}
+.spec-preview p { margin: 0; color: var(--ink-soft); max-width: 46rem; }
+.spec-preview-meta { margin-top: 12px !important; font-weight: 700; color: var(--ink) !important; }
+.spec-preview-actions { display: grid; gap: 12px; justify-items: start; align-content: end; }
+.spec-preview-drugs { font-size: 14px; max-width: 280px; }
+.spec-molecules { margin: 28px 0 8px; padding: 22px 24px; border-radius: 24px; background: var(--g-glass); border: 1px solid var(--g-edge); }
+.spec-molecules p { margin: 8px 0; font-size: 16px; }
+.spec-molecules a { font-weight: 700; color: var(--sage-dark); }
+@media (max-width: 800px) {
+    .spec-preview { grid-template-columns: 1fr; padding: 22px; }
+    .spec-preview h3 { font-size: 28px; }
+}
+
 /* ---------- buttons ---------- */
 .btn {
     font-family: 'Manrope', system-ui, sans-serif;
