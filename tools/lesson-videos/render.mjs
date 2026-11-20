@@ -27,7 +27,7 @@ mkdirSync(outDir, { recursive: true })
 
 const window = {}
 runInNewContext(readFileSync(resolve(here, '../../static/app/data.js'), 'utf8'), { window })
-runInNewContext(readFileSync(resolve(here, '../../static/app/courses-content.js'), 'utf8'), { window })
+for (const f of ['courses-content.js', 'courses-content-2.js']) runInNewContext(readFileSync(resolve(here, '../../static/app/' + f), 'utf8'), { window })
 const titleOf = (id) => (window.SA_COURSES.find((c) => c.id === id) || {}).title || id
 
 const jobs = []

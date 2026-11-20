@@ -1,6 +1,6 @@
 /* Offline cache for the app shell. Videos stream from the network. */
-const CACHE = 'serenest-app-v2';
-const SHELL = ['./', './index.html', './app.css', './app.js', './data.js', './courses-content.js', './icon.svg', './manifest.webmanifest'];
+const CACHE = 'serenest-app-v3';
+const SHELL = ['./', './index.html', './app.css', './app.js', './data.js', './courses-content.js', './courses-content-2.js', './icon.svg', './manifest.webmanifest'];
 self.addEventListener('install', (e) => e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())));
 self.addEventListener('activate', (e) => e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', (e) => {
