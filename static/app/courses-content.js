@@ -1,12 +1,12 @@
-/* Serenest Academy — full self-paced course content (lessons, videos, quizzes).
+/* Serenest Academy — full self-paced course content (lessons, quizzes).
    Keyed by course id in data.js. Each lesson:
-   { title, mins, video?: 'videos/<slug>.mp4', intro, sections: [{ h, p?, ul? }], points: [], quiz: [{ q, o: [], a, why }] }
+   { title, mins, drug?: '<drug slug>', also?: '<drug slug>', intro, sections: [{ h, p?, ul? }], points: [], quiz: [{ q, o: [], a, why }] }
    Educational content for students and clinicians. Not medical advice; confirm current labels and guidelines. */
 window.SA_FULL = {
 
   /* ================================================================== */
   psychopharm: {
-    level: 'Self-paced · 5 lessons · videos + quizzes',
+    level: 'Self-paced · 5 lessons · notes + quizzes',
     audience: 'Psychologists, counsellors and therapists who work alongside psychiatrists.',
     outcomes: [
       'Explain what each major medicine class is for, in plain language a client understands',
@@ -40,8 +40,8 @@ window.SA_FULL = {
         ],
       },
       {
-        title: 'Antidepressants: SSRIs and beyond', mins: 15, video: 'videos/escitalopram.mp4',
-        intro: 'SSRIs such as escitalopram, sertraline and fluoxetine are the most common psychiatric prescriptions in Indian OPDs. Watch the escitalopram brief, then learn what to look out for.',
+        title: 'Antidepressants: SSRIs and beyond', mins: 15, drug: 'escitalopram',
+        intro: 'SSRIs such as escitalopram, sertraline and fluoxetine are the most common psychiatric prescriptions in Indian OPDs. Open the escitalopram brief below, then learn what to look out for.',
         sections: [
           { h: 'Common, usually temporary', ul: ['Nausea, loose stools, headache', 'Sleep change: insomnia or drowsiness', 'Early jitteriness or restlessness, especially in panic disorder'] },
           { h: 'Common and often hidden', p: 'Sexual side effects (low desire, delayed orgasm) are common and rarely volunteered, particularly in Indian settings. Asking gently and matter-of-factly prevents silent non-adherence.' },
@@ -60,8 +60,8 @@ window.SA_FULL = {
         ],
       },
       {
-        title: 'Antipsychotics: benefits and side effects', mins: 15, video: 'videos/olanzapine.mp4', also: 'aripiprazole',
-        intro: 'Antipsychotics treat psychosis and mania and are increasingly used as add-ons in depression. Watch the olanzapine brief; the aripiprazole brief is linked below as a contrast.',
+        title: 'Antipsychotics: benefits and side effects', mins: 15, drug: 'olanzapine', also: 'aripiprazole',
+        intro: 'Antipsychotics treat psychosis and mania and are increasingly used as add-ons in depression. The olanzapine and aripiprazole briefs are linked below for comparison.',
         sections: [
           { h: 'Two big families of side effects', ul: [
             'Movement (extrapyramidal): stiffness, tremor, acute dystonia (sudden muscle spasm), and akathisia, an inner restlessness that can feel unbearable and increase risk.',
@@ -82,7 +82,7 @@ window.SA_FULL = {
         ],
       },
       {
-        title: 'Mood stabilisers: lithium and valproate', mins: 14, video: 'videos/lithium.mp4',
+        title: 'Mood stabilisers: lithium and valproate', mins: 14, drug: 'lithium',
         intro: 'Mood stabilisers prevent relapses in bipolar disorder. Lithium is very effective but has a narrow safety margin, so counsellors who know the warning signs genuinely save lives.',
         sections: [
           { h: 'Lithium toxicity: know the signs', ul: [
@@ -101,7 +101,7 @@ window.SA_FULL = {
         ],
       },
       {
-        title: 'Addiction medicines & when to refer', mins: 14, video: 'videos/buprenorphine.mp4',
+        title: 'Addiction medicines & when to refer', mins: 14, drug: 'buprenorphine',
         intro: 'Medicines for substance use work best alongside counselling. This lesson closes with the referral red flags every counsellor should know by heart.',
         sections: [
           { h: 'Medicines you will meet', ul: [

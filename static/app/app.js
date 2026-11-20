@@ -180,7 +180,7 @@
         return on ? `
         <a class="card subject glass" href="#course/${x.id}" style="text-decoration:none">
           <div class="meta"><span>${String(i + 1).padStart(2, '0')} · ${esc(x.year)}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
-          <h3>${esc(x.name)}</h3><p>${c.lessons.length} lessons · videos &amp; MCQs</p>
+          <h3>${esc(x.name)}</h3><p>${c.lessons.length} lessons · MCQs</p>
         </a>` : `
         <div class="card subject soon" aria-disabled="true">
           <div class="meta"><span>${String(i + 1).padStart(2, '0')} · ${esc(x.year)}</span></div>
@@ -191,14 +191,14 @@
     }
     $('[data-courses]').innerHTML = COURSES.filter((c) => c.track === 'mh').map((c) => `
       <a class="card course ${c.flagship ? 'card-apricot' : 'glass'}" href="#course/${c.id}" style="text-decoration:none">
-        <div class="meta"><span>${c.flagship ? 'Flagship · ' : c.full ? '<b class="new-tag">✦ Full course</b> ' : ''}${c.full ? c.lessons.length + ' lessons · videos & quizzes' : `${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}`}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
+        <div class="meta"><span>${c.flagship ? 'Flagship · ' : c.full ? '<b class="new-tag">✦ Full course</b> ' : ''}${c.full ? c.lessons.length + ' lessons · notes & quizzes' : `${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}`}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
         <h3>${esc(c.title)}</h3>
         <p>${esc(c.desc)}</p>
       </a>`).join('') + `
       <a class="card course card-teal mbbs-promo" href="#learn/mbbs" style="text-decoration:none">
         <div class="meta"><span>New track</span></div>
         <h3>MBBS &amp; NEET-PG: Anatomy to Radiology</h3>
-        <p>All 19 subjects, high-yield lessons, videos and MCQs.</p>
+        <p>All 19 subjects, high-yield lessons and MCQs.</p>
       </a>`;
   }
 
@@ -227,7 +227,7 @@
       <div class="lessons">${c.lessons.map((l, i) => f ? `
         <a class="lesson glass" href="#lesson/${c.id}/${i}" aria-pressed="${done.includes(i)}" style="text-decoration:none">
           <span class="tick">${icon('check')}</span><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lt">${esc(l)}</span>
-          <span class="lm">${icon('play')}${f.lessons[i].mins} min</span>
+          <span class="lm">${f.lessons[i].mins} min</span>
         </a>` : `
         <button class="lesson glass" data-lesson="${i}" aria-pressed="${done.includes(i)}">
           <span class="tick">${icon('check')}</span><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lt">${esc(l)}</span>
@@ -260,19 +260,19 @@
     const done = doneFor(c.id).includes(i);
     $('[data-lesson-back]').setAttribute('href', `#course/${c.id}`);
     $('[data-lesson-back] span').textContent = c.title;
-    const also = L.also && DRUGS.find((d) => d.slug === L.also);
-    root.innerHTML = `
+        root.innerHTML = `
       <header class="detail-head">
         <span class="label">Lesson ${i + 1} of ${n} · ${L.mins} min${done ? ' · ✓ Completed' : ''}</span>
         <h1 class="display">${esc(L.title)}</h1>
         <div class="bar"><i style="width:${Math.round(((i + (done ? 1 : 0)) / n) * 100)}%"></i></div>
       </header>
-      <figure class="card glass lesson-video"><video controls preload="metadata" playsinline src="${esc(L.video || `videos/lessons/${c.id}-${i + 1}.mp4`)}#t=${L.video ? 6 : 3}"></video>
-        <figcaption>${L.video ? '44-second drug brief' : 'Lesson video · about a minute'}${also ? ` · Also watch the <a href="#drugs/${also.slug}">${esc(also.shortName)} brief</a>` : ''}</figcaption></figure>
+
       <article class="lesson-body">
         <p class="intro">${esc(L.intro)}</p>
         ${L.sections.map((x) => `<section><h2>${esc(x.h)}</h2>${x.p ? `<p>${esc(x.p)}</p>` : ''}${x.ul ? `<ul>${x.ul.map((li) => `<li>${esc(li)}</li>`).join('')}</ul>` : ''}</section>`).join('')}
       </article>
+      ${[L.drug, L.also].filter(Boolean).map((slug) => DRUGS.find((d) => d.slug === slug)).filter(Boolean).map((d) => `
+      <a class="card card-olive drug-link" href="#drugs/${d.slug}"><span class="label">Drug brief</span><b>${esc(d.name)}</b><span>Doses from start to maximum, Indian brands, cost and the clinical pearl →</span></a>`).join('')}
       <aside class="card card-teal keypoints"><span class="label">Key points</span><ul>${L.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></aside>
       <form class="card glass quiz" data-quiz>
         <span class="label">Check yourself · ${L.quiz.length} questions</span>
@@ -353,10 +353,6 @@
         <div class="irow"><span>Indian brands</span><strong>${esc(drug.brands)}</strong></div>
         <div class="irow"><span>Monthly cost</span><strong>${esc(drug.cost)}</strong></div>
         <div class="irow"><span>IPS pearl</span><strong>${esc(drug.ipsPearl.replace(/^IPS Clinical Pearl:\s*/, ''))}</strong></div>
-      </article>
-      <article class="card glass video-card">
-        <span class="label">${icon('play')} 44-second drug brief</span>
-        <video controls preload="metadata" playsinline src="videos/${drug.slug}.mp4#t=6"></video>
       </article>`;
     $$('[data-step]').forEach((b) => b.addEventListener('click', () => { step += Number(b.dataset.step); renderDrugs(drug.slug); }));
   }

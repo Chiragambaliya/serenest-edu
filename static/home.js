@@ -1,4 +1,4 @@
-/* Serenest Academy home page: live counts, course rails, continue-learning, sample question, videos, countdown.
+/* Serenest Academy home page: live counts, course rails, continue-learning, sample question, drug briefs, countdown.
    Reads the same data files as the app (/app/*.js) and the app's saved progress (same origin). */
 (() => {
   'use strict';
@@ -23,7 +23,7 @@
   set('[data-stat="subjects"]', `${ready}/${SUBJECTS.length}`);
   set('[data-count="mh"]', `${mhFull.length} full courses for counsellors & clinicians`);
   set('[data-count="mbbs"]', `${SUBJECTS.length} subjects · ${ready} ready now`);
-  set('[data-count="lessons"]', `${lessons} video lessons · ${questions} questions`);
+  set('[data-count="lessons"]', `${lessons} lessons · ${questions} questions`);
   const today = new Date();
   set('[data-today]', today.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }));
 
@@ -98,17 +98,10 @@
   }
   ask();
 
-  /* ---------- drug brief videos ---------- */
-  const tabs = $('[data-video-tabs]');
-  const video = $('[data-video]');
-  if (tabs && video && DRUGS.length) {
-    const show = (slug) => {
-      video.src = `/app/videos/${slug}.mp4#t=6`;
-      tabs.querySelectorAll('button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.slug === slug)));
-    };
-    tabs.innerHTML = DRUGS.map((d) => `<button type="button" role="tab" data-slug="${d.slug}">${esc(d.shortName)}</button>`).join('');
-    tabs.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => show(b.dataset.slug)));
-    show((DRUGS.find((d) => d.slug === 'lithium') || DRUGS[0]).slug);
+  /* ---------- drug briefs ---------- */
+  const briefs = $('[data-briefs]');
+  if (briefs) {
+    briefs.innerHTML = DRUGS.map((d) => `<a href="/app/#drugs/${d.slug}"><b>${esc(d.shortName)}</b><span>${esc(d.steps[0].dose)} → ${esc(d.steps[d.steps.length - 1].dose)}</span></a>`).join('');
   }
 
   /* ---------- conference countdown (last Saturday, 6 PM IST = 12:30 UTC) ---------- */

@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Rendered videos are not kept in the repo (re-make with tools/drug-videos and tools/lesson-videos)
+static/app/videos/

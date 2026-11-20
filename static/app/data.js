@@ -147,7 +147,7 @@ window.SA_COURSES = [
     desc: 'Guilt, dependency, family pressure, marriage stress, emotional boundaries, and intergenerational stress.',
     lessons: ['Guilt, duty & dependency', 'Family pressure & marriage stress', 'Emotional boundaries', 'Intergenerational stress'] },
   { id: 'psychopharm', title: 'Psychopharmacology for Counsellors', weeks: 2, mode: 'Self-paced · Full course',
-    desc: 'What psychiatric medicines do, the side effects to notice, how to support adherence, and when to refer. With drug-brief videos.',
+    desc: 'What psychiatric medicines do, the side effects to notice, how to support adherence, and when to refer. Linked to the drug briefs.',
     lessons: ['Antidepressants', 'Antipsychotics & mood stabilisers', 'Side effects & adherence', 'When to refer to a psychiatrist'] },
   { id: 'practice', title: 'Private Practice Basics for Counsellors', weeks: 2,
     desc: 'Ethical practice setup, documentation, fees, consent, boundaries, patient communication, and referral systems.',

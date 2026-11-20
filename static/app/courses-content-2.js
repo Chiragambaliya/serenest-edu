@@ -5,7 +5,7 @@ Object.assign(window.SA_FULL = window.SA_FULL || {}, {
 
   /* ================================================================== */
   forensic: {
-    level: 'Self-paced · 4 lessons · videos + quizzes',
+    level: 'Self-paced · 4 lessons · notes + quizzes',
     audience: 'Psychiatry residents, clinical psychologists, counsellors and law students.',
     outcomes: [
       'Apply the key rights and admission sections of the Mental Healthcare Act 2017',
@@ -123,7 +123,7 @@ Object.assign(window.SA_FULL = window.SA_FULL || {}, {
 
   /* ================================================================== */
   child: {
-    level: 'Self-paced · 4 lessons · videos + quizzes',
+    level: 'Self-paced · 4 lessons · notes + quizzes',
     audience: 'Counsellors, psychologists, school counsellors, paediatric and psychiatry trainees.',
     outcomes: [
       'Assess children and adolescents in a developmentally appropriate way',
@@ -233,7 +233,7 @@ Object.assign(window.SA_FULL = window.SA_FULL || {}, {
 
   /* ================================================================== */
   addiction: {
-    level: 'Self-paced · 5 lessons · videos + quizzes',
+    level: 'Self-paced · 5 lessons · notes + quizzes',
     audience: 'Counsellors, psychologists, doctors and de-addiction centre staff.',
     outcomes: [
       'Explain addiction as a treatable health condition, without stigma',
@@ -358,7 +358,7 @@ Object.assign(window.SA_FULL = window.SA_FULL || {}, {
 
   /* ================================================================== */
   geriatric: {
-    level: 'Self-paced · 4 lessons · videos + quizzes',
+    level: 'Self-paced · 4 lessons · notes + quizzes',
     audience: 'Counsellors, psychologists, nurses, GPs and caregivers of older adults.',
     outcomes: [
       'Recognise depression, dementia and delirium in older adults and tell them apart',
@@ -465,7 +465,7 @@ Object.assign(window.SA_FULL = window.SA_FULL || {}, {
 
   /* ================================================================== */
   perinatal: {
-    level: 'Self-paced · 4 lessons · videos + quizzes',
+    level: 'Self-paced · 4 lessons · notes + quizzes',
     audience: 'Counsellors, psychologists, obstetric and psychiatry trainees, nurses and ASHA trainers.',
     outcomes: [
       'Tell apart baby blues, postpartum depression and postpartum psychosis',

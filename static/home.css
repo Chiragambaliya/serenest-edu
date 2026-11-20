@@ -117,12 +117,17 @@
 .h-quiz-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 14px; }
 .h-link-btn { background: none; border: 0; padding: 0; font: 800 14px 'Manrope', sans-serif; color: var(--ink); cursor: pointer; }
 .h-quiz-foot .h-link { white-space: normal; }
-.h-video { margin: 0; padding: 14px; border-radius: 32px; background: linear-gradient(180deg, var(--g-olive-a), var(--g-olive-b)); box-shadow: 0 40px 70px -34px rgba(40, 36, 20, .75); display: grid; gap: 12px; }
-.h-video video { width: 100%; aspect-ratio: 16 / 9; border-radius: 22px; background: #23241c; display: block; }
-.h-video figcaption { color: var(--g-olive-ink); font-size: 13.5px; font-weight: 600; padding: 0 6px 4px; opacity: .9; }
-.h-video-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
-.h-video-tabs button { flex: none; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255, 248, 225, .25); background: rgba(255, 248, 225, .1); color: var(--g-olive-ink); font: 700 13px 'Manrope', sans-serif; cursor: pointer; }
-.h-video-tabs button[aria-selected="true"] { background: var(--g-gold); color: var(--g-night); border-color: var(--g-gold); }
+.h-briefs { padding: 30px; border-radius: 32px; display: grid; gap: 12px; color: var(--g-olive-ink);
+  background: linear-gradient(180deg, var(--g-olive-a), var(--g-olive-b)); box-shadow: 0 40px 70px -34px rgba(40, 36, 20, .75); }
+.h-briefs .h-kicker { color: rgba(251, 246, 230, .75); margin: 0; }
+.h-briefs h3 { margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 380; font-size: 30px; line-height: 1.1; color: var(--g-olive-ink); }
+.h-briefs h3 em { color: var(--g-gold); }
+.h-briefs p { margin: 0; font-size: 15px; line-height: 1.55; opacity: .85; }
+.h-brief-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+.h-brief-list a { display: grid; gap: 2px; padding: 14px 16px; border-radius: 20px; text-decoration: none; color: var(--g-olive-ink); background: rgba(255, 248, 225, .1); border: 1px solid rgba(255, 248, 225, .2); transition: background .2s; }
+.h-brief-list a:hover { background: rgba(255, 248, 225, .18); }
+.h-brief-list b { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 19px; }
+.h-brief-list span { font-size: 12.5px; font-weight: 700; color: var(--g-gold); }
 
 /* ---------- conference ---------- */
 .h-conf { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; padding: 52px 56px; border-radius: 40px; color: #f1e9d2; position: relative; overflow: hidden;
@@ -189,3 +194,6 @@ main section.h-continue { background: var(--g-glass) !important; }
   .h-cont-copy { flex: 1 1 200px; }
   .h-continue .btn { width: 100%; justify-content: center; }
 }
+.h-briefs p { color: rgba(251, 246, 230, .85); opacity: 1; }
+.h-brief-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1080px) { .h-duo { grid-template-columns: minmax(0, 1fr); } }

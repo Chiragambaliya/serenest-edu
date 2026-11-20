@@ -223,9 +223,6 @@ svg { width: 1em; height: 1em; flex: none; }
 .irow { padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.35); }
 .irow span { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
 .irow strong { font-size: 15px; font-weight: 600; }
-.video-card { padding: 10px; overflow: hidden; }
-.video-card video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 22px; background: #1d1f19; }
-.video-card .label { display: block; padding: 10px 10px 4px; }
 
 /* ---------- progress ---------- */
 .progress-grid { display: grid; gap: 30px; }
@@ -339,9 +336,7 @@ svg { width: 1em; height: 1em; flex: none; }
   .learn-grid { grid-template-columns: repeat(3, 1fr); }
   .learn-grid .course.card-apricot { grid-column: span 3; padding: 32px 36px; }
   .drug-grid { grid-template-columns: 1fr 1fr; }
-  .drug-grid .drug-head, .drug-grid .video-card { grid-column: 1 / -1; }
-  .drug-grid .video-card { max-width: 900px; }
-  .progress-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+  .drug-grid .drug-head, .drug-grid   .drug-grid   .progress-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
   .progress-grid .course-progress { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: 18px 40px; }
   .view-profile { margin: -40px -48px 0; }
   .night { height: 320px; padding: 60px 48px 0; border-radius: 0 44px 0 0; }
@@ -364,10 +359,6 @@ svg { width: 1em; height: 1em; flex: none; }
 .lesson .lm svg { width: 14px; height: 14px; color: var(--accent); }
 .lesson .lt { color: var(--ink); }
 
-.lesson-video { padding: 10px; margin: 6px 0 22px; }
-.lesson-video video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 20px; background: #23241c; }
-.lesson-video figcaption { padding: 10px 8px 4px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
-.lesson-video a { color: var(--accent); }
 
 .lesson-body { display: grid; gap: 22px; max-width: 720px; margin: 8px 0 24px; }
 .lesson-body .intro { font-family: var(--display); font-size: 21px; line-height: 1.45; font-weight: 350; }
@@ -392,8 +383,7 @@ svg { width: 1em; height: 1em; flex: none; }
 .quiz-foot .score { font-weight: 800; color: var(--accent); }
 .lesson-nav { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
 :root[data-theme="night"] .quiz .opt { background: rgba(255, 248, 225, .05); }
-:root[data-theme="night"] .lesson-video figcaption, :root[data-theme="night"] .lesson-body p, :root[data-theme="night"] .lesson-body li { color: var(--ink-soft); }
-
+:root[data-theme="night"] 
 /* ---------- learning tracks ---------- */
 .track-tabs { display: inline-flex; gap: 4px; padding: 4px; margin: 0 4px 20px; border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-edge); }
 .track-tabs .seg { padding: 9px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; color: var(--ink-soft); }
@@ -412,3 +402,10 @@ svg { width: 1em; height: 1em; flex: none; }
   .learn-grid.subjects .subject .ring { display: none; }
   .learn-grid.subjects .subject .meta { font-size: 10.5px; }
 }
+
+/* drug brief link inside a lesson */
+.drug-link { display: grid; gap: 4px; margin: 6px 0 22px; text-decoration: none; max-width: 720px; }
+.drug-link b { font-family: var(--display); font-weight: 420; font-size: 24px; }
+.drug-link span:last-child { font-weight: 600; font-size: 14.5px; }
+.drug-link .label { color: rgba(251, 246, 230, .8); }
+.drug-link span:last-child { color: var(--gold, #ffe3a4); }
