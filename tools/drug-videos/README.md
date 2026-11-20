@@ -10,8 +10,8 @@ cost) → IPS pearl → Serenest Academy end card with the educational disclaime
 ## Make / remake the videos
 
 ```bash
-# all molecules → public/videos/drugs/<slug>.mp4
-node tools/drug-videos/render.mjs --data src/academy/data/drugs.js --out public/videos/drugs
+# all molecules → static/app/videos/<slug>.mp4
+node tools/drug-videos/render.mjs --data src/academy/data/drugs.js --out static/app/videos
 
 # one molecule
 node tools/drug-videos/render.mjs --only lithium

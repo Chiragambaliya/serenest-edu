@@ -1,0 +1,13 @@
+{
+  "name": "Serenest Academy",
+  "short_name": "Serenest",
+  "description": "Clinical mental health learning — lessons, drug briefs, progress and the free case conference.",
+  "start_url": "./#today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f0e3",
+  "theme_color": "#f4f0e3",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

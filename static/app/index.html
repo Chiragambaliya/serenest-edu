@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Serenest Academy App</title>
+<meta name="description" content="Serenest Academy — study clinical mental health skills: daily lessons, drug briefs, progress, and the free monthly case conference.">
+<meta name="theme-color" content="#f4f0e3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#25261d" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,100&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 1c.6 5.6 4.4 9.4 11 11-6.6 1.6-10.4 5.4-11 11-.6-5.6-4.4-9.4-11-11C7.6 10.4 11.4 6.6 12 1z" fill="currentColor"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3 7 7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></g></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C9.5 4.8 6.3 4.5 3 5.5v13c3.3-1 6.5-.7 9 1 2.5-1.7 5.7-2 9-1v-13c-3.3-1-6.5-.7-9 1z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M12 6.5v13" stroke="currentColor" stroke-width="1.9"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-35 12 12)" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.6 9.5l5.6 7.9" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 5 4 6 5 9-1 3-5 4-5 9M17 3c0 5-4 6-5 9 1 3 5 4 5 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="7" cy="7" r="3.2" fill="currentColor"/><circle cx="17" cy="7" r="3.2" fill="currentColor" opacity=".6"/><circle cx="7" cy="17" r="3.2" fill="currentColor" opacity=".6"/><circle cx="17" cy="17" r="3.2" fill="currentColor"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M15.5 3.5A8.5 8.5 0 1 0 20.5 17 7 7 0 0 1 15.5 3.5z" fill="currentColor"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6zm-2 15a2 2 0 0 0 4 0" fill="currentColor"/></symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 3c-3 0-5 2-5 4.5-1.8.5-3 2-3 3.8C4 13.5 5.8 15 8 15h3v6h2v-6h3c2.2 0 4-1.5 4-3.7 0-1.8-1.2-3.3-3-3.8C17 5 15 3 12 3z" fill="currentColor"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.6 1.4-4 2.5-5.2.3 1.6 1 2.7 2.2 3.2C11 8 11 5 12 2z" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="shell">
+  <aside class="side" aria-label="Main navigation">
+    <a class="side-brand" href="#today"><span class="side-mark"><svg><use href="#i-spark"/></svg></span><span>Serenest <em>Academy</em></span></a>
+    <nav class="side-nav" data-nav></nav>
+    <div class="side-foot glass">
+      <span class="label">Free · Monthly</span>
+      <p>SerenestCase Conference</p>
+      <span class="side-date" data-conf-short></span>
+      <button class="btn btn-ink" data-reserve>Reserve seat</button>
+    </div>
+    <a class="side-site" href="/">← serenest.academy</a>
+  </aside>
+
+  <main class="screen" id="main" tabindex="-1">
+
+    <!-- TODAY -->
+    <section class="view" data-view="today" aria-label="Today">
+      <header class="day-head">
+        <div class="day-title"><span class="day-dow" data-dow></span><h1 class="display">Serenest</h1><sup class="day-num" data-dnum></sup></div>
+        <button class="icon-btn" data-theme-toggle aria-label="Switch light or night theme"><svg><use href="#i-moon"/></svg><svg class="spark-mini"><use href="#i-spark"/></svg></button>
+      </header>
+      <div class="date-strip" data-strip role="tablist" aria-label="Pick a day"></div>
+
+      <div class="today-grid">
+        <article class="card card-olive arc-card">
+          <div class="arc-top">
+            <span class="label">First read</span>
+            <svg class="arc" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M10 85 C 80 -15, 220 -15, 290 85" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" data-arc-path/>
+              <circle r="9" data-arc-dot class="arc-dot"/>
+            </svg>
+            <span class="label">Wind down</span>
+          </div>
+          <div class="arc-band">
+            <span class="time"><b>7:00</b><small>AM</small></span>
+            <span class="time time-accent"><b>9:00</b><small>PM</small></span>
+          </div>
+          <p class="arc-note"><svg><use href="#i-bell"/></svg><span data-arc-note></span></p>
+        </article>
+
+        <article class="card card-teal goal-card">
+          <span class="tab-label">Daily goal</span>
+          <div class="goal-row">
+            <span class="orb"><svg><use href="#i-book"/></svg></span>
+            <div class="goal-main">
+              <span class="goal-count"><svg><use href="#i-check"/></svg><b data-goal-done>0</b> of <b data-goal-total>4</b> lessons</span>
+              <div class="segments" data-segments></div>
+              <span class="goal-sub"><b data-goal-min>0</b> min <small>of</small> <b data-goal-minmax>60</b> min</span>
+            </div>
+          </div>
+        </article>
+
+        <button class="card card-apricot event-card" data-reserve>
+          <span class="event-bar"></span>
+          <span class="event-text"><strong>Case Conference</strong><span data-conf-long></span></span>
+          <span class="avatar">CA</span>
+        </button>
+
+        <article class="card glass continue-card" data-continue></article>
+      </div>
+      <div class="stars" aria-hidden="true"></div>
+    </section>
+
+    <!-- LEARN -->
+    <section class="view" data-view="learn" aria-label="Learn" hidden>
+      <header class="view-head"><span class="label">Programs</span><h1 class="display">Learn</h1></header>
+      <div class="learn-grid" data-courses></div>
+      <p class="fine">Programs are for education and skill development — not a substitute for formal degrees, licensing, or statutory registration. Certificates by Serenest Pvt Ltd.</p>
+    </section>
+
+    <!-- COURSE DETAIL -->
+    <section class="view" data-view="course" aria-label="Course" hidden>
+      <a class="back" href="#learn"><svg><use href="#i-back"/></svg>All programs</a>
+      <div data-course-detail></div>
+    </section>
+
+    <!-- DRUGS -->
+    <section class="view" data-view="drugs" aria-label="Drug briefs" hidden>
+      <header class="view-head"><span class="label">Drug briefs</span><h1 class="display">Molecules</h1></header>
+      <div class="pills" data-drug-pills role="tablist" aria-label="Molecules"></div>
+      <div class="drug-grid" data-drug></div>
+      <p class="fine">Educational reference for qualified clinicians. Doses are a study aid, not a prescription or a substitute for current product labelling.</p>
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="view" data-view="progress" aria-label="Progress" hidden>
+      <header class="view-head"><span class="label">This week</span><h1 class="display">Progress</h1></header>
+      <div class="progress-grid">
+        <article class="card card-apricot week-card">
+          <span class="tab-label tab-label--dark">Daily progress</span>
+          <div class="week-row"><svg class="week-icon"><use href="#i-tree"/></svg><div class="bars" data-bars></div></div>
+        </article>
+        <div class="stats" data-stats></div>
+        <article class="card glass course-progress" data-course-progress></article>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="view view-profile" data-view="profile" aria-label="Profile" hidden>
+      <div class="night">
+        <svg class="dunes" viewBox="0 0 400 260" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 150 C 90 90 160 120 230 95 S 340 60 400 80 V260 H0Z" fill="rgba(255,248,225,.06)"/>
+          <path d="M0 190 C 70 150 150 175 220 150 S 330 120 400 140 V260 H0Z" fill="rgba(255,248,225,.08)"/>
+          <path d="M0 225 C 100 195 200 215 280 196 S 360 185 400 192 V260 H0Z" fill="rgba(255,248,225,.1)"/>
+        </svg>
+        <svg class="big-spark"><use href="#i-spark"/></svg>
+        <h1 class="display greet" data-greet>Good evening</h1>
+        <button class="icon-btn icon-btn--light" data-theme-toggle aria-label="Switch light or night theme"><svg><use href="#i-sun"/></svg></button>
+      </div>
+      <div class="profile-grid">
+        <article class="card glass profile-card">
+          <span class="avatar avatar--lg" data-initials>SA</span>
+          <div class="who">
+            <input class="who-name" data-name aria-label="Your name" maxlength="40" placeholder="Your name">
+            <input class="who-role" data-role aria-label="Your role" maxlength="60" placeholder="Psychology student, counsellor…">
+          </div>
+          <div class="who-stats"><div><b data-p-lessons>0</b><span>Lessons</span></div><div><b data-p-courses>0</b><span>Courses</span></div></div>
+          <button class="chip" data-share><svg><use href="#i-spark"/></svg>Share</button>
+        </article>
+        <article class="card glass settings-card">
+          <span class="label">Daily goal</span>
+          <div class="stepper"><button data-goal-minus aria-label="Fewer lessons">−</button><b data-goal-value>4</b><span>lessons a day</span><button data-goal-plus aria-label="More lessons">+</button></div>
+          <span class="label">Theme</span>
+          <div class="seg" role="group" aria-label="Theme"><button data-theme-set="light">Day</button><button data-theme-set="night">Night</button></div>
+        </article>
+        <button class="card card-olive upgrade" data-cohort>
+          <span><span><b>Join</b> the flagship cohort <svg><use href="#i-arrow"/></svg></span><small>8 weeks · live supervision · certificate</small></span>
+          <svg class="upgrade-icon"><use href="#i-flame"/></svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" data-nav aria-label="Main"></nav>
+</div>
+
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

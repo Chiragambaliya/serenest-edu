@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Render one short "Drug Brief" video per molecule in the Academy Drugs tab.
 //
-//   node tools/drug-videos/render.mjs --data src/academy/data/drugs.js --out public/videos/drugs
+//   node tools/drug-videos/render.mjs --data src/academy/data/drugs.js --out static/app/videos
 //   node tools/drug-videos/render.mjs --only lithium --stills   # quick PNG checks, no video
 //
 // Needs Playwright (Chromium) and ffmpeg on PATH. The look is copied from the
@@ -26,7 +26,7 @@ const opt = (name, fallback) => {
 const flag = (name) => args.includes(`--${name}`)
 
 const dataPath = resolve(opt('data', 'src/academy/data/drugs.js'))
-const outDir = resolve(opt('out', 'public/videos/drugs'))
+const outDir = resolve(opt('out', 'static/app/videos'))
 const fps = Number(opt('fps', 30))
 const only = opt('only', null)
 const stills = flag('stills')
