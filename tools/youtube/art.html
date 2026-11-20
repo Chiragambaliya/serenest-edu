@@ -103,6 +103,7 @@ if (kind === 'banner') {
   const d = window.SA_DRUGS.find((x) => x.slug === q.get('slug'));
   const target = d.steps[1];
   const hooks = {
+    aripiprazole: 'Low weight gain, but watch for <span>akathisia</span>',
     brexpiprazole: 'When aripiprazole causes <span>akathisia</span>',
     escitalopram: 'The <span>first-line</span> SSRI, dosed right',
     lithium: 'Levels, toxicity & <span>summer</span> safety',

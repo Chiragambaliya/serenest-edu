@@ -57,7 +57,7 @@ Videos are in `static/app/videos/`.
 
 ---
 
-## 4. First five uploads — ready to paste
+## 4. First six uploads — ready to paste
 
 Same for all five:
 - **Thumbnail:** `art/thumb-<drug>.jpg`
@@ -91,10 +91,11 @@ Educational reference for qualified clinicians. Doses are a study aid, not a pre
 | `escitalopram.mp4` | Escitalopram Dosing in 44 Seconds: Start, Target, Max (India) | The first-line SSRI in Indian OPDs, dosed the right way. | escitalopram, SSRI, depression treatment, anxiety medicine, QTc, nexito |
 | `olanzapine.mp4` | Olanzapine in 44 Seconds: Doses & the Metabolic Watch-Out | High efficacy, high metabolic risk. What to monitor in South Asian patients. | olanzapine, antipsychotic, schizophrenia, metabolic syndrome, weight gain, psychiatry |
 | `buprenorphine.mp4` | Buprenorphine Induction in 44 Seconds: Avoid Precipitated Withdrawal | COWS first, then the dose. Opioid agonist treatment in India. | buprenorphine, opioid use disorder, OST, COWS, addiction psychiatry, NDPS |
+| `aripiprazole.mp4` | Aripiprazole in 44 Seconds: Doses, Akathisia & the 2-Week Rule | Low weight gain and prolactin, but akathisia is the catch. Dose it right. | aripiprazole, antipsychotic, akathisia, bipolar mania, schizophrenia, arip mt |
 | `brexpiprazole.mp4` | Brexpiprazole in 44 Seconds: When Aripiprazole Causes Akathisia | An SDAM option when aripiprazole helped but akathisia did not. | brexpiprazole, aripiprazole, akathisia, antipsychotic, MDD adjunct, psychiatry |
 
-**Release order:** Lithium → Escitalopram → Olanzapine → Buprenorphine → Brexpiprazole.
-Brexpiprazole goes last because its India data still needs checking (see the checklist).
+**Release order:** Lithium → Escitalopram → Olanzapine → Aripiprazole → Buprenorphine → Brexpiprazole.
+Aripiprazole goes right before Brexpiprazole, since the Brexpiprazole brief is pitched at aripiprazole akathisia. Brexpiprazole goes last because its India data still needs checking (see the checklist).
 
 ---
 
@@ -117,6 +118,7 @@ Brexpiprazole goes last because its India data still needs checking (see the che
   - Brexpiprazole: is "CDSCO Approved (May 2026)" correct? Are Brexipil, Brexova and Rexipra-B real brands? (*Rexipra* also appears under escitalopram.)
   - Lithium: "the only psychotropic proven to reduce suicide risk" overstates it, since clozapine has trial evidence too.
   - Escitalopram: steps 3 and 4 are both 20 mg/d.
+  - Aripiprazole: doses follow the product label; confirm the brands (Arip MT, Arpizol) and the ₹150–400/month cost against current Indian prices.
   - After fixing `drugs.js`, re-make the videos: `node tools/drug-videos/render.mjs --data <path to drugs.js>`.
 - [ ] Channel verified (needed for custom thumbnails).
 - [ ] Playlists created.

@@ -9,7 +9,8 @@
 // regenerate after editing that file.
 
 import { spawn } from 'node:child_process'
-import { mkdirSync } from 'node:fs'
+import { mkdirSync, readFileSync } from 'node:fs'
+import { runInNewContext } from 'node:vm'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { createRequire } from 'node:module'
@@ -31,7 +32,16 @@ const fps = Number(opt('fps', 30))
 const only = opt('only', null)
 const stills = flag('stills')
 
-const { DRUGS } = await import(pathToFileURL(dataPath).href)
+// Accepts the React app's drugs.js (export const DRUGS) or the web app's static/app/data.js (window.SA_DRUGS).
+let DRUGS
+const source = readFileSync(dataPath, 'utf8')
+if (source.includes('window.SA_DRUGS')) {
+  const window = {}
+  runInNewContext(source, { window })
+  DRUGS = window.SA_DRUGS
+} else {
+  ({ DRUGS } = await import(pathToFileURL(dataPath).href))
+}
 const all = DRUGS.map((d) => d.shortName)
 const targets = DRUGS.map((drug, index) => ({ drug, index })).filter(({ drug }) => !only || drug.slug === only)
 if (!targets.length) throw new Error(`No drug matches --only ${only}`)

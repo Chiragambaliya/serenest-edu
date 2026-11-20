@@ -16,7 +16,7 @@ const jobs = [
   { kind: 'banner', w: 2560, h: 1440, file: 'banner-2560x1440.png' },
   { kind: 'avatar', w: 800, h: 800, file: 'profile-800x800.png' },
   { kind: 'watermark', w: 150, h: 150, file: 'watermark-150x150.png', transparent: true },
-  ...['brexpiprazole', 'escitalopram', 'lithium', 'olanzapine', 'buprenorphine'].map((slug) => ({
+  ...['aripiprazole', 'brexpiprazole', 'escitalopram', 'lithium', 'olanzapine', 'buprenorphine'].map((slug) => ({
     kind: 'thumb', slug, w: 1280, h: 720, file: `thumb-${slug}.jpg`,
   })),
 ]

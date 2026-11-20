@@ -1,6 +1,26 @@
 /* Serenest Academy app data. Drugs copied from src/academy/data/drugs.js (Academy app branch). */
 window.SA_DRUGS = [
   {
+    slug: 'aripiprazole',
+    shortName: 'Aripiprazole',
+    name: 'Aripiprazole',
+    mechanism:
+      'Partial agonist at D2 and 5-HT1A, antagonist at 5-HT2A. Very long half-life (about 75 hours).',
+    clinicalFit:
+      'Where it fits: Schizophrenia, bipolar mania and MDD augmentation when weight, sugar or prolactin matter. Low metabolic and prolactin burden.',
+    cdsco: 'CDSCO Approved',
+    brands: 'Arip MT, Arpizol and generics (2, 5, 10, 15, 20, 30 mg)',
+    cost: '₹150 – ₹400 / month (at 10–15 mg/day)',
+    ipsPearl:
+      'IPS Clinical Pearl: Ask about restlessness at every visit in the first weeks (akathisia), and warn families about new gambling, shopping or other urges.',
+    steps: [
+      { stage: 'Start', dose: '5–10 mg/d', ind: 'Week 1 Initiation', note: 'Label start is 10–15 mg once daily; many start at 5 mg to limit akathisia. Use 2–5 mg as an MDD add-on.' },
+      { stage: 'Target', dose: '10–15 mg', ind: 'Schizophrenia Target', note: 'Usual effective range. Steady state takes about 2 weeks, so wait 2 weeks before raising the dose.' },
+      { stage: 'Mania', dose: '15–30 mg', ind: 'Acute Bipolar Mania', note: 'Start at 15 mg/day in acute mania, alone or with lithium or valproate.' },
+      { stage: 'Max Dose', dose: '30 mg/d', ind: 'Approved Daily Max', note: 'Max 30 mg/day (15 mg/day as MDD add-on). Halve the dose with fluoxetine or paroxetine (CYP2D6).' },
+    ],
+  },
+  {
     slug: 'brexpiprazole',
     shortName: 'Brexpiprazole',
     name: 'Brexpiprazole',
