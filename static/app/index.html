@@ -101,14 +101,15 @@
 
     <!-- LEARN -->
     <section class="view" data-view="learn" aria-label="Learn" hidden>
-      <header class="view-head"><span class="label">Programs</span><h1 class="display">Learn</h1></header>
+      <header class="view-head"><span class="label">Programs</span><h1 class="display" data-learn-title>Learn</h1></header>
+      <nav class="track-tabs" data-track-tabs aria-label="Learning tracks"></nav>
       <div class="learn-grid" data-courses></div>
       <p class="fine">Programs are for education and skill development — not a substitute for formal degrees, licensing, or statutory registration. Certificates by Serenest Pvt Ltd.</p>
     </section>
 
     <!-- COURSE DETAIL -->
     <section class="view" data-view="course" aria-label="Course" hidden>
-      <a class="back" href="#learn"><svg><use href="#i-back"/></svg>All programs</a>
+      <a class="back" href="#learn" data-course-back><svg><use href="#i-back"/></svg><span>All programs</span></a>
       <div data-course-detail></div>
     </section>
 
@@ -183,6 +184,7 @@
 <script src="data.js"></script>
   <script src="courses-content.js"></script>
   <script src="courses-content-2.js"></script>
+  <script src="mbbs-content.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -393,3 +393,22 @@ svg { width: 1em; height: 1em; flex: none; }
 .lesson-nav { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
 :root[data-theme="night"] .quiz .opt { background: rgba(255, 248, 225, .05); }
 :root[data-theme="night"] .lesson-video figcaption, :root[data-theme="night"] .lesson-body p, :root[data-theme="night"] .lesson-body li { color: var(--ink-soft); }
+
+/* ---------- learning tracks ---------- */
+.track-tabs { display: inline-flex; gap: 4px; padding: 4px; margin: 0 4px 20px; border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-edge); }
+.track-tabs .seg { padding: 9px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; color: var(--ink-soft); }
+.track-tabs .seg[aria-current="true"] { background: var(--ink); color: var(--paper); }
+.track-note { grid-column: 1 / -1; margin: 0 4px 4px; font-weight: 700; font-size: 13.5px; color: var(--ink-soft); }
+.subject { display: grid; gap: 8px; }
+.subject h3 { font-family: var(--display); font-weight: 400; font-size: 22px; line-height: 1.15; }
+.subject p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+.subject .meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+.subject.soon { opacity: .55; background: transparent; border: 1px dashed var(--line); box-shadow: none; }
+.mbbs-promo .meta, .mbbs-promo p { color: var(--teal-ink); opacity: .85; }
+@media (max-width: 700px) {
+  .learn-grid.subjects { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .learn-grid.subjects .subject { padding: 14px 16px; border-radius: 22px; }
+  .learn-grid.subjects .subject h3 { font-size: 18px; }
+  .learn-grid.subjects .subject .ring { display: none; }
+  .learn-grid.subjects .subject .meta { font-size: 10.5px; }
+}

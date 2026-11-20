@@ -4,7 +4,13 @@
 
   const WHATSAPP = '917777636369';
   const FULL = window.SA_FULL || {};
-  const COURSES = (window.SA_COURSES || []).map((c) => (FULL[c.id] ? { ...c, full: FULL[c.id], lessons: FULL[c.id].lessons.map((l) => l.title) } : c))
+  const SUBJECTS = window.SA_SUBJECTS || [];
+  const subjectOf = (id) => SUBJECTS.find((x) => x.id === id);
+  const mbbsCourses = SUBJECTS.filter((x) => FULL[x.id] && !(window.SA_COURSES || []).some((c) => c.id === x.id))
+    .map((x) => ({ id: x.id, title: x.name, weeks: 1, desc: `High-yield ${x.name} for MBBS and NEET-PG, with MCQs.` }));
+  const COURSES = [...(window.SA_COURSES || []), ...mbbsCourses]
+    .map((c) => ({ ...c, track: subjectOf(c.id) ? 'mbbs' : 'mh' }))
+    .map((c) => (FULL[c.id] ? { ...c, full: FULL[c.id], lessons: FULL[c.id].lessons.map((l) => l.title) } : c))
     .sort((a, b) => (b.flagship ? 2 : b.full ? 1 : 0) - (a.flagship ? 2 : a.full ? 1 : 0));
   const DRUGS = window.SA_DRUGS || [];
   const MIN_PER_LESSON = 15;
@@ -96,7 +102,7 @@
     const tab = v === 'course' || v === 'lesson' ? 'learn' : v;
     $$('[data-view]').forEach((s) => (s.hidden = s.dataset.view !== v));
     $$('.nav-item').forEach((a) => (a.dataset.tab === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
-    const render = { today: renderToday, learn: renderLearn, course: () => renderCourse(arg), lesson: () => renderLesson(arg, Number(arg2) || 0), drugs: () => renderDrugs(arg), progress: renderProgress, profile: renderProfile }[v];
+    const render = { today: renderToday, learn: () => renderLearn(arg), course: () => renderCourse(arg), lesson: () => renderLesson(arg, Number(arg2) || 0), drugs: () => renderDrugs(arg), progress: renderProgress, profile: renderProfile }[v];
     render();
     const title = v === 'course' || v === 'lesson' ? (COURSES.find((c) => c.id === arg) || {}).title : TABS.find((t) => t.id === v)?.label;
     document.title = `${title || 'Today'} · Serenest Academy`;
@@ -159,13 +165,41 @@
     .map(([x, y, s]) => `<span style="left:${x}%;height:${y}px"></span><svg style="left:calc(${x}% - ${s / 2}px);top:${y}px;width:${s}px;height:${s}px"><use href="#i-spark"/></svg>`).join('');
 
   /* ---------- LEARN ---------- */
-  function renderLearn() {
-    $('[data-courses]').innerHTML = COURSES.map((c) => `
+  function renderLearn(track) {
+    const mbbs = track === 'mbbs';
+    $('[data-courses]').classList.toggle('subjects', mbbs);
+    $('[data-track-tabs]').innerHTML = `
+      <a class="seg" href="#learn" aria-current="${!mbbs}">Mental health</a>
+      <a class="seg" href="#learn/mbbs" aria-current="${mbbs}">MBBS &amp; NEET-PG</a>`;
+    $('[data-learn-title]').textContent = mbbs ? 'Anatomy to Radiology' : 'Learn';
+    if (mbbs) {
+      const ready = SUBJECTS.filter((x) => FULL[x.id]).length;
+      $('[data-courses]').innerHTML = `<p class="track-note">${SUBJECTS.length} subjects in NEET-PG order · ${ready} ready, more every week</p>` + SUBJECTS.map((x, i) => {
+        const c = COURSES.find((k) => k.id === x.id);
+        const on = !!(c && c.full);
+        return on ? `
+        <a class="card subject glass" href="#course/${x.id}" style="text-decoration:none">
+          <div class="meta"><span>${String(i + 1).padStart(2, '0')} · ${esc(x.year)}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
+          <h3>${esc(x.name)}</h3><p>${c.lessons.length} lessons · videos &amp; MCQs</p>
+        </a>` : `
+        <div class="card subject soon" aria-disabled="true">
+          <div class="meta"><span>${String(i + 1).padStart(2, '0')} · ${esc(x.year)}</span></div>
+          <h3>${esc(x.name)}</h3><p>Coming soon</p>
+        </div>`;
+      }).join('');
+      return;
+    }
+    $('[data-courses]').innerHTML = COURSES.filter((c) => c.track === 'mh').map((c) => `
       <a class="card course ${c.flagship ? 'card-apricot' : 'glass'}" href="#course/${c.id}" style="text-decoration:none">
         <div class="meta"><span>${c.flagship ? 'Flagship · ' : c.full ? '<b class="new-tag">✦ Full course</b> ' : ''}${c.full ? c.lessons.length + ' lessons · videos & quizzes' : `${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}`}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
         <h3>${esc(c.title)}</h3>
         <p>${esc(c.desc)}</p>
-      </a>`).join('');
+      </a>`).join('') + `
+      <a class="card course card-teal mbbs-promo" href="#learn/mbbs" style="text-decoration:none">
+        <div class="meta"><span>New track</span></div>
+        <h3>MBBS &amp; NEET-PG: Anatomy to Radiology</h3>
+        <p>All 19 subjects, high-yield lessons, videos and MCQs.</p>
+      </a>`;
   }
 
   function renderCourse(id) {
@@ -175,6 +209,8 @@
     const done = doneFor(c.id);
     const f = c.full;
     const next = c.lessons.findIndex((_, i) => !done.includes(i));
+    $('[data-course-back]').setAttribute('href', c.track === 'mbbs' ? '#learn/mbbs' : '#learn');
+    $('[data-course-back] span').textContent = c.track === 'mbbs' ? 'All subjects' : 'All programs';
     root.innerHTML = `
       <div class="detail-head">
         <span class="label">${c.flagship ? 'Flagship cohort' : f ? esc(f.level) : 'Short course'}${f ? '' : ` · ${c.weeks} week${c.weeks > 1 ? 's' : ''}`}</span>
@@ -200,7 +236,7 @@
         ${f ? `<a class="btn btn-ink" href="#lesson/${c.id}/${next === -1 ? 0 : next}">${next === -1 ? 'Review lessons' : done.length ? 'Continue: lesson ' + (next + 1) : 'Start course'} ${icon('arrow')}</a>
                <button class="btn btn-ghost" data-apply>Certificate on WhatsApp</button>`
             : `<button class="btn btn-ink" data-apply>Apply on WhatsApp ${icon('arrow')}</button>`}
-        <a class="btn btn-ghost" href="#learn">All programs</a>
+        <a class="btn btn-ghost" href="${c.track === 'mbbs' ? '#learn/mbbs' : '#learn'}">${c.track === 'mbbs' ? 'All subjects' : 'All programs'}</a>
       </div>`;
     $$('[data-lesson]', root).forEach((b) => b.addEventListener('click', () => {
       const i = Number(b.dataset.lesson);
