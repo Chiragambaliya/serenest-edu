@@ -1,6 +1,7 @@
 /* Serenest Academy app data. Drugs copied from src/academy/data/drugs.js (Academy app branch). */
 window.SA_DRUGS = [
   {
+    video: true,
     slug: 'aripiprazole',
     shortName: 'Aripiprazole',
     name: 'Aripiprazole',
@@ -21,6 +22,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'brexpiprazole',
     shortName: 'Brexpiprazole',
     name: 'Brexpiprazole',
@@ -41,6 +43,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'escitalopram',
     shortName: 'Escitalopram',
     name: 'Escitalopram',
@@ -61,6 +64,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'lithium',
     shortName: 'Lithium',
     name: 'Lithium Carbonate',
@@ -81,6 +85,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'olanzapine',
     shortName: 'Olanzapine',
     name: 'Olanzapine',
@@ -100,6 +105,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'buprenorphine',
     shortName: 'Buprenorphine',
     name: 'Buprenorphine',

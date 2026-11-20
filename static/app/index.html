@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Serenest Academy App</title>
-<meta name="description" content="Serenest Academy — study clinical mental health skills: daily lessons, drug briefs, progress, and the free monthly case conference.">
+<meta name="description" content="Serenest Academy — the same study desk for every clinical specialty: lessons, molecule cards, progress, and the free monthly case conference.">
 <meta name="theme-color" content="#f4f0e3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#25261d" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
@@ -58,6 +58,7 @@
         <button class="icon-btn" data-theme-toggle aria-label="Switch light or night theme"><svg><use href="#i-moon"/></svg><svg class="spark-mini"><use href="#i-spark"/></svg></button>
       </header>
       <div class="date-strip" data-strip role="tablist" aria-label="Pick a day"></div>
+      <div class="pills spec-pills" data-specs role="tablist" aria-label="Specialty"></div>
 
       <div class="today-grid">
         <article class="card card-olive arc-card">
@@ -101,7 +102,9 @@
 
     <!-- LEARN -->
     <section class="view" data-view="learn" aria-label="Learn" hidden>
-      <header class="view-head"><span class="label">Programs</span><h1 class="display">Learn</h1></header>
+      <header class="view-head"><span class="label" data-spec-name>Psychiatry</span><h1 class="display">Learn</h1></header>
+      <p class="spec-blurb" data-spec-blurb></p>
+      <div class="pills spec-pills" data-specs role="tablist" aria-label="Specialty"></div>
       <div class="learn-grid" data-courses></div>
       <p class="fine">Programs are for education and skill development — not a substitute for formal degrees, licensing, or statutory registration. Certificates by Serenest Pvt Ltd.</p>
     </section>
@@ -114,7 +117,9 @@
 
     <!-- DRUGS -->
     <section class="view" data-view="drugs" aria-label="Drug briefs" hidden>
-      <header class="view-head"><span class="label">Drug briefs</span><h1 class="display">Molecules</h1></header>
+      <header class="view-head"><span class="label" data-spec-name>Psychiatry</span><h1 class="display">Molecules</h1></header>
+      <p class="spec-blurb" data-spec-blurb></p>
+      <div class="pills spec-pills" data-specs role="tablist" aria-label="Specialty"></div>
       <div class="pills" data-drug-pills role="tablist" aria-label="Molecules"></div>
       <div class="drug-grid" data-drug></div>
       <p class="fine">Educational reference for qualified clinicians. Doses are a study aid, not a prescription or a substitute for current product labelling.</p>
@@ -122,7 +127,8 @@
 
     <!-- PROGRESS -->
     <section class="view" data-view="progress" aria-label="Progress" hidden>
-      <header class="view-head"><span class="label">This week</span><h1 class="display">Progress</h1></header>
+      <header class="view-head"><span class="label" data-spec-name>Psychiatry</span><h1 class="display">Progress</h1></header>
+      <div class="pills spec-pills" data-specs role="tablist" aria-label="Specialty"></div>
       <div class="progress-grid">
         <article class="card card-apricot week-card">
           <span class="tab-label tab-label--dark">Daily progress</span>
@@ -150,7 +156,7 @@
           <span class="avatar avatar--lg" data-initials>SA</span>
           <div class="who">
             <input class="who-name" data-name aria-label="Your name" maxlength="40" placeholder="Your name">
-            <input class="who-role" data-role aria-label="Your role" maxlength="60" placeholder="Psychology student, counsellor…">
+            <input class="who-role" data-role aria-label="Your role" maxlength="60" placeholder="Student, resident, counsellor…">
           </div>
           <div class="who-stats"><div><b data-p-lessons>0</b><span>Lessons</span></div><div><b data-p-courses>0</b><span>Courses</span></div></div>
           <button class="chip" data-share><svg><use href="#i-spark"/></svg>Share</button>
@@ -162,7 +168,7 @@
           <div class="seg" role="group" aria-label="Theme"><button data-theme-set="light">Day</button><button data-theme-set="night">Night</button></div>
         </article>
         <button class="card card-olive upgrade" data-cohort>
-          <span><span><b>Join</b> the flagship cohort <svg><use href="#i-arrow"/></svg></span><small>8 weeks · live supervision · certificate</small></span>
+          <span><span><b>Join</b> <span data-cohort-title>the flagship cohort</span> <svg><use href="#i-arrow"/></svg></span><small data-cohort-meta>8 weeks · live supervision · certificate</small></span>
           <svg class="upgrade-icon"><use href="#i-flame"/></svg>
         </button>
       </div>
@@ -175,6 +181,7 @@
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
 <script src="data.js"></script>
+<script src="specialties.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

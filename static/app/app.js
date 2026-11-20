@@ -5,6 +5,9 @@
   const WHATSAPP = '917777636369';
   const COURSES = window.SA_COURSES || [];
   const DRUGS = window.SA_DRUGS || [];
+  const SPECIALTIES = window.SA_SPECIALTIES?.length
+    ? window.SA_SPECIALTIES
+    : [{ id: 'psychiatry', name: 'Psychiatry', short: 'Psych', blurb: '', pearlLabel: 'IPS pearl', courses: COURSES, drugs: DRUGS }];
   const MIN_PER_LESSON = 15;
   const DIAL_ARC = 443, DIAL_CYCLE = 591;
 
@@ -15,7 +18,7 @@
 
   /* ---------- storage (per-viewer convenience; app works without it) ---------- */
   const KEY = 'serenest-academy-app-v1';
-  const state = Object.assign({ name: '', role: '', goal: 4, done: {}, log: {}, theme: null, drug: null }, load());
+  const state = Object.assign({ name: '', role: '', goal: 4, done: {}, log: {}, theme: null, drug: null, specialty: 'psychiatry' }, load());
   function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* private mode */ } }
 
@@ -39,9 +42,32 @@
   const fmtConf = (opts) => conf.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', ...opts });
 
   /* ---------- progress helpers ---------- */
+  const specById = (id) => SPECIALTIES.find((s) => s.id === id) || SPECIALTIES[0];
+  const currentSpec = () => specById(state.specialty);
+  const specCourses = (spec = currentSpec()) => spec.courses || [];
+  const specDrugs = (spec = currentSpec()) => spec.drugs || [];
+  function findCourse(id) {
+    for (const specialty of SPECIALTIES) {
+      const course = (specialty.courses || []).find((c) => c.id === id);
+      if (course) return { course, specialty };
+    }
+    return null;
+  }
+  function paintSpecs() {
+    const spec = currentSpec();
+    $$('[data-specs]').forEach((el) => {
+      el.innerHTML = SPECIALTIES.map((s) => `<button type="button" class="pill" role="tab" data-spec="${s.id}" aria-selected="${s.id === spec.id}">${esc(s.short)}</button>`).join('');
+    });
+    $$('[data-spec-name]').forEach((el) => { el.textContent = spec.name; });
+    $$('[data-spec-blurb]').forEach((el) => { el.textContent = spec.blurb || ''; });
+  }
+  function flagshipCourse() {
+    const courses = specCourses();
+    return courses.find((c) => c.flagship) || courses[0] || null;
+  }
+
   const doneFor = (id) => state.done[id] || [];
   const pct = (c) => Math.round((doneFor(c.id).length / c.lessons.length) * 100);
-  const totalLessons = () => Object.values(state.done).reduce((a, l) => a + l.length, 0);
   const todayCount = () => state.log[dayKey(new Date())] || 0;
   function streak() {
     let n = 0, d = new Date();
@@ -91,13 +117,21 @@
     const [view, arg] = (location.hash.slice(1) || 'today').split('/');
     const known = ['today', 'learn', 'drugs', 'progress', 'profile', 'course'];
     const v = known.includes(view) ? view : 'today';
+    if (v === 'course' && arg) {
+      const found = findCourse(arg);
+      if (found && found.specialty.id !== state.specialty) {
+        state.specialty = found.specialty.id;
+        save();
+      }
+    }
     const tab = v === 'course' ? 'learn' : v;
+    paintSpecs();
     $$('[data-view]').forEach((s) => (s.hidden = s.dataset.view !== v));
     $$('.nav-item').forEach((a) => (a.dataset.tab === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
     const render = { today: renderToday, learn: renderLearn, course: () => renderCourse(arg), drugs: () => renderDrugs(arg), progress: renderProgress, profile: renderProfile }[v];
     render();
-    const title = v === 'course' ? (COURSES.find((c) => c.id === arg) || {}).title : TABS.find((t) => t.id === v)?.label;
-    document.title = `${title || 'Today'} · Serenest Academy`;
+    const title = v === 'course' ? (findCourse(arg)?.course.title) : TABS.find((t) => t.id === v)?.label;
+    document.title = `${title || 'Today'} · ${currentSpec().name} · Serenest Academy`;
     window.scrollTo(0, 0);
   }
 
@@ -141,7 +175,12 @@
 
     $('[data-conf-long]').textContent = `${fmtConf({ weekday: 'short', day: 'numeric', month: 'short' })} · 6:00 PM IST · Free`;
 
-    const c = COURSES.find((x) => doneFor(x.id).length && pct(x) < 100) || COURSES.find((x) => pct(x) < 100) || COURSES[0];
+    const courses = specCourses();
+    const c = courses.find((x) => doneFor(x.id).length && pct(x) < 100) || courses.find((x) => pct(x) < 100) || courses[0];
+    if (!c) {
+      $('[data-continue]').innerHTML = `<span class="label">${esc(currentSpec().name)}</span><h3>No courses on this desk yet</h3>`;
+      return;
+    }
     const next = c.lessons.findIndex((_, i) => !doneFor(c.id).includes(i));
     $('[data-continue]').innerHTML = `
       <span class="label">${doneFor(c.id).length ? 'Continue' : 'Start here'}</span>
@@ -158,7 +197,7 @@
 
   /* ---------- LEARN ---------- */
   function renderLearn() {
-    $('[data-courses]').innerHTML = COURSES.map((c) => `
+    $('[data-courses]').innerHTML = specCourses().map((c) => `
       <a class="card course ${c.flagship ? 'card-apricot' : 'glass'}" href="#course/${c.id}" style="text-decoration:none">
         <div class="meta"><span>${c.flagship ? 'Flagship · ' : ''}${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
         <h3>${esc(c.title)}</h3>
@@ -167,7 +206,7 @@
   }
 
   function renderCourse(id) {
-    const c = COURSES.find((x) => x.id === id);
+    const c = findCourse(id)?.course;
     const root = $('[data-course-detail]');
     if (!c) { root.innerHTML = '<p>Course not found.</p>'; return; }
     const done = doneFor(c.id);
@@ -198,13 +237,18 @@
   }
 
   /* ---------- DRUGS ---------- */
-  let step = 1;
+  let step = 0;
   function renderDrugs(slug) {
-    const drug = DRUGS.find((d) => d.slug === (slug || state.drug)) || DRUGS[0];
-    if (!drug) return;
-    if (state.drug !== drug.slug) { state.drug = drug.slug; save(); }
+    const drugs = specDrugs();
+    const drug = drugs.find((d) => d.slug === slug) || drugs.find((d) => d.slug === state.drug) || drugs[0];
+    if (!drug) {
+      $('[data-drug-pills]').innerHTML = '';
+      $('[data-drug]').innerHTML = '<p>No molecule cards on this desk yet.</p>';
+      return;
+    }
+    if (state.drug !== drug.slug) { state.drug = drug.slug; step = 0; save(); }
     step = Math.min(step, drug.steps.length - 1);
-    $('[data-drug-pills]').innerHTML = DRUGS.map((d) => `<a class="pill" role="tab" href="#drugs/${d.slug}" aria-selected="${d.slug === drug.slug}" style="text-decoration:none">${esc(d.shortName)}</a>`).join('');
+    $('[data-drug-pills]').innerHTML = drugs.map((d) => `<a class="pill" role="tab" href="#drugs/${d.slug}" aria-selected="${d.slug === drug.slug}" style="text-decoration:none">${esc(d.shortName)}</a>`).join('');
     const s = drug.steps[step];
     const dash = Math.round(DIAL_ARC * ((step + 1) / drug.steps.length));
     $('[data-drug]').innerHTML = `
@@ -232,12 +276,12 @@
         <div class="irow"><span>CDSCO status</span><strong>${esc(drug.cdsco)}</strong></div>
         <div class="irow"><span>Indian brands</span><strong>${esc(drug.brands)}</strong></div>
         <div class="irow"><span>Monthly cost</span><strong>${esc(drug.cost)}</strong></div>
-        <div class="irow"><span>IPS pearl</span><strong>${esc(drug.ipsPearl.replace(/^IPS Clinical Pearl:\s*/, ''))}</strong></div>
+        <div class="irow"><span>${esc(currentSpec().pearlLabel || 'Clinical pearl')}</span><strong>${esc((drug.pearl || drug.ipsPearl || '').replace(/^IPS Clinical Pearl:\s*/, ''))}</strong></div>
       </article>
-      <article class="card glass video-card">
+      ${drug.video ? `<article class="card glass video-card">
         <span class="label">${icon('play')} 44-second drug brief</span>
         <video controls preload="metadata" playsinline src="videos/${drug.slug}.mp4#t=6"></video>
-      </article>`;
+      </article>` : ''}`;
     $$('[data-step]').forEach((b) => b.addEventListener('click', () => { step += Number(b.dataset.step); renderDrugs(drug.slug); }));
   }
 
@@ -250,10 +294,12 @@
       const h = Math.min(100, (n / state.goal) * 100);
       return `<div class="wbar ${o === 0 ? 'today' : ''}" title="${n} lessons"><span class="track"><span class="fill" style="height:${h}%"></span></span>${DOW[d.getDay()].slice(0, 2).toUpperCase()}</div>`;
     }).join('');
-    const finished = COURSES.filter((c) => pct(c) === 100).length;
-    $('[data-stats]').innerHTML = [[streak(), 'Day streak'], [totalLessons(), 'Lessons'], [finished, 'Completed']]
+    const courses = specCourses();
+    const finished = courses.filter((c) => pct(c) === 100).length;
+    const specLessons = courses.reduce((a, c) => a + doneFor(c.id).length, 0);
+    $('[data-stats]').innerHTML = [[streak(), 'Day streak'], [specLessons, 'Lessons'], [finished, 'Completed']]
       .map(([v, l]) => `<div class="card glass stat"><b>${v}</b><span>${l}</span></div>`).join('');
-    $('[data-course-progress]').innerHTML = `<span class="label">Programs</span>` + COURSES.map((c) => `
+    $('[data-course-progress]').innerHTML = `<span class="label">${esc(currentSpec().name)}</span>` + courses.map((c) => `
       <a class="cp-row" href="#course/${c.id}"><div class="row"><span>${esc(c.title)}</span><span>${pct(c)}%</span></div><div class="bar"><i style="width:${pct(c)}%"></i></div></a>`).join('');
   }
 
@@ -269,9 +315,15 @@
     if (document.activeElement !== n) n.value = state.name;
     if (document.activeElement !== r) r.value = state.role;
     $('[data-initials]').textContent = initials(state.name);
-    $('[data-p-lessons]').textContent = totalLessons();
-    $('[data-p-courses]').textContent = COURSES.filter((c) => doneFor(c.id).length).length;
+    const courses = specCourses();
+    $('[data-p-lessons]').textContent = courses.reduce((a, c) => a + doneFor(c.id).length, 0);
+    $('[data-p-courses]').textContent = courses.filter((c) => doneFor(c.id).length).length;
     $('[data-goal-value]').textContent = state.goal;
+    const flagship = flagshipCourse();
+    $('[data-cohort-title]').textContent = flagship ? flagship.title : 'the next cohort';
+    $('[data-cohort-meta]').textContent = flagship
+      ? `${flagship.weeks} week${flagship.weeks > 1 ? 's' : ''}${flagship.mode ? ' · ' + flagship.mode : ''}`
+      : '';
     applyTheme();
   }
 
@@ -280,8 +332,24 @@
     const t = e.target.closest('button, a');
     if (!t) return;
     if (t.matches('.day')) { picked = Number(t.dataset.off); renderToday(); }
+    else if (t.matches('[data-spec]')) {
+      const id = t.dataset.spec;
+      if (!SPECIALTIES.some((s) => s.id === id) || id === state.specialty) return;
+      state.specialty = id;
+      state.drug = null;
+      step = 0;
+      save();
+      const view = (location.hash.slice(1) || 'today').split('/')[0];
+      if (view === 'course') location.hash = '#learn';
+      else if (view === 'drugs' && location.hash !== '#drugs') location.hash = '#drugs';
+      else route();
+    }
     else if (t.matches('[data-reserve]')) whatsapp(`Hi Serenest Academy, please reserve my free seat for the SerenestCase Conference on ${fmtConf({ day: 'numeric', month: 'long' })}.`);
-    else if (t.matches('[data-cohort]')) whatsapp('Hi Serenest Academy, I would like to join the Foundations of Mental Health Counselling flagship cohort.');
+    else if (t.matches('[data-cohort]')) {
+      const flagship = flagshipCourse();
+      const title = flagship ? flagship.title : 'a cohort';
+      whatsapp(`Hi Serenest Academy, I would like to join "${title}" (${currentSpec().name}). Please share the next cohort dates.`);
+    }
     else if (t.matches('[data-theme-toggle]')) { state.theme = document.documentElement.dataset.theme === 'night' ? 'light' : 'night'; save(); applyTheme(); }
     else if (t.matches('[data-theme-set]')) { state.theme = t.dataset.themeSet; save(); applyTheme(); }
     else if (t.matches('[data-goal-minus], [data-goal-plus]')) { state.goal = Math.min(10, Math.max(1, state.goal + (t.matches('[data-goal-plus]') ? 1 : -1))); save(); renderProfile(); }
@@ -292,7 +360,7 @@
 
   async function share() {
     const url = new URL('./', location.href).href;
-    const text = `I'm learning clinical mental health skills on Serenest Academy — ${totalLessons()} lessons so far.`;
+    const text = `I'm studying ${currentSpec().name} on Serenest Academy — ${specCourses().reduce((a, c) => a + doneFor(c.id).length, 0)} lessons so far.`;
     try {
       if (navigator.share) await navigator.share({ title: 'Serenest Academy', text, url });
       else { await navigator.clipboard.writeText(`${text} ${url}`); toast('Link copied'); }

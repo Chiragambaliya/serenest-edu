@@ -199,6 +199,7 @@ svg { width: 1em; height: 1em; flex: none; }
 .detail-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* ---------- drugs ---------- */
+.spec-blurb { margin: -6px 4px 18px; max-width: 40rem; color: var(--ink-soft); font-size: 14.5px; }
 .pills { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 18px; scrollbar-width: none; }
 .pills::-webkit-scrollbar { display: none; }
 .pill { padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; white-space: nowrap; background: var(--glass); border: 1px solid var(--glass-edge); }
