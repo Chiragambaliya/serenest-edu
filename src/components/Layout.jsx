@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom'
 import { Logo } from './Logo'
 
 const primaryNav = [
+  { to: '/academy', label: 'Academy' },
   { to: '/about', label: 'About' },
   { to: '/what-we-do', label: 'What we do' },
   { to: '/programmes', label: 'Programmes' },
@@ -11,6 +12,7 @@ const primaryNav = [
 ]
 
 const footerNav = [
+  { to: '/academy', label: 'Academy' },
   { to: '/about', label: 'About' },
   { to: '/programmes', label: 'Programmes' },
   { to: '/faq', label: 'FAQ' },
