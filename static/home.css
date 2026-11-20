@@ -197,3 +197,4 @@ main section.h-continue { background: var(--g-glass) !important; }
 .h-briefs p { color: rgba(251, 246, 230, .85); opacity: 1; }
 .h-brief-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 1080px) { .h-duo { grid-template-columns: minmax(0, 1fr); } }
+.h-phone-mark { background: url("/icons/icon-192.png") center / cover no-repeat; }
