@@ -191,7 +191,7 @@
       <div class="lessons">${c.lessons.map((l, i) => f ? `
         <a class="lesson glass" href="#lesson/${c.id}/${i}" aria-pressed="${done.includes(i)}" style="text-decoration:none">
           <span class="tick">${icon('check')}</span><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lt">${esc(l)}</span>
-          <span class="lm">${f.lessons[i].video ? icon('play') : ''}${f.lessons[i].mins} min</span>
+          <span class="lm">${icon('play')}${f.lessons[i].mins} min</span>
         </a>` : `
         <button class="lesson glass" data-lesson="${i}" aria-pressed="${done.includes(i)}">
           <span class="tick">${icon('check')}</span><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lt">${esc(l)}</span>
@@ -231,8 +231,8 @@
         <h1 class="display">${esc(L.title)}</h1>
         <div class="bar"><i style="width:${Math.round(((i + (done ? 1 : 0)) / n) * 100)}%"></i></div>
       </header>
-      ${L.video ? `<figure class="card glass lesson-video"><video controls preload="metadata" playsinline src="${esc(L.video)}#t=6"></video>
-        <figcaption>44-second drug brief${also ? ` · Also watch the <a href="#drugs/${also.slug}">${esc(also.shortName)} brief</a>` : ''}</figcaption></figure>` : ''}
+      <figure class="card glass lesson-video"><video controls preload="metadata" playsinline src="${esc(L.video || `videos/lessons/${c.id}-${i + 1}.mp4`)}#t=${L.video ? 6 : 3}"></video>
+        <figcaption>${L.video ? '44-second drug brief' : 'Lesson video · about a minute'}${also ? ` · Also watch the <a href="#drugs/${also.slug}">${esc(also.shortName)} brief</a>` : ''}</figcaption></figure>
       <article class="lesson-body">
         <p class="intro">${esc(L.intro)}</p>
         ${L.sections.map((x) => `<section><h2>${esc(x.h)}</h2>${x.p ? `<p>${esc(x.p)}</p>` : ''}${x.ul ? `<ul>${x.ul.map((li) => `<li>${esc(li)}</li>`).join('')}</ul>` : ''}</section>`).join('')}
