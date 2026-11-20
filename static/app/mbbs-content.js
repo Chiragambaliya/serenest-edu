@@ -1,10 +1,10 @@
-/* Serenest Academy — MBBS & NEET-PG track: all 19 subjects, Anatomy to Radiology.
-   SA_SUBJECTS lists every subject in exam order; subjects with content have a course id in SA_FULL.
+/* Serenest Academy — MBBS & NEET-PG track. SA_SUBJECTS_ALL lists all 19 subjects in exam order;
+   SA_SUBJECTS is the live subset shown in the app and site; subjects with content have a course id in SA_FULL.
    High-yield revision for MBBS students and NEET-PG / INI-CET aspirants. Check standard textbooks for detail. */
-window.SA_SUBJECTS = [
-  { id: 'mbbs-anatomy', name: 'Anatomy', year: '1st year' },
-  { id: 'mbbs-physiology', name: 'Physiology', year: '1st year' },
-  { id: 'mbbs-biochemistry', name: 'Biochemistry', year: '1st year' },
+window.SA_SUBJECTS_ALL = [
+  { id: 'mbbs-anatomy', name: 'Anatomy', year: '1st year', live: true },
+  { id: 'mbbs-physiology', name: 'Physiology', year: '1st year', live: true },
+  { id: 'mbbs-biochemistry', name: 'Biochemistry', year: '1st year', live: true },
   { id: 'mbbs-pathology', name: 'Pathology', year: '2nd year' },
   { id: 'mbbs-pharmacology', name: 'Pharmacology', year: '2nd year' },
   { id: 'mbbs-microbiology', name: 'Microbiology', year: '2nd year' },
@@ -18,10 +18,12 @@ window.SA_SUBJECTS = [
   { id: 'mbbs-paediatrics', name: 'Paediatrics', year: 'Final year' },
   { id: 'mbbs-orthopaedics', name: 'Orthopaedics', year: 'Final year' },
   { id: 'mbbs-dermatology', name: 'Dermatology', year: 'Final year' },
-  { id: 'neet-pg', name: 'Psychiatry', year: 'Final year' },
+  { id: 'neet-pg', name: 'Psychiatry', year: 'Final year', live: true },
   { id: 'mbbs-anaesthesia', name: 'Anaesthesia', year: 'Final year' },
   { id: 'mbbs-radiology', name: 'Radiology', year: 'Final year' },
 ];
+// Launch scope: 1st year + Psychiatry. Flip `live` on more subjects (and load their content file) to open them.
+window.SA_SUBJECTS = window.SA_SUBJECTS_ALL.filter((s) => s.live);
 
 Object.assign(window.SA_FULL = window.SA_FULL || {}, {
 

@@ -20,9 +20,9 @@
   set('[data-stat="courses"]', mhFull.length + ready);
   set('[data-stat="lessons"]', lessons);
   set('[data-stat="questions"]', questions);
-  set('[data-stat="subjects"]', `${ready}/${SUBJECTS.length}`);
+  set('[data-stat="subjects"]', ready);
   set('[data-count="mh"]', `${mhFull.length} full courses for counsellors & clinicians`);
-  set('[data-count="mbbs"]', `${SUBJECTS.length} subjects · ${ready} ready now`);
+  set('[data-count="mbbs"]', `Anatomy, Physiology, Biochemistry & Psychiatry`);
   set('[data-count="lessons"]', `${lessons} lessons · ${questions} questions`);
   const today = new Date();
   set('[data-today]', today.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }));
@@ -46,7 +46,7 @@
   if (grid) {
     grid.innerHTML = SUBJECTS.map((s, i) => FULL[s.id]
       ? `<a class="h-subj on" href="/app/#course/${s.id}"><span>${String(i + 1).padStart(2, '0')}</span><b>${esc(s.name)}</b><small>${FULL[s.id].lessons.length} lessons</small></a>`
-      : `<span class="h-subj"><span>${String(i + 1).padStart(2, '0')}</span><b>${esc(s.name)}</b><small>Coming soon</small></span>`).join('');
+      : '').join('') + `<span class="h-subj"><span>NEXT</span><b>2nd year</b><small>Pathology, Pharmacology, Microbiology, FMT</small></span>`;
   }
 
   /* ---------- continue learning (reads the app's saved progress) ---------- */

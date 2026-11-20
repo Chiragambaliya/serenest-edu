@@ -171,10 +171,10 @@
     $('[data-track-tabs]').innerHTML = `
       <a class="seg" href="#learn" aria-current="${!mbbs}">Mental health</a>
       <a class="seg" href="#learn/mbbs" aria-current="${mbbs}">MBBS &amp; NEET-PG</a>`;
-    $('[data-learn-title]').textContent = mbbs ? 'Anatomy to Radiology' : 'Learn';
+    $('[data-learn-title]').innerHTML = mbbs ? 'MBBS &amp; <span style="white-space:nowrap">NEET-PG</span>' : 'Learn';
     if (mbbs) {
       const ready = SUBJECTS.filter((x) => FULL[x.id]).length;
-      $('[data-courses]').innerHTML = `<p class="track-note">${SUBJECTS.length} subjects in NEET-PG order · ${ready} ready, more every week</p>` + SUBJECTS.map((x, i) => {
+      $('[data-courses]').innerHTML = `<p class="track-note">1st year + Psychiatry · ${ready} subjects live · 2nd year coming next</p>` + SUBJECTS.map((x, i) => {
         const c = COURSES.find((k) => k.id === x.id);
         const on = !!(c && c.full);
         return on ? `
@@ -186,7 +186,11 @@
           <div class="meta"><span>${String(i + 1).padStart(2, '0')} · ${esc(x.year)}</span></div>
           <h3>${esc(x.name)}</h3><p>Coming soon</p>
         </div>`;
-      }).join('');
+      }).join('') + `
+        <div class="card subject soon" aria-disabled="true">
+          <div class="meta"><span>Next</span></div>
+          <h3>2nd year</h3><p>Pathology, Pharmacology, Microbiology, Forensic Medicine</p>
+        </div>`;
       return;
     }
     $('[data-courses]').innerHTML = COURSES.filter((c) => c.track === 'mh').map((c) => `
@@ -197,8 +201,8 @@
       </a>`).join('') + `
       <a class="card course card-teal mbbs-promo" href="#learn/mbbs" style="text-decoration:none">
         <div class="meta"><span>New track</span></div>
-        <h3>MBBS &amp; NEET-PG: Anatomy to Radiology</h3>
-        <p>All 19 subjects, high-yield lessons and MCQs.</p>
+        <h3>MBBS &amp; NEET-PG: 1st year + Psychiatry</h3>
+        <p>Anatomy, Physiology, Biochemistry and Psychiatry: high-yield lessons and MCQs.</p>
       </a>`;
   }
 
