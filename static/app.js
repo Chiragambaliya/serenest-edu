@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewports = document.querySelectorAll('.viewport-tab');
 
     const TAB_TITLES = {
-        home: 'Serenest Academy — One study desk for every clinical specialty',
+        home: "Serenest Academy — Building India's Future Mental Health Workforce",
         courses: 'Courses & Programs — Serenest Academy',
         about: 'About — Serenest Academy',
         library: 'Resource Library — Serenest Academy',
