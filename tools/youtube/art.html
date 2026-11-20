@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serenest YouTube art</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,100&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Same palette as static/app/app.css */
+  :root { --paper:#f4f0e3; --paper2:#ebe3cc; --ink:#2c3128; --soft:#5b6054; --teal-a:#9fe3e4; --teal-b:#58bfc7; --apri-a:#f7c878; --apri-b:#eaa152; --night:#25261d;
+          --display:'Fraunces', Georgia, serif; --sans:'Manrope', system-ui, sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--sans); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  .display { font-family:var(--display); font-weight:350; font-variation-settings:'SOFT' 100,'opsz' 144; }
+  .art { position:relative; overflow:hidden; }
+  .spark { fill:currentColor; }
+  .label { font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+
+  /* ---------- banner 2560x1440 (safe area: centre 1546x423) ---------- */
+  .banner { width:2560px; height:1440px; background:
+      radial-gradient(1200px 700px at 50% 50%, #fbf8ee 0%, transparent 70%),
+      linear-gradient(180deg, var(--paper), var(--paper2)); }
+  .banner .dunes { position:absolute; left:0; right:0; bottom:0; height:520px; }
+  .banner .safe { position:absolute; left:507px; top:508px; width:1546px; height:423px; display:flex; align-items:center; justify-content:space-between; gap:60px; }
+  .banner .brand { display:grid; gap:14px; }
+  .banner .brand .kick { font-size:24px; color:var(--soft); }
+  .banner .brand h1 { font-size:132px; line-height:.95; letter-spacing:-.01em; }
+  .banner .brand h1 em { font-style:italic; color:#3f7a6a; }
+  .banner .brand p { font-size:34px; color:var(--soft); font-weight:600; }
+  .banner .chips { display:grid; gap:18px; width:520px; }
+  .chip { display:flex; align-items:center; gap:20px; padding:22px 28px; border-radius:30px; font-size:30px; font-weight:700; box-shadow:0 22px 40px -18px rgba(50,52,36,.4), inset 0 1px 0 rgba(255,255,255,.55); }
+  .chip small { display:block; font-size:20px; font-weight:600; opacity:.75; letter-spacing:.02em; }
+  .chip .dot { width:14px; height:56px; border-radius:7px; background:rgba(0,0,0,.25); flex:none; }
+  .c-teal { background:linear-gradient(135deg,var(--teal-a),var(--teal-b)); color:#164a4f; }
+  .c-apri { background:linear-gradient(135deg,var(--apri-a),var(--apri-b)); color:#3d2a10; }
+  .c-olive { background:linear-gradient(180deg,rgba(146,136,108,.85),rgba(112,106,86,.95)); color:#fbf6e6; }
+  .banner .bigspark { position:absolute; width:120px; height:120px; color:#3f7a6a; }
+  .banner .s2 { width:44px; height:44px; color:var(--soft); opacity:.6; position:absolute; }
+
+  /* ---------- avatar 800x800 (shown as a circle) ---------- */
+  .avatar { width:800px; height:800px; display:grid; place-items:center; background:radial-gradient(circle at 35% 25%, #6b6650, #3a382b 55%, var(--night)); color:#ffe3a4; }
+  .avatar svg { width:430px; height:430px; filter:drop-shadow(0 0 40px rgba(255,227,164,.55)); }
+
+  /* ---------- watermark 150x150 ---------- */
+  .wm { width:150px; height:150px; display:grid; place-items:center; background:transparent; }
+  .wm div { width:150px; height:150px; border-radius:50%; display:grid; place-items:center; background:var(--night); color:#ffe3a4; }
+  .wm svg { width:84px; height:84px; }
+
+  /* ---------- thumbnail 1280x720 ---------- */
+  .thumb { width:1280px; height:720px; background:linear-gradient(160deg, var(--paper) 0%, var(--paper2) 100%); }
+  .thumb .left { position:absolute; left:72px; top:70px; bottom:70px; width:700px; display:flex; flex-direction:column; justify-content:space-between; }
+  .thumb .tag { display:inline-flex; align-items:center; gap:12px; align-self:flex-start; padding:12px 22px; border-radius:999px; background:var(--night); color:#ffe3a4; font-size:24px; }
+  .thumb .tag svg { width:24px; height:24px; }
+  .thumb h1 { display:inline-block; white-space:nowrap; font-size:132px; line-height:.92; letter-spacing:-.025em; font-weight:450; }
+  .thumb .hook { font-size:44px; font-weight:800; line-height:1.15; letter-spacing:-.01em; }
+  .thumb .hook span { background:linear-gradient(transparent 58%, rgba(234,161,82,.55) 58%); }
+  .thumb .foot { display:flex; align-items:center; gap:14px; font-size:26px; font-weight:800; color:var(--soft); }
+  .thumb .foot i { width:44px; height:44px; border-radius:12px; background:var(--night); display:grid; place-items:center; color:#ffe3a4; }
+  .thumb .foot i svg { width:24px; height:24px; }
+  .thumb .right { position:absolute; right:56px; top:50%; transform:translateY(-50%); width:440px; height:560px; border-radius:48px;
+                  background:linear-gradient(180deg, rgba(146,136,108,.75), rgba(90,86,68,.95)); box-shadow:0 40px 70px -24px rgba(40,36,20,.55), inset 0 1px 0 rgba(255,255,255,.4);
+                  display:grid; justify-items:center; align-content:center; gap:18px; color:#fbf6e6; }
+  .dial { position:relative; width:340px; height:340px; }
+  .dial svg { width:100%; height:100%; transform:rotate(-225deg); }
+  .dial .core { position:absolute; inset:62px; border-radius:50%; display:grid; place-content:center; text-align:center; background:radial-gradient(circle at 35% 30%, #fffaf0, #e8dcc2); color:var(--ink); box-shadow:0 22px 34px -10px rgba(0,0,0,.5); }
+  .dial .core small { font-size:18px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+  .dial .core b { font-family:var(--display); font-weight:450; font-size:52px; line-height:1.05; }
+  .right .steps { font-size:22px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; opacity:.85; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="sp" viewBox="0 0 24 24"><path class="spark" d="M12 1c.6 5.6 4.4 9.4 11 11-6.6 1.6-10.4 5.4-11 11-.6-5.6-4.4-9.4-11-11C7.6 10.4 11.4 6.6 12 1z"/></symbol></svg>
+<div id="root"></div>
+<script src="../../static/app/data.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const kind = q.get('kind');
+const sp = (cls = '', style = '') => `<svg class="${cls}" style="${style}"><use href="#sp"/></svg>`;
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const root = document.getElementById('root');
+
+if (kind === 'banner') {
+  root.innerHTML = `<div class="art banner">
+    <svg class="dunes" viewBox="0 0 2560 520" preserveAspectRatio="none"><path d="M0 300 C 600 160 1100 260 1600 190 S 2300 120 2560 170 V520 H0Z" fill="rgba(112,106,86,.10)"/><path d="M0 400 C 500 320 1200 380 1800 320 S 2400 290 2560 310 V520 H0Z" fill="rgba(112,106,86,.14)"/></svg>
+    ${sp('bigspark', 'left:2110px;top:330px')}${sp('s2', 'left:430px;top:420px')}${sp('s2', 'left:2150px;top:1000px')}${sp('s2', 'left:300px;top:980px;width:30px;height:30px')}
+    <div class="safe">
+      <div class="brand">
+        <span class="label kick">Psychiatrist-led · Built for India</span>
+        <h1 class="display">Serenest <em>Academy</em></h1>
+        <p>Clinical mental health skills — beyond the textbook.</p>
+      </div>
+      <div class="chips">
+        <div class="chip c-olive"><span class="dot"></span><span>Drug Briefs<small>Doses, CDSCO & Indian brands in 44s</small></span></div>
+        <div class="chip c-teal"><span class="dot"></span><span>Skills for Counsellors<small>MSE · CBT · Suicide risk · Ethics</small></span></div>
+        <div class="chip c-apri"><span class="dot"></span><span>Case Conference<small>Free · last Saturday · 6 PM IST</small></span></div>
+      </div>
+    </div></div>`;
+} else if (kind === 'avatar') {
+  root.innerHTML = `<div class="art avatar">${sp()}</div>`;
+} else if (kind === 'watermark') {
+  root.innerHTML = `<div class="art wm"><div>${sp()}</div></div>`;
+  document.body.style.background = 'transparent';
+} else if (kind === 'thumb') {
+  const d = window.SA_DRUGS.find((x) => x.slug === q.get('slug'));
+  const target = d.steps[1];
+  const hooks = {
+    brexpiprazole: 'When aripiprazole causes <span>akathisia</span>',
+    escitalopram: 'The <span>first-line</span> SSRI, dosed right',
+    lithium: 'Levels, toxicity & <span>summer</span> safety',
+    olanzapine: 'Doses + the <span>metabolic</span> watch-out',
+    buprenorphine: '<span>Induction</span> without precipitated withdrawal',
+  };
+  root.innerHTML = `<div class="art thumb">
+    <div class="left">
+      <span class="tag label">${sp()} Drug Brief · 44 sec</span>
+      <div><h1 class="display">${esc(d.shortName)}</h1></div>
+      <p class="hook">${hooks[d.slug] || 'Start → max dose, explained'}</p>
+      <span class="foot"><i>${sp()}</i>Serenest Academy · For clinicians in India</span>
+    </div>
+    <div class="right">
+      <div class="dial">
+        <svg viewBox="0 0 240 240"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5EEAD4"/><stop offset=".6" stop-color="#FAF6F0"/><stop offset="1" stop-color="#F59E0B"/></linearGradient></defs>
+          <circle cx="120" cy="120" r="94" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="14" stroke-linecap="round" stroke-dasharray="443 591"/>
+          <circle cx="120" cy="120" r="94" fill="none" stroke="url(#g)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${Math.round(443 * 2 / d.steps.length)} 591"/></svg>
+        <div class="core"><small>${esc(target.stage)}</small><b>${esc(target.dose)}</b></div>
+      </div>
+      <span class="steps">${d.steps.map((s) => esc(s.stage)).slice(0, 2).join(' → ')} → Max</span>
+    </div></div>`;
+  // shrink long drug names so they never run under the dial card
+  const h = root.querySelector('.thumb h1');
+  let size = 132;
+  while (h.offsetWidth > 690 && size > 70) { size -= 4; h.style.fontSize = size + 'px'; }
+}
+</script>
+</body>
+</html>
