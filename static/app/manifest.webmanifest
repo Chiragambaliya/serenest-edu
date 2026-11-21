@@ -1,7 +1,7 @@
 {
   "name": "Serenest Academy",
   "short_name": "Serenest",
-  "description": "Clinical mental health learning — lessons, drug briefs, progress and the free case conference.",
+  "description": "The same study desk for every clinical specialty — lessons, molecule cards, progress and the free case conference.",
   "start_url": "./#today",
   "scope": "./",
   "display": "standalone",

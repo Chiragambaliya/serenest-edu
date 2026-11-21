@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const TAB_TITLES = {
         home: "Serenest Academy — Building India's Future Mental Health Workforce",
-        courses: 'Courses & Programs — Serenest Academy',
+        courses: 'Clinical modules — Serenest Academy',
         about: 'About — Serenest Academy',
         library: 'Resource Library — Serenest Academy',
         sanctuary: 'The Clinician Sanctuary — Serenest Academy',
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function tabFromHash() {
-        return window.location.hash.replace('#', '').toLowerCase() || 'home';
+        return (window.location.hash.replace('#', '').toLowerCase().split('/')[0]) || 'home';
     }
     window.addEventListener('popstate', () => switchViewport(tabFromHash(), { push: false, smooth: false }));
     if (tabFromHash() !== 'home') switchViewport(tabFromHash(), { push: false, smooth: false });
@@ -146,29 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 2. Expandable Course Syllabus Accordion drawers
     // ==========================================================================
-    const courseItems = document.querySelectorAll('.course-item');
-
-    courseItems.forEach(item => {
-        const toggleBtn = item.querySelector('.btn-toggle-syllabus');
-        const courseId = item.getAttribute('data-course-id');
-        const drawer = item.querySelector(`#drawer-${courseId}`);
-
-        if (toggleBtn && drawer) {
-            toggleBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Avoid triggering any row event
-                
-                const isOpen = drawer.classList.contains('open');
-                
-                // Toggle state
-                if (isOpen) {
-                    drawer.classList.remove('open');
-                    toggleBtn.textContent = "View Syllabus";
-                } else {
-                    drawer.classList.add('open');
-                    toggleBtn.textContent = "Close Syllabus";
-                }
-            });
-        }
+    document.addEventListener('click', (e) => {
+        const toggleBtn = e.target.closest('.btn-toggle-syllabus');
+        if (!toggleBtn) return;
+        const drawer = toggleBtn.closest('.course-item')?.querySelector('.syllabus-drawer');
+        if (!drawer) return;
+        e.stopPropagation();
+        const isOpen = drawer.classList.toggle('open');
+        toggleBtn.textContent = isOpen ? 'Close Syllabus' : 'View Syllabus';
     });
 
     // ==========================================================================
@@ -994,17 +979,17 @@ Use with DSM-5 cheat sheet and intake templates for full exam preparation.`,
     const btnCourseRegisterSubmit = document.getElementById('btnCourseRegisterSubmit');
     let activeCourseName = '';
 
-    document.querySelectorAll('.btn-register-course').forEach(btn => {
-        btn.addEventListener('click', () => {
-            activeCourseName = btn.getAttribute('data-course') || 'Serenest Education programme';
-            courseRegisterTitle.textContent = activeCourseName;
-            courseRegisterForm.style.display = '';
-            courseRegisterSuccess.style.display = 'none';
-            courseRegisterForm.reset();
-            btnCourseRegisterSubmit.textContent = 'Send registration on WhatsApp';
-            btnCourseRegisterSubmit.disabled = false;
-            openModal('courseRegisterModal');
-        });
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-register-course');
+        if (!btn || !courseRegisterForm) return;
+        activeCourseName = btn.getAttribute('data-course') || 'Serenest Education programme';
+        courseRegisterTitle.textContent = activeCourseName;
+        courseRegisterForm.style.display = '';
+        courseRegisterSuccess.style.display = 'none';
+        courseRegisterForm.reset();
+        btnCourseRegisterSubmit.textContent = 'Send registration on WhatsApp';
+        btnCourseRegisterSubmit.disabled = false;
+        openModal('courseRegisterModal');
     });
 
     courseRegisterForm?.addEventListener('submit', (e) => {

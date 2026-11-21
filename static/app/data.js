@@ -1,6 +1,7 @@
 /* Serenest Academy app data. Drugs copied from src/academy/data/drugs.js (Academy app branch). */
 window.SA_DRUGS = [
   {
+    video: true,
     slug: 'aripiprazole',
     shortName: 'Aripiprazole',
     name: 'Aripiprazole',
@@ -21,6 +22,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'brexpiprazole',
     shortName: 'Brexpiprazole',
     name: 'Brexpiprazole',
@@ -41,6 +43,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'escitalopram',
     shortName: 'Escitalopram',
     name: 'Escitalopram',
@@ -61,6 +64,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'lithium',
     shortName: 'Lithium',
     name: 'Lithium Carbonate',
@@ -81,6 +85,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'olanzapine',
     shortName: 'Olanzapine',
     name: 'Olanzapine',
@@ -100,6 +105,7 @@ window.SA_DRUGS = [
     ],
   },
   {
+    video: true,
     slug: 'buprenorphine',
     shortName: 'Buprenorphine',
     name: 'Buprenorphine',
@@ -122,34 +128,33 @@ window.SA_DRUGS = [
 ]
 
 
-/* Courses — titles, durations and descriptions match serenest.academy.
-   Lesson titles are drawn from each course description; replace with the real syllabus. */
+/* Psychiatry posting. Clinical modules for MBBS students, interns, and junior residents. */
 window.SA_COURSES = [
-  { id: 'foundations', flagship: true, title: 'Foundations of Mental Health Counselling', weeks: 8, mode: 'Cohort · Live supervision',
-    desc: 'Counselling basics, therapeutic communication, active listening, rapport building, basic CBT, suicide risk awareness, ethics, and referral guidance.',
-    lessons: ['Counselling basics & therapeutic communication', 'Active listening and rapport building', 'Basic CBT concepts for Indian settings', 'CBT in practice: worksheets & homework', 'Suicide risk awareness', 'Safety planning and ethical boundaries', 'Clinical ethics & documentation', 'Referral guidance & supervised case review'] },
-  { id: 'suicide-risk', title: 'Suicide Risk Assessment Basics', weeks: 2,
-    desc: 'Warning signs, risk factors, safety planning, referral principles, and crisis communication.',
-    lessons: ['Warning signs and risk factors', 'Asking about suicide safely', 'Safety planning', 'Referral principles & crisis communication'] },
-  { id: 'mse', title: 'Mental Status Examination Simplified', weeks: 1,
-    desc: 'Psychiatric observation: speech, mood, thought, perception, cognition, insight, and judgement.',
-    lessons: ['Appearance, behaviour & speech', 'Mood, affect & thought', 'Perception & cognition', 'Insight, judgement & writing the MSE'] },
-  { id: 'cbt', title: 'Basic CBT Skills for Beginners', weeks: 2,
-    desc: 'Automatic thoughts, cognitive distortions, behavioural activation, and simple CBT tools.',
-    lessons: ['The CBT model', 'Automatic thoughts', 'Cognitive distortions', 'Behavioural activation'] },
-  { id: 'addiction', title: 'Addiction Counselling & Relapse Prevention', weeks: 3,
-    desc: 'Alcohol, nicotine and substance-use counselling, motivational interviewing, craving management, and family support.',
-    lessons: ['Understanding alcohol, nicotine & substance use', 'Motivational interviewing', 'Craving management', 'Relapse prevention', 'Working with families'] },
-  { id: 'tele', title: 'Telecounselling & Digital Mental Healthcare', weeks: 2,
-    desc: 'Online counselling ethics, confidentiality, digital boundaries, documentation, and tele-mental health workflows.',
-    lessons: ['Telemedicine guidelines & consent', 'Confidentiality and digital boundaries', 'Documentation online', 'Tele-mental health workflows'] },
-  { id: 'family', title: 'Indian Family Dynamics & Emotional Wellbeing', weeks: 2,
-    desc: 'Guilt, dependency, family pressure, marriage stress, emotional boundaries, and intergenerational stress.',
-    lessons: ['Guilt, duty & dependency', 'Family pressure & marriage stress', 'Emotional boundaries', 'Intergenerational stress'] },
-  { id: 'psychopharm', title: 'Psychopharmacology for Psychologists', weeks: 2,
-    desc: 'Common psychiatric medicines, side effects, adherence issues, and when to refer to a psychiatrist.',
-    lessons: ['Antidepressants', 'Antipsychotics & mood stabilisers', 'Side effects & adherence', 'When to refer to a psychiatrist'] },
-  { id: 'practice', title: 'Private Practice Basics for Counsellors', weeks: 2,
-    desc: 'Ethical practice setup, documentation, fees, consent, boundaries, patient communication, and referral systems.',
-    lessons: ['Setting up an ethical practice', 'Consent, fees & documentation', 'Boundaries & patient communication', 'Building referral systems'] },
+  { id: 'foundations', flagship: true, title: 'Approach to the Psychiatric Patient', weeks: 8, mode: 'Ward teaching',
+    desc: 'The posting an intern is examined on: history, mental status, risk, the organic mimics, and a plan a senior can use.',
+    lessons: ['The first interview and the collateral history', 'A mental status examination the next shift can use', 'Psychosis, mood, and what must be excluded', 'Risk: suicide, harm, and who stays in', 'Starting a medicine, and what you monitor', 'Capacity, consent, and the Mental Healthcare Act', 'The ward note and the OPD follow-up', 'The handover: what the psychiatrist needs to hear'] },
+  { id: 'suicide-risk', title: 'Suicide Risk on the Ward', weeks: 2,
+    desc: 'How a doctor asks, grades the risk, sets the observation, and writes the decision to admit or not.',
+    lessons: ['How to ask, and what a denial does not rule out', 'Factors that change the plan today', 'Observation level and a safety plan', 'The note: risk, decision, and who was told'] },
+  { id: 'mse', title: 'The Mental Status Examination', weeks: 1,
+    desc: 'Appearance to insight, examined and written the way a psychiatry senior expects it on a round.',
+    lessons: ['Appearance, behaviour, and speech', 'Mood, affect, and thought', 'Perception and cognition', 'Insight, judgement, and the written MSE'] },
+  { id: 'cbt', title: 'Approach to Depression', weeks: 2,
+    desc: 'Diagnosing a depressive episode, the bipolar and organic traps, and when an antidepressant is the next step.',
+    lessons: ['What counts as a depressive episode', 'Grief, hypothyroidism, and bipolar depression', 'When a medicine starts, and which class', 'Review at two weeks: response, and the risk that rises first'] },
+  { id: 'addiction', title: 'Approach to Alcohol Withdrawal', weeks: 2,
+    desc: 'Who will withdraw, thiamine before glucose, and who is not safe to send home. Not a home detox recipe.',
+    lessons: ['Dependence, harmful use, and the last drink', 'Who is at risk of severe withdrawal', 'Thiamine before glucose, and what you watch', 'Who is admitted, and what the family is told'] },
+  { id: 'tele', title: 'Telepsychiatry for the Clinician', weeks: 1,
+    desc: 'Identity, consent, and what a doctor may prescribe on a first teleconsult under the telemedicine rules.',
+    lessons: ['Is this patient eligible for a teleconsult', 'Identity, consent, and the record', 'What a first prescription may contain', 'The follow-up, and when they must be seen'] },
+  { id: 'family', title: 'Collateral History and the Family', weeks: 1,
+    desc: 'The history the patient cannot give, and how the family changes admission, consent, and discharge.',
+    lessons: ['Who you call, and what you ask', 'When the family is the reason for admission', 'Confidentiality when relatives demand the diagnosis', 'Discharge into the same house'] },
+  { id: 'psychopharm', title: 'Psychopharmacology for the Intern', weeks: 2,
+    desc: 'The medicines you will start or continue: the class, the monitoring, and the side effect that cannot wait.',
+    lessons: ['Antidepressants and the first weeks', 'Antipsychotics and metabolic risk', 'Lithium: the level, the kidneys, and toxicity', 'Side effects that are emergencies'] },
+  { id: 'practice', title: 'The Psychiatry OPD', weeks: 1,
+    desc: 'A clinic list for a junior doctor: the structure, the prescription line, and a referral that is specific.',
+    lessons: ['Fifteen minutes: what you must cover', 'What the prescription line has to say', 'The investigation you ordered, and when you see them again', 'Referring on without losing the patient'] },
 ];
