@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AcademyFallback } from './academy/AcademyFallback'
+import { ComingSoon } from './academy/ComingSoon'
 import { Layout } from './components/Layout'
 import { ScrollToTop } from './components/ScrollToTop'
 import { AboutPage } from './pages/AboutPage'
@@ -20,8 +21,9 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
+        <Route path="academy" element={<ComingSoon />} />
         <Route
-          path="academy"
+          path="academy/desk"
           element={
             <Suspense fallback={<AcademyFallback />}>
               <AcademyApp />

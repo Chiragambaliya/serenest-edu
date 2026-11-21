@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap');
+
+.soon {
+  min-height: 100svh;
+  background:
+    radial-gradient(720px 280px at 100% 0%, rgba(194, 65, 12, 0.08), transparent 70%),
+    #efece6;
+  color: #17191c;
+  font-family: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.soon__wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 22px 72px;
+}
+
+.soon h1,
+.soon h2,
+.soon p {
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+}
+
+.soon h1 {
+  margin: 22px 0 18px;
+  font-size: clamp(2.6rem, 8vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+}
+
+.soon h2 {
+  margin: 36px 0 8px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.soon p + p {
+  margin-top: 14px;
+}
+
+.soon__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.soon__brand,
+.soon__mark {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.soon__status {
+  color: #c2410c;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.soon__era {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.soon__list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.soon__list li {
+  display: grid;
+  gap: 4px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(23, 25, 28, 0.12);
+}
+
+.soon__list li:last-child {
+  border-bottom: 1px solid rgba(23, 25, 28, 0.12);
+}
+
+.soon__list strong {
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+}
+
+.soon__list span {
+  color: #5c6562;
+  font-weight: 500;
+}
+
+.soon__beyond,
+.soon__place {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.soon__beyond {
+  margin-top: 32px;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.soon__close {
+  display: grid;
+  gap: 8px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(23, 25, 28, 0.12);
+}
+
+.soon__tag {
+  font-weight: 500;
+}
+
+.soon a {
+  width: fit-content;
+  color: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+@media (min-width: 800px) {
+  .soon__wrap {
+    padding-top: 56px;
+  }
+}
