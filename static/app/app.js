@@ -110,7 +110,7 @@
   const TABS = [
     { id: 'today', label: 'Today', icon: 'sun' },
     { id: 'learn', label: 'Learn', icon: 'book' },
-    { id: 'drugs', label: 'Drugs', icon: 'pill' },
+    { id: 'drugs', label: 'Molecules', icon: 'pill' },
     { id: 'progress', label: 'Progress', icon: 'glass' },
     { id: 'profile', label: 'Profile', icon: 'spark' },
   ];
@@ -135,70 +135,72 @@
     $$('.nav-item').forEach((a) => (a.dataset.tab === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
     const render = { today: renderToday, learn: renderLearn, course: () => renderCourse(arg), drugs: () => renderDrugs(arg), progress: renderProgress, profile: renderProfile }[v];
     render();
-    const title = v === 'course' ? (findCourse(arg)?.course.title) : TABS.find((t) => t.id === v)?.label;
-    document.title = `${title || 'Today'} · ${currentSpec().name} · Serenest Academy`;
+    const title = v === 'course' ? 'Learn' : TABS.find((t) => t.id === v)?.label;
+    const dash = $('[data-dash-title]');
+    if (dash) dash.textContent = title || 'Today';
+    document.title = `${v === 'course' ? (findCourse(arg)?.course.title || 'Learn') : (title || 'Today')} · ${currentSpec().name} · Serenest Academy`;
     window.scrollTo(0, 0);
   }
 
   /* ---------- TODAY ---------- */
-  let picked = 0; // offset from today in the date strip
+  const greetWord = () => {
+    const h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: 'numeric', hourCycle: 'h23' }).format(new Date()));
+    return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  };
+  function paintIdentity() {
+    const name = state.name.trim();
+    $$('[data-side-name]').forEach((el) => { el.textContent = name || 'doctor'; });
+    $$('[data-side-initials]').forEach((el) => { el.textContent = initials(name); });
+    const greet = $('[data-hero-greet]');
+    if (greet) greet.textContent = `${greetWord()}, ${name || 'doctor'}`;
+  }
   function renderToday() {
+    paintIdentity();
+    const courses = specCourses();
+    const doneLessons = courses.reduce((a, c) => a + doneFor(c.id).length, 0);
+    const started = courses.filter((c) => doneFor(c.id).length).length;
     const now = new Date();
-    const day = addDays(now, picked);
-    $('[data-dow]').textContent = DOW[day.getDay()];
-    $('[data-dnum]').textContent = day.getDate();
+    const weekLessons = [-6, -5, -4, -3, -2, -1, 0].reduce((a, o) => a + (state.log[dayKey(addDays(now, o))] || 0), 0);
+    $('[data-stat-lessons]').textContent = doneLessons.toLocaleString('en-IN');
+    $('[data-stat-lessons-delta]').textContent = `+${weekLessons} this week`;
+    $('[data-stat-modules]').textContent = started;
+    $('[data-stat-modules-delta]').textContent = `${courses.length} on this desk`;
+    $('[data-stat-hours]').textContent = (doneLessons * MIN_PER_LESSON / 60).toFixed(1);
+    $('[data-stat-streak]').textContent = streak();
 
-    $('[data-strip]').innerHTML = [-2, -1, 0, 1, 2].map((o) => {
-      const d = addDays(now, o);
-      const isConf = dayKey(d) === confLocalKey;
-      return `<button class="day" role="tab" data-off="${o}" aria-selected="${o === picked}" ${isConf ? 'data-conf' : ''} aria-label="${DOW[d.getDay()]} ${d.getDate()}${isConf ? ', case conference' : ''}">${d.getDate()}<small>${o === 0 ? 'TODAY' : DOW[d.getDay()].toUpperCase()}</small></button>`;
+    const counts = [-6, -5, -4, -3, -2, -1, 0].map((o) => state.log[dayKey(addDays(now, o))] || 0);
+    const peak = Math.max(state.goal, ...counts, 1);
+    $('[data-week]').innerHTML = counts.map((n, i) => {
+      const d = addDays(now, i - 6);
+      return `<div class="vbar ${i === 6 ? 'today' : ''}"><span style="height:${Math.round(22 + (n / peak) * 78)}%"></span><small>${DOW[d.getDay()].slice(0, 2)}</small></div>`;
     }).join('');
 
-    // study-day arc: 7:00 → 21:00
-    const start = 7 * 60, end = 21 * 60;
-    const mins = now.getHours() * 60 + now.getMinutes();
-    let f, note;
-    if (picked < 0) { f = 1; note = `${state.log[dayKey(day)] || 0} lessons completed`; }
-    else if (picked > 0) { f = 0; note = dayKey(day) === confLocalKey ? 'Case conference at 6:00 PM' : `Goal: ${state.goal} lessons`; }
-    else {
-      f = Math.min(1, Math.max(0, (mins - start) / (end - start)));
-      const left = end - mins;
-      note = mins < start ? `Study day starts in ${hm(start - mins)}` : left > 0 ? `Wind-down in ${hm(left)}` : 'Rest well — see you tomorrow';
+    const totalLessons = courses.reduce((a, c) => a + c.lessons.length, 0) || 1;
+    const donePct = Math.round((doneLessons / totalLessons) * 100);
+    $('[data-donut]').style.setProperty('--p', donePct);
+    $('[data-donut-pct]').textContent = `${donePct}%`;
+    $('[data-legend]').innerHTML = [
+      ['Done', doneLessons],
+      ['Left', totalLessons - doneLessons],
+    ].map(([label, n], i) => `<li><i class="swatch s${i}"></i><span>${label}</span><b>${n}</b></li>`).join('');
+
+    const current = courses.find((x) => doneFor(x.id).length && pct(x) < 100) || courses.find((x) => pct(x) < 100) || courses[0];
+    const go = $('[data-hero-go]');
+    if (current) {
+      const next = current.lessons.findIndex((_, i) => !doneFor(current.id).includes(i));
+      $('[data-hero-next]').textContent = next === -1 ? 'This posting is complete' : current.lessons[next];
+      go.href = `#course/${current.id}`;
+      go.innerHTML = `${doneFor(current.id).length ? 'Continue' : 'Start'} <svg aria-hidden="true"><use href="#i-play"/></svg>`;
     }
-    const path = $('[data-arc-path]');
-    const p = path.getPointAtLength(path.getTotalLength() * f);
-    const dot = $('[data-arc-dot]');
-    dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y);
-    $('[data-arc-note]').textContent = note;
+    $('[data-recent]').innerHTML = courses.slice(0, 3).map((c) => `
+      <a class="recent" href="#course/${c.id}">
+        <span class="recent-mark">${esc(c.title.slice(0, 1))}</span>
+        <span class="recent-copy"><b>${esc(c.title)}</b><small>${pct(c)}% · ${c.weeks} week${c.weeks > 1 ? 's' : ''}</small></span>
+        <span class="play-btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+      </a>`).join('');
 
-    const done = todayCount();
-    $('[data-goal-done]').textContent = done;
-    $('[data-goal-total]').textContent = state.goal;
-    $('[data-goal-min]').textContent = done * MIN_PER_LESSON;
-    $('[data-goal-minmax]').textContent = state.goal * MIN_PER_LESSON;
-    $('[data-segments]').innerHTML = Array.from({ length: state.goal }, (_, i) => `<i class="${i < done ? 'on' : ''}"></i>`).join('');
-
-    $('[data-conf-long]').textContent = `${fmtConf({ weekday: 'short', day: 'numeric', month: 'short' })} · 6:00 PM IST · Free`;
-
-    const courses = specCourses();
-    const c = courses.find((x) => doneFor(x.id).length && pct(x) < 100) || courses.find((x) => pct(x) < 100) || courses[0];
-    if (!c) {
-      $('[data-continue]').innerHTML = `<span class="label">${esc(currentSpec().name)}</span><h3>No courses on this desk yet</h3>`;
-      return;
-    }
-    const next = c.lessons.findIndex((_, i) => !doneFor(c.id).includes(i));
-    $('[data-continue]').innerHTML = `
-      <span class="label">${doneFor(c.id).length ? 'Continue' : 'Start here'}</span>
-      <h3>${esc(c.title)}</h3>
-      <div class="row"><span>${next === -1 ? 'All lessons complete' : `Lesson ${next + 1} · ${esc(c.lessons[next])}`}</span><b>${pct(c)}%</b></div>
-      <div class="bar"><i style="width:${pct(c)}%"></i></div>
-      <div><a class="btn btn-ink" href="#course/${c.id}">Open course ${icon('arrow')}</a></div>`;
+    $$('[data-conf-long]').forEach((el) => { el.textContent = `${fmtConf({ weekday: 'short', day: 'numeric', month: 'short' })} · 6:00 PM IST · Free`; });
   }
-  const hm = (m) => (m >= 60 ? `${Math.floor(m / 60)}hr ${m % 60}min` : `${m}min`);
-
-  // decorative stars + thread lines under the Today cards
-  $('.stars').innerHTML = [[12, 50, 14], [26, 80, 9], [44, 30, 18], [63, 70, 11], [78, 40, 16], [90, 88, 8]]
-    .map(([x, y, s]) => `<span style="left:${x}%;height:${y}px"></span><svg style="left:calc(${x}% - ${s / 2}px);top:${y}px;width:${s}px;height:${s}px"><use href="#i-spark"/></svg>`).join('');
 
   /* ---------- LEARN ---------- */
   function renderLearn() {
@@ -314,8 +316,7 @@
     return parts.length ? (parts[0][0] + (parts[1]?.[0] || '')).toUpperCase() : 'SA';
   }
   function renderProfile() {
-    const h = new Date().getHours();
-    $('[data-greet]').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+    $('[data-greet]').textContent = greetWord();
     const n = $('[data-name]'), r = $('[data-role]');
     if (document.activeElement !== n) n.value = state.name;
     if (document.activeElement !== r) r.value = state.role;
@@ -336,8 +337,7 @@
   document.addEventListener('click', (e) => {
     const t = e.target.closest('button, a');
     if (!t) return;
-    if (t.matches('.day')) { picked = Number(t.dataset.off); renderToday(); }
-    else if (t.matches('[data-spec]')) {
+    if (t.matches('[data-spec]')) {
       const id = t.dataset.spec;
       if (!SPECIALTIES.some((s) => s.id === id) || id === state.specialty) return;
       state.specialty = id;
@@ -358,9 +358,33 @@
     else if (t.matches('[data-theme-toggle]')) { state.theme = document.documentElement.dataset.theme === 'night' ? 'light' : 'night'; save(); applyTheme(); }
     else if (t.matches('[data-theme-set]')) { state.theme = t.dataset.themeSet; save(); applyTheme(); }
     else if (t.matches('[data-goal-minus], [data-goal-plus]')) { state.goal = Math.min(10, Math.max(1, state.goal + (t.matches('[data-goal-plus]') ? 1 : -1))); save(); renderProfile(); }
+    else if (t.matches('[data-jump]')) {
+      const spec = t.dataset.jump;
+      if (spec && spec !== state.specialty) { state.specialty = spec; state.drug = null; save(); }
+      $('[data-search]').value = '';
+      $('[data-search-pop]').hidden = true;
+    }
     else if (t.matches('[data-share]')) share();
   });
-  $('[data-name]').addEventListener('input', (e) => { state.name = e.target.value; save(); $('[data-initials]').textContent = initials(state.name); });
+  $('[data-search]').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    const pop = $('[data-search-pop]');
+    if (!q) { pop.hidden = true; pop.innerHTML = ''; return; }
+    const hits = [];
+    for (const s of SPECIALTIES) {
+      for (const c of s.courses || []) {
+        if (c.title.toLowerCase().includes(q)) hits.push({ href: `#course/${c.id}`, spec: s.id, title: c.title, meta: `${s.short} · module` });
+      }
+      for (const d of s.drugs || []) {
+        if (`${d.name} ${d.shortName}`.toLowerCase().includes(q)) hits.push({ href: `#drugs/${d.slug}`, spec: s.id, title: d.shortName, meta: `${s.short} · molecule` });
+      }
+    }
+    pop.hidden = false;
+    pop.innerHTML = hits.length
+      ? hits.slice(0, 8).map((h) => `<a data-jump="${h.spec}" href="${h.href}"><b>${esc(h.title)}</b><small>${esc(h.meta)}</small></a>`).join('')
+      : '<p>Nothing matches that.</p>';
+  });
+  $('[data-name]').addEventListener('input', (e) => { state.name = e.target.value; save(); paintIdentity(); const av = $('[data-initials]'); if (av) av.textContent = initials(state.name); });
   $('[data-role]').addEventListener('input', (e) => { state.role = e.target.value; save(); });
 
   async function share() {
