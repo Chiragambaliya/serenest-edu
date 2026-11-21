@@ -23,13 +23,12 @@
   const spec = () => specs.find((s) => s.id === current) || specs[0];
 
   function courseItem(course, index) {
-    const live = course.id === 'foundations' || /live|cohort/i.test(course.mode || '');
     if (course.flagship) {
       return `
         <div class="course-item flagship-item" data-course-id="${esc(course.id)}">
-          <div class="course-num">${live ? 'Flagship Program' : 'Lead course'}</div>
+          <div class="course-num">Clinical posting</div>
           <div class="course-main-content">
-            <span class="flagship-badge">${esc(course.mode || 'Short course')}</span>
+            <span class="flagship-badge">${esc(course.mode || 'Ward teaching')}</span>
             <h3 class="course-title">${esc(course.title)}</h3>
             <p class="course-desc">${esc(course.desc)}</p>
             <div class="syllabus-drawer" id="drawer-${esc(course.id)}">
@@ -40,7 +39,7 @@
           </div>
           <div class="course-meta-data">${course.weeks} week${course.weeks > 1 ? 's' : ''}${course.mode ? `<br>${esc(course.mode)}` : ''}</div>
           <div class="course-pricing-action">
-            <span class="course-access mono">${live ? 'Open enrollment' : 'Short course'}</span>
+            <span class="course-access mono">For doctors</span>
             <div class="course-action-btns">
               <button type="button" class="btn btn-compact btn-toggle-syllabus">View Curriculum</button>
               <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="${esc(course.title)}">Apply Now</button>
@@ -57,7 +56,7 @@
         </div>
         <div class="course-meta-data">${course.weeks} week${course.weeks > 1 ? 's' : ''}</div>
         <div class="course-pricing-action">
-          <span class="course-access mono">Short course</span>
+          <span class="course-access mono">Clinical module</span>
           <div class="course-action-btns">
             <button type="button" class="btn btn-compact btn-ghost btn-register-course" data-course="${esc(course.title)}">Apply Now</button>
           </div>
@@ -77,13 +76,13 @@
     }
 
     const s = spec();
-    if (lede) lede.textContent = `${s.name}. ${s.blurb || ''} Same course list as the counselling programs.`;
+    if (lede) lede.textContent = `${s.name} for MBBS students, interns, and junior residents. ${s.blurb || ''}`;
     const flagship = s.courses.find((c) => c.flagship);
     const rest = s.courses.filter((c) => c !== flagship);
     let n = 0;
     mount.innerHTML = `
       ${flagship ? courseItem(flagship, 0) : ''}
-      ${rest.length ? '<div class="courses-section-label"><span class="mono">Short Courses</span></div>' : ''}
+      ${rest.length ? '<div class="courses-section-label"><span class="mono">Clinical modules</span></div>' : ''}
       ${rest.map((c) => courseItem(c, ++n)).join('')}
       <div class="courses-section-label"><span class="mono">Molecule cards · ${s.drugs.map((d) => esc(d.shortName)).join(' · ')}</span></div>
       <aside class="important-note" aria-label="Important note">

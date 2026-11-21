@@ -9,15 +9,15 @@
     const SESSION_KEY = 'serenest_admin_session';
 
     const COURSES = [
-        'Foundations of Mental Health Counselling',
-        'Suicide Risk Assessment Basics',
-        'Mental Status Examination Simplified',
-        'Basic CBT Skills for Beginners',
-        'Addiction Counselling & Relapse Prevention',
-        'Telecounselling & Digital Mental Healthcare',
-        'Indian Family Dynamics & Emotional Wellbeing',
-        'Psychopharmacology for Psychologists',
-        'Private Practice Basics for Counsellors',
+        'Approach to the Psychiatric Patient',
+        'Suicide Risk on the Ward',
+        'The Mental Status Examination',
+        'Approach to Depression',
+        'Approach to Alcohol Withdrawal',
+        'Telepsychiatry for the Clinician',
+        'Collateral History and the Family',
+        'Psychopharmacology for the Intern',
+        'The Psychiatry OPD',
     ];
 
     const DEFAULT_SETTINGS = {

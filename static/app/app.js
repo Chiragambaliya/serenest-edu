@@ -204,7 +204,7 @@
   function renderLearn() {
     $('[data-courses]').innerHTML = specCourses().map((c) => `
       <a class="card course ${c.flagship ? 'card-apricot' : 'glass'}" href="#course/${c.id}" style="text-decoration:none">
-        <div class="meta"><span>${c.flagship ? 'Flagship · ' : ''}${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
+        <div class="meta"><span>${c.flagship ? 'Clinical posting · ' : 'Clinical module · '}${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
         <h3>${esc(c.title)}</h3>
         <p>${esc(c.desc)}</p>
       </a>`).join('');
@@ -217,7 +217,7 @@
     const done = doneFor(c.id);
     root.innerHTML = `
       <div class="detail-head">
-        <span class="label">${c.flagship ? 'Flagship cohort' : 'Short course'} · ${c.weeks} week${c.weeks > 1 ? 's' : ''}</span>
+        <span class="label">${c.flagship ? 'Clinical posting' : 'Clinical module'} · ${c.weeks} week${c.weeks > 1 ? 's' : ''}</span>
         <h1 class="display">${esc(c.title)}</h1>
         <p style="color:var(--ink-soft)">${esc(c.desc)}</p>
         <div class="row" style="display:flex;justify-content:space-between;font-weight:700;font-size:14px"><span>${done.length} of ${c.lessons.length} lessons</span><span>${pct(c)}%</span></div>

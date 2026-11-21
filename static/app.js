@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const TAB_TITLES = {
         home: "Serenest Academy — Building India's Future Mental Health Workforce",
-        courses: 'Courses & Programs — Serenest Academy',
+        courses: 'Clinical modules — Serenest Academy',
         about: 'About — Serenest Academy',
         library: 'Resource Library — Serenest Academy',
         sanctuary: 'The Clinician Sanctuary — Serenest Academy',
