@@ -9,6 +9,8 @@ export function VideoModule() {
   const { showToast } = useAcademy()
   const videoRef = useRef(null)
   const placed = useRef(false)
+  const autoRef = useRef(false)
+  const [auto, setAuto] = useState(false)
   const [index, setIndex] = useState(OPEN_ON)
   const [playing, setPlaying] = useState(false)
   const [time, setTime] = useState(LECTURES[OPEN_ON].start)
@@ -67,14 +69,27 @@ export function VideoModule() {
   }
 
   function onTime(event) {
-    if (!placed.current) return
+    if (!placed.current) {
+      if (event.currentTarget.readyState < 1) return
+      placed.current = true
+    }
     const now = event.currentTarget.currentTime
     setTime(now)
     const found = LECTURES.findIndex((item) => now >= item.start && now < item.end)
     if (found !== -1) setIndex(found)
-    if (now >= LECTURES[LECTURES.length - 1].end - 0.05) {
+    const atReelEnd = now >= LECTURES[LECTURES.length - 1].end - 0.05
+    const atChapterEnd = found !== -1 && now >= LECTURES[found].end - 0.08
+    if (atReelEnd || (!autoRef.current && atChapterEnd)) {
       event.currentTarget.pause()
     }
+  }
+
+  function toggleAuto() {
+    const next = !autoRef.current
+    autoRef.current = next
+    setAuto(next)
+    const video = videoRef.current
+    if (next && video?.paused) video.play().catch(() => setPlaying(false))
   }
 
   function onScrub(event) {
@@ -112,9 +127,14 @@ export function VideoModule() {
             Lecture {lecture.number} of {LECTURE_TOTAL} · MD / DNB Psychiatry
           </span>
           <h3>{lecture.title}</h3>
-          <p className="ac-muted">
-            {playing ? 'Playing' : 'Paused'} · {clock(into)} / {clock(span)} · preview reel
-          </p>
+          <div className="ac-video__status">
+            <p className="ac-muted">
+              {playing ? 'Playing' : 'Paused'} · {clock(into)} / {clock(span)} · {auto ? 'auto' : 'preview reel'}
+            </p>
+            <button type="button" className={auto ? 'ac-pill ac-pill--on' : 'ac-pill ac-pill--off'} aria-pressed={auto} onClick={toggleAuto}>
+              Auto
+            </button>
+          </div>
           <label className="ac-scrub">
             <span className="ac-progress" aria-hidden="true">
               <span className="ac-progress__bar" style={{ width: `${percent}%` }} />

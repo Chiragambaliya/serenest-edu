@@ -557,6 +557,19 @@
   font-size: 1.05rem;
 }
 
+.ac-video__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ac-video__status .ac-pill {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+
 .ac-scrub {
   position: relative;
   display: block;
