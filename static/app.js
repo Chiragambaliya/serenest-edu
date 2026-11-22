@@ -96,6 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
             t.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
 
+        const more = document.getElementById('navMore');
+        const morePages = ['library', 'sanctuary', 'conference', 'about'];
+        more?.classList.toggle('is-current', morePages.includes(targetTabId));
+        more?.classList.remove('is-open');
+        more?.querySelector('.nav-more-btn')?.setAttribute('aria-expanded', 'false');
+        const moreMenu = document.getElementById('navMoreMenu');
+        if (moreMenu) moreMenu.hidden = true;
+
         viewports.forEach(viewport => {
             const isActive = viewport.id === `viewport-${targetTabId}`;
             viewport.classList.toggle('active', isActive);
@@ -125,6 +133,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = tab.getAttribute('data-tab');
             switchViewport(target);
         });
+    });
+
+    const moreRoot = document.getElementById('navMore');
+    const moreButton = moreRoot?.querySelector('.nav-more-btn');
+    const moreMenu = document.getElementById('navMoreMenu');
+    moreButton?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const open = !moreRoot.classList.contains('is-open');
+        moreRoot.classList.toggle('is-open', open);
+        moreButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (moreMenu) moreMenu.hidden = !open;
+    });
+    document.addEventListener('click', (event) => {
+        if (!moreRoot || moreRoot.contains(event.target)) return;
+        moreRoot.classList.remove('is-open');
+        moreButton?.setAttribute('aria-expanded', 'false');
+        if (moreMenu) moreMenu.hidden = true;
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || !moreRoot?.classList.contains('is-open')) return;
+        moreRoot.classList.remove('is-open');
+        moreButton?.setAttribute('aria-expanded', 'false');
+        if (moreMenu) moreMenu.hidden = true;
     });
 
     // Anchor Trigger Links (e.g. "Access Student Resources" hero button switching to Library)

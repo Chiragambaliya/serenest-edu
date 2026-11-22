@@ -203,10 +203,16 @@
             <div class="nav-links" role="tablist" aria-label="Site pages">
                 <button type="button" class="nav-tab-btn active" data-tab="home" role="tab" aria-selected="true">Home</button>
                 <button type="button" class="nav-tab-btn" data-tab="courses" role="tab" aria-selected="false">Courses</button>
-                <button type="button" class="nav-tab-btn" data-tab="about" role="tab" aria-selected="false">About</button>
-                <button type="button" class="nav-tab-btn" data-tab="library" role="tab" aria-selected="false">Library</button>
-                <button type="button" class="nav-tab-btn" data-tab="sanctuary" role="tab" aria-selected="false">Sanctuary</button>
-                <button type="button" class="nav-tab-btn" data-tab="conference" role="tab" aria-selected="false">Conference</button>
+                <a class="nav-open" href="app/"><span class="nav-open-long">Open app</span><span class="nav-open-short">App</span></a>
+                <div class="nav-more" id="navMore">
+                    <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="navMoreMenu">More</button>
+                    <div class="nav-more-menu" id="navMoreMenu" role="group" aria-label="More pages" hidden>
+                        <button type="button" class="nav-tab-btn" data-tab="library" role="tab" aria-selected="false">Library</button>
+                        <button type="button" class="nav-tab-btn" data-tab="sanctuary" role="tab" aria-selected="false">Sanctuary</button>
+                        <button type="button" class="nav-tab-btn" data-tab="conference" role="tab" aria-selected="false">Conference</button>
+                        <button type="button" class="nav-tab-btn" data-tab="about" role="tab" aria-selected="false">About</button>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
