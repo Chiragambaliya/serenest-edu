@@ -2,7 +2,7 @@
 
 Everything needed to open the channel and post the first videos.
 Artwork is in `youtube/art/` (re-make with `node tools/youtube/render.mjs`).
-Videos are in `static/app/videos/`.
+Videos are not kept in this repository. Re-make them with `node tools/drug-videos/render.mjs` (they are written to `static/app/videos/`, which git ignores).
 
 ---
 

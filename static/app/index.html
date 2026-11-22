@@ -8,8 +8,9 @@
 <meta name="theme-color" content="#f4f0e3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#25261d" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +39,7 @@
 
 <div class="shell">
   <aside class="side" aria-label="Main navigation">
-    <a class="side-brand" href="#today"><span class="side-mark"><svg><use href="#i-spark"/></svg></span><span>Serenest <em>Academy</em></span></a>
+    <a class="side-brand" href="#today"><span class="side-mark"><img src="/icons/icon-192.png" alt="" width="44" height="44"></span><span>Serenest <em>Academy</em></span></a>
     <nav class="side-nav" data-nav></nav>
     <div class="side-foot glass">
       <span class="label">Free · Monthly</span>
@@ -101,15 +102,22 @@
 
     <!-- LEARN -->
     <section class="view" data-view="learn" aria-label="Learn" hidden>
-      <header class="view-head"><span class="label">Programs</span><h1 class="display">Learn</h1></header>
+      <header class="view-head"><span class="label">Programs</span><h1 class="display" data-learn-title>Learn</h1></header>
+      <nav class="track-tabs" data-track-tabs aria-label="Learning tracks"></nav>
       <div class="learn-grid" data-courses></div>
       <p class="fine">Programs are for education and skill development — not a substitute for formal degrees, licensing, or statutory registration. Certificates by Serenest Pvt Ltd.</p>
     </section>
 
     <!-- COURSE DETAIL -->
     <section class="view" data-view="course" aria-label="Course" hidden>
-      <a class="back" href="#learn"><svg><use href="#i-back"/></svg>All programs</a>
+      <a class="back" href="#learn" data-course-back><svg><use href="#i-back"/></svg><span>All programs</span></a>
       <div data-course-detail></div>
+    </section>
+
+    <!-- LESSON -->
+    <section class="view" data-view="lesson" aria-label="Lesson" hidden>
+      <a class="back" href="#learn" data-lesson-back><svg><use href="#i-back"/></svg><span>Course</span></a>
+      <div data-lesson-detail></div>
     </section>
 
     <!-- DRUGS -->
@@ -175,6 +183,9 @@
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
 <script src="data.js"></script>
+  <script src="courses-content.js"></script>
+  <script src="courses-content-2.js"></script>
+  <script src="mbbs-content.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

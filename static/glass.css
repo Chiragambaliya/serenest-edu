@@ -336,3 +336,10 @@ body[data-page="conference"] .nav-tab-btn.active { background: var(--g-gold) !im
 @media (max-width: 760px) {
     .thesis .container, .home-quote .container, .cta-band .container { margin-left: 16px; margin-right: 16px; width: auto; }
 }
+
+/* full self-paced courses on the Courses page */
+.course-item--full { border-left: 4px solid var(--g-teal-b) !important; }
+.course-item--full .course-num { color: var(--g-teal-b) !important; }
+.course-item--full .btn-primary { text-decoration: none; display: inline-flex; align-items: center; }
+/* SA monogram logo in the site menu */
+.brand::before { background: url("/icons/icon-192.png") center / cover no-repeat !important; border-radius: 12px; }
