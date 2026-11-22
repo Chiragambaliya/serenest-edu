@@ -36,44 +36,50 @@ export function ComingSoon() {
 
   return (
     <main className="soon">
-      <div className="soon__wrap">
-        <header className="soon__top">
-          <p className="soon__brand">Serenest Academy</p>
-          <p className="soon__status">Coming soon</p>
-        </header>
+      <header className="soon__bar">
+        <p className="soon__brand">Serenest Academy</p>
+        <p className="soon__status">Coming soon</p>
+      </header>
 
-        <h1>Don't Just Study Medicine. Experience It.</h1>
-        <p className="soon__era">A new era of AI-powered medical learning is coming.</p>
-        <p>
-          Imagine learning complex medical concepts with your own AI tutor, interviewing virtual patients, solving
-          real-world clinical challenges, and sharpening your diagnostic reasoning with expert-guided feedback.
-        </p>
-        <p>
-          From your first day of MBBS to postgraduate training, clinical practice, and medical research, Serenest
-          Academy is being designed to grow with you.
-        </p>
+      <div className="soon__stage">
+        <section className="soon__hero">
+          <h1>Don't Just Study Medicine. Experience It.</h1>
+          <p className="soon__era">A new era of AI-powered medical learning is coming.</p>
+          <p>
+            Imagine learning complex medical concepts with your own AI tutor, interviewing virtual patients, solving
+            real-world clinical challenges, and sharpening your diagnostic reasoning with expert-guided feedback.
+          </p>
+          <p>
+            From your first day of MBBS to postgraduate training, clinical practice, and medical research, Serenest
+            Academy is being designed to grow with you.
+          </p>
+        </section>
 
-        <h2>What awaits you</h2>
-        <ul className="soon__list">
-          {AWAITS.map((item) => (
-            <li key={item.title}>
-              <strong>{item.title}</strong>
-              <span>{item.copy}</span>
-            </li>
-          ))}
-        </ul>
+        <section className="soon__panel" aria-labelledby="awaits-title">
+          <h2 id="awaits-title">What awaits you</h2>
+          <ol className="soon__list">
+            {AWAITS.map((item, index) => (
+              <li key={item.title}>
+                <span className="soon__index">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <span>{item.copy}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
 
+      <footer className="soon__close">
         <p className="soon__beyond">Beyond Lectures. Beyond Textbooks. Beyond Medical College.</p>
         <p>We're not just creating another medical education platform.</p>
         <p className="soon__place">We're building a place where medical knowledge becomes clinical understanding.</p>
-
-        <footer className="soon__close">
-          <p className="soon__mark">Serenest Academy</p>
-          <p className="soon__tag">Learn Medicine. Think Clinically. Evolve Continuously.</p>
-          <p className="soon__status">Coming soon</p>
-          <Link to="/">Education site</Link>
-        </footer>
-      </div>
+        <p className="soon__mark">Serenest Academy</p>
+        <p className="soon__tag">Learn Medicine. Think Clinically. Evolve Continuously.</p>
+        <p className="soon__status">Coming soon</p>
+        <Link to="/">Education site</Link>
+      </footer>
     </main>
   )
 }
