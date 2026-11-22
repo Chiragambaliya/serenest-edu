@@ -84,6 +84,32 @@
   font-size: 1.45rem;
 }
 
+.soon__mbbs {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 14px;
+  list-style: none;
+  border-radius: 22px;
+  background: rgba(255, 250, 242, 0.72);
+}
+
+.soon__mbbs li {
+  display: grid;
+  gap: 2px;
+}
+
+.soon__mbbs strong {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 500;
+}
+
+.soon__mbbs span {
+  font-size: 0.86rem;
+  font-weight: 500;
+  opacity: 0.78;
+}
+
 .soon__list {
   display: grid;
   gap: 10px;

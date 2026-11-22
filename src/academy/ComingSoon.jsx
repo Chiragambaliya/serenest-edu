@@ -2,6 +2,16 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './coming-soon.css'
 
+const MBBS = [
+  { phase: 'Phase I', subjects: 'Anatomy, Physiology, Biochemistry' },
+  { phase: 'Phase II', subjects: 'Pathology, Microbiology, Pharmacology' },
+  { phase: 'Phase III, Part 1', subjects: 'Community Medicine, Forensic Medicine, Ophthalmology, ENT' },
+  {
+    phase: 'Phase III, Part 2',
+    subjects: 'Medicine, Surgery, Obstetrics and Gynaecology, Pediatrics, Psychiatry, Dermatology, Orthopaedics, Anaesthesiology, Radiology',
+  },
+]
+
 const AWAITS = [
   {
     title: 'Personal AI Medical Tutor',
@@ -57,6 +67,16 @@ export function ComingSoon() {
           From your first day of MBBS to postgraduate training, clinical practice, and medical research, Serenest
           Academy is being designed to grow with you.
         </p>
+
+        <h2>Full MBBS</h2>
+        <ol className="soon__mbbs">
+          {MBBS.map((item) => (
+            <li key={item.phase}>
+              <strong>{item.phase}</strong>
+              <span>{item.subjects}</span>
+            </li>
+          ))}
+        </ol>
 
         <h2>What awaits you</h2>
         <ol className="soon__list">
