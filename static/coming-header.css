@@ -13,11 +13,20 @@
 }
 
 .cs-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     color: #f4f7fb;
     font-weight: 700;
     font-size: 1.05rem;
     letter-spacing: -0.03em;
     text-decoration: none;
+}
+
+.cs-logo img {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
 }
 
 .cs-nav {
