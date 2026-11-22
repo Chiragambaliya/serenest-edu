@@ -1373,8 +1373,70 @@
 
 .ac-dock__list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
+}
+
+.ac-mbbs-login,
+.ac-mbbs-subject__body {
+  display: grid;
+  gap: 10px;
+}
+
+.ac-mbbs-login {
+  padding: 18px;
+}
+
+.ac-mbbs-login label,
+.ac-mbbs-login input {
+  display: grid;
+  gap: 4px;
+}
+
+.ac-mbbs-login input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(23, 25, 28, 0.14);
+  border-radius: 12px;
+  background: #fff;
+  color: inherit;
+}
+
+.ac-mbbs-phase {
+  display: grid;
+  gap: 8px;
+}
+
+.ac-mbbs-list {
+  display: grid;
+  gap: 8px;
+}
+
+.ac-mbbs-subject {
+  padding: 0;
+}
+
+.ac-mbbs-subject__toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ac-mbbs-subject__body {
+  padding: 0 14px 14px;
+}
+
+.ac-mbbs-subject__body ul {
+  margin: 0;
+  padding-left: 1.1rem;
 }
 
 .ac-dock__btn {
@@ -1383,7 +1445,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 10px 4px;
+  padding: 10px 2px;
   border: 0;
   border-radius: 18px;
   background: transparent;

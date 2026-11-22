@@ -6,6 +6,7 @@ import { ToastBanner } from './components/ToastBanner'
 import { TutorPanel } from './components/TutorPanel'
 import { DrugsView } from './views/DrugsView'
 import { LearnView } from './views/LearnView'
+import { MbbsView } from './views/MbbsView'
 import { NetworkView } from './views/NetworkView'
 import { VerifyView } from './views/VerifyView'
 import './academy.css'
@@ -33,6 +34,7 @@ export default function AcademyApp() {
             </div>
             <main className="academy__main">
               <LearnView />
+              <MbbsView />
               <DrugsView />
               <NetworkView />
               <VerifyView />

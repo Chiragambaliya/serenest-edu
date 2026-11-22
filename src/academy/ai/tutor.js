@@ -22,14 +22,17 @@ const EXAMS = [
 ]
 
 export const TUTOR_SUGGESTIONS = {
-  learn: ['What does lecture 7 cover?', 'Why does clozapine need ANC monitoring?', 'Which short course is one week?'],
-  drugs: ['Brexpiprazole target dose', 'Lithium summer pearl', 'When is the first buprenorphine dose given?'],
-  network: ['What has to be removed before I post a case?'],
-  verify: ['Is my council number uploaded?'],
+  learn: ['Which published notes are open?'],
+  drugs: ['Which published notes are open?'],
+  network: ['Which published notes are open?'],
+  verify: ['Which published notes are open?'],
+  mbbs: ['Which MBBS notes are published?'],
 }
 
 export function suggestionsFor(tab) {
-  if (tab === 'drugs' || tab === 'network' || tab === 'verify' || tab === 'learn') return TUTOR_SUGGESTIONS[tab]
+  if (tab === 'drugs' || tab === 'network' || tab === 'verify' || tab === 'learn' || tab === 'mbbs') {
+    return TUTOR_SUGGESTIONS[tab]
+  }
   return TUTOR_SUGGESTIONS.learn
 }
 

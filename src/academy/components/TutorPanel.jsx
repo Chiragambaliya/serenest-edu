@@ -2,25 +2,46 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { pairReply } from '../ai/pair'
 import { suggestionsFor } from '../ai/tutor'
 import { useAcademy } from '../context'
+import { loadPublishedNotes } from '../lib/publishedNotes'
+import { useSession } from '../lib/session'
 
 const WELCOME = {
   id: 'welcome',
   from: 'tutor',
   paragraphs: [
-    'Cursor finds the Academy note. Claude answers only from that note. Nothing is sent off this page.',
+    'Cursor answers only from a published lesson note or a reviewed rationale you can open. Claude stays inside that note.',
   ],
   source: null,
 }
 
 export function TutorPanel() {
   const { tab } = useAcademy()
+  const { session } = useSession()
   const titleId = useId()
   const listRef = useRef(null)
   const inputRef = useRef(null)
   const [open, setOpen] = useState(false)
   const [draft, setDraft] = useState('')
+  const [notes, setNotes] = useState([])
   const [messages, setMessages] = useState([WELCOME])
   const suggestions = suggestionsFor(tab)
+
+  const openNotes = session ? notes : []
+
+  useEffect(() => {
+    if (!session) return undefined
+    let cancel = false
+    loadPublishedNotes()
+      .then((next) => {
+        if (!cancel) setNotes(next)
+      })
+      .catch(() => {
+        if (!cancel) setNotes([])
+      })
+    return () => {
+      cancel = true
+    }
+  }, [session])
 
   useEffect(() => {
     if (!open) return undefined
@@ -41,7 +62,7 @@ export function TutorPanel() {
   function ask(text) {
     const question = text.trim()
     if (!question) return
-    const answer = pairReply(question)
+    const answer = pairReply(question, openNotes)
     setMessages((current) => [
       ...current,
       { id: `you-${current.length}`, from: 'you', paragraphs: [question], source: null },

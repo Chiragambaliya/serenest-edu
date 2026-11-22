@@ -1,8 +1,9 @@
 import { useAcademy } from '../context'
-import { IconDrugs, IconLearn, IconNetwork, IconVerify } from './Icons'
+import { IconDrugs, IconLearn, IconMbbs, IconNetwork, IconVerify } from './Icons'
 
 const TABS = [
   { id: 'learn', label: 'Learn', Icon: IconLearn },
+  { id: 'mbbs', label: 'MBBS', Icon: IconMbbs },
   { id: 'drugs', label: 'Drugs', Icon: IconDrugs },
   { id: 'network', label: 'Network', Icon: IconNetwork },
   { id: 'verify', label: 'Verify', Icon: IconVerify },

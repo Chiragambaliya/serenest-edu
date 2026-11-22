@@ -1,3 +1,13 @@
+export function IconMbbs() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" strokeLinecap="round" />
+      <path d="M6.5 2H20v15H6.5A2.5 2.5 0 0 0 4 19.5" />
+      <path d="M12 6v6M9 9h6" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function IconLearn() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" aria-hidden="true">
