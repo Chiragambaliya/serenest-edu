@@ -1,0 +1,23 @@
+---
+description: Serenest Academy website and study app (static/): structure, data model, conventions and open decisions
+globs: static/**, tools/**, docs/**
+alwaysApply: true
+---
+
+# Serenest Academy
+
+Read `docs/HANDOFF-CURSOR.md` first; it has the full file map, data model, routes and open decisions.
+
+- serenest.academy is a static site deployed by Render from `main`, publishing `./static` (see `render.yaml`). There is no build step: plain HTML, CSS and vanilla JS.
+- The public site is `static/index.html` with `styles.css`, then `glass.css` (soft-glass layer), then `home.css`/`home.js` (home page).
+- The study app (PWA) is in `static/app/`: `app.js` (routes `#today #learn #learn/mbbs #course/<id> #lesson/<id>/<i> #drugs/<slug> #progress #profile`) and `app.css`.
+- Course catalogue: `SA_COURSES` in `app/data.js`. Lesson content: `window.SA_FULL[courseId]` in `app/courses-content*.js` and `app/mbbs-content*.js` (notes, key points, 3-question quiz with `a` = index of the correct option and `why`).
+- MBBS subjects: `SA_SUBJECTS_ALL` (all 19) and `SA_SUBJECTS` (subjects with `live: true`). Launch scope is 1st year + Psychiatry. `mbbs-content-2.js` (2nd year) is written but not loaded.
+- Progress lives only in the browser under `localStorage['serenest-academy-app-v1']`, shared by the app and the home page.
+- When app shell files change, bump the `CACHE` name in `app/sw.js` and keep its `SHELL` list in sync with the scripts loaded by `app/index.html`.
+- Design tokens: paper `#f4f0e3`, ink `#2c3128`, accent `#3f7a6a`, teal `#9fe3e4`→`#58bfc7`, apricot `#f7c878`→`#eaa152`, gold `#ffe3a4`, night `#25261d`. Fonts: Fraunces (display) and Manrope (text). The icon is the SA monogram in `static/icons/`.
+- Escape every dynamic string with `esc()` before inserting HTML. Design phone first: check 390 px and 1440 px with no horizontal page scroll.
+- Never commit rendered videos: `static/app/videos/` is git-ignored, and all videos were removed at the owner's request.
+- Clinical and legal content is for Indian practice. Cite the new criminal laws with the old numbers in brackets (BNS s.22, earlier IPC 84). Do not invent statistics, brands, prices or quotes, and do not change the founder quote.
+- WhatsApp CTA: `917777636369`. Case conference: last Saturday of each month, 6 PM IST.
+- The branch `cursor/all-specialties-academy-416d` diverged from `main` at `9ef62a2` with a different direction ("specialty desks", clay dashboard). Agree the direction with the owner before merging; see section 7 of the handoff.
