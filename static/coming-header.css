@@ -1,0 +1,159 @@
+.cs-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 28px;
+    background: #0b1830;
+    color: #f4f7fb;
+    font-family: Manrope, system-ui, sans-serif;
+}
+
+.cs-logo {
+    color: #f4f7fb;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+}
+
+.cs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+}
+
+.cs-nav a {
+    color: rgba(244, 247, 251, 0.72);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding: 6px 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.cs-nav a:hover,
+.cs-nav a:focus-visible,
+.cs-nav a.is-active {
+    color: #65e1cd;
+    border-bottom-color: #65e1cd;
+}
+
+.cs-status {
+    margin: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #65e1cd;
+    color: #0b1830;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cs-burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #f4f7fb;
+}
+
+.cs-burger-lines,
+.cs-burger-lines::before,
+.cs-burger-lines::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+}
+
+.cs-burger-lines::before,
+.cs-burger-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.cs-burger-lines::before { top: -6px; }
+.cs-burger-lines::after { top: 6px; }
+
+.cs-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.page-band--home .h-hero {
+    margin: 0 -24px;
+    padding: 72px 24px 64px;
+    border-radius: 0 0 28px 28px;
+    background: #0b1830 !important;
+    color: #f4f7fb !important;
+}
+
+.cs-eyebrow {
+    margin: 0 0 14px;
+    color: #65e1cd;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.page-band--home .cs-hero .h-title {
+    color: #f4f7fb !important;
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 700;
+}
+
+.page-band--home .cs-hero .h-lede {
+    color: rgba(244, 247, 251, 0.82) !important;
+}
+
+.cs-secondary {
+    display: inline-flex;
+    align-items: center;
+    color: #65e1cd;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.cs-secondary:hover { color: #9af3e6; }
+
+#home, #vision, #first-launch, #features, #about {
+    scroll-margin-top: 84px;
+}
+
+@media (max-width: 860px) {
+    .cs-header { grid-template-columns: 1fr auto auto; padding: 12px 16px; }
+    .cs-burger { display: grid; place-items: center; justify-self: end; }
+    .cs-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 16px 16px;
+        background: #0b1830;
+        border-bottom: 1px solid rgba(101, 225, 205, 0.25);
+    }
+    .cs-header.is-open .cs-nav { display: flex; }
+    .cs-nav a { padding: 12px 0; }
+    .cs-status { justify-self: end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cs-nav a { transition: none; }
+}

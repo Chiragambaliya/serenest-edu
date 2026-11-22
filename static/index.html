@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="glass.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="coming-header.css">
     <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -195,27 +196,21 @@
 <body data-page="home">
 
     <!-- Header Navigation -->
-    <nav class="nav">
-        <div class="container nav-row">
-            <a href="#" class="brand" id="brandLink">Serenest <em>Academy</em></a>
-            
-            <!-- Page navigation -->
-            <div class="nav-links" role="tablist" aria-label="Site pages">
-                <button type="button" class="nav-tab-btn active" data-tab="home" role="tab" aria-selected="true">Home</button>
-                <button type="button" class="nav-tab-btn" data-tab="courses" role="tab" aria-selected="false">Courses</button>
-                <a class="nav-open" href="app/"><span class="nav-open-long">Open app</span><span class="nav-open-short">App</span></a>
-                <div class="nav-more" id="navMore">
-                    <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="navMoreMenu">More</button>
-                    <div class="nav-more-menu" id="navMoreMenu" role="group" aria-label="More pages" hidden>
-                        <button type="button" class="nav-tab-btn" data-tab="library" role="tab" aria-selected="false">Library</button>
-                        <button type="button" class="nav-tab-btn" data-tab="sanctuary" role="tab" aria-selected="false">Sanctuary</button>
-                        <button type="button" class="nav-tab-btn" data-tab="conference" role="tab" aria-selected="false">Conference</button>
-                        <button type="button" class="nav-tab-btn" data-tab="about" role="tab" aria-selected="false">About</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <header class="cs-header">
+        <a href="#home" class="cs-logo" id="brandLink">Serenest Academy</a>
+        <button type="button" class="cs-burger" aria-expanded="false" aria-controls="cs-menu">
+            <span class="cs-burger-lines" aria-hidden="true"></span>
+            <span class="cs-sr">Menu</span>
+        </button>
+        <nav class="cs-nav" id="cs-menu" aria-label="Serenest Academy">
+            <a href="#home" data-cs="home">Home</a>
+            <a href="#vision" data-cs="vision">Our Vision</a>
+            <a href="#first-launch" data-cs="first-launch">First Launch</a>
+            <a href="#features" data-cs="features">Features</a>
+            <a href="#about" data-cs="about">About</a>
+        </nav>
+        <p class="cs-status" role="status">Coming soon</p>
+    </header>
 
     <!-- MAIN APP VIEWPORTS -->
     <main class="main-viewport">
@@ -225,28 +220,14 @@
             <div class="h-wrap">
 
                 <!-- HERO -->
-                <header class="h-hero">
-                    <div class="h-hero-copy">
-                        <span class="h-chip"><i class="h-spark"></i>Psychiatrist-led · Built for India</span>
-                        <h1 class="h-title">Learn medicine and mental health <em>the way it's practised.</em></h1>
-                        <p class="h-lede">Clear, clinician-written lessons and exam-style questions, from Anatomy to Psychiatry. Free in the Serenest Academy app, on any phone.</p>
-                        <div class="h-tracks">
-                            <a class="h-track h-track--mh" href="/app/#learn">
-                                <span class="h-track-kicker">Track 1</span>
-                                <span class="h-track-title">Mental health</span>
-                                <span class="h-track-meta" data-count="mh">Full courses for counsellors &amp; clinicians</span>
-                                <span class="h-track-go" aria-hidden="true">→</span>
-                            </a>
-                            <a class="h-track h-track--mbbs" href="/app/#learn/mbbs">
-                                <span class="h-track-kicker">Track 2</span>
-                                <span class="h-track-title">MBBS &amp; NEET-PG</span>
-                                <span class="h-track-meta" data-count="mbbs">1st year + Psychiatry</span>
-                                <span class="h-track-go" aria-hidden="true">→</span>
-                            </a>
-                        </div>
+                <header class="h-hero" id="home">
+                    <div class="h-hero-copy cs-hero">
+                        <p class="cs-eyebrow">The next era of medical learning</p>
+                        <h1 class="h-title">Don't Just Study Medicine. Experience It.</h1>
+                        <p class="h-lede">AI-powered medical learning, virtual patient experiences and faculty-guided clinical reasoning. A new way to learn, practise and grow throughout your medical career.</p>
                         <div class="h-ctas">
-                            <a class="btn h-btn-main" href="/app/">Open the free app <span class="arrow">→</span></a>
-                            <button type="button" class="btn btn-ghost" id="heroWhatsAppBtn">Ask on WhatsApp</button>
+                            <p class="cs-status" role="status">Coming soon</p>
+                            <a class="cs-secondary" href="#first-launch">Explore First Launch</a>
                         </div>
                     </div>
 
@@ -288,7 +269,7 @@
                 </section>
 
                 <!-- TRACK: MBBS -->
-                <section class="h-section h-section--mbbs" aria-labelledby="hMbbsTitle">
+                <section class="h-section h-section--mbbs" id="first-launch" aria-labelledby="hMbbsTitle">
                     <div class="h-head">
                         <div><span class="h-kicker">Track 2 · MBBS &amp; NEET-PG</span><h2 id="hMbbsTitle">Start with 1st year <em>and Psychiatry</em></h2></div>
                         <a class="h-link" href="/app/#learn/mbbs">Open the track →</a>
@@ -297,7 +278,7 @@
                 </section>
 
                 <!-- HOW IT WORKS -->
-                <section class="h-section" aria-labelledby="hHowTitle">
+                <section class="h-section" id="features" aria-labelledby="hHowTitle">
                     <div class="h-head"><div><span class="h-kicker">How it works</span><h2 id="hHowTitle">Fifteen minutes a day, <em>built to stick</em></h2></div></div>
                     <ol class="h-steps">
                         <li><span class="h-step-n">01</span><b>Learn</b><p>One focused topic per lesson, about fifteen minutes, in a calm, clear design.</p></li>
@@ -330,7 +311,7 @@
                 </section>
 
                 <!-- FOUNDER -->
-                <section class="h-founder">
+                <section class="h-founder" id="vision">
                     <figure>
                         <blockquote>“I built Serenest because rural Gujarat doesn't have psychiatrists. I'm building Serenest Education because the psychologists we work with don't have anyone to teach them what comes after the degree.”</blockquote>
                         <figcaption><span class="h-avatar">CA</span><span><strong>Dr. Chirag Ambaliya</strong>MBBS, MD (Psychiatry) · Founder, Serenest</span></figcaption>
@@ -623,7 +604,7 @@
 
         <!-- PAGE: ABOUT -->
         <section class="viewport-tab page-band page-band--about" id="viewport-about" data-page="about" hidden>
-            <header class="page-intro">
+            <header class="page-intro" id="about">
                 <div class="container">
                     <span class="mono page-eyebrow">§ Our approach</span>
                     <h2 class="display page-intro-title">Built for <em>India</em></h2>
@@ -1314,5 +1295,6 @@
     <script src="/app/courses-content-2.js" defer></script>
     <script src="/app/mbbs-content.js" defer></script>
     <script src="home.js" defer></script>
+    <script src="coming-header.js" defer></script>
 </body>
 </html>

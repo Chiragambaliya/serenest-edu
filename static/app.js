@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
     }
+    window.serenestOpen = switchViewport;
 
     function tabFromHash() {
         return window.location.hash.replace('#', '').toLowerCase() || 'home';
