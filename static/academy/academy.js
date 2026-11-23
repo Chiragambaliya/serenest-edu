@@ -3,10 +3,14 @@
   var burger = document.querySelector('.ax-burger');
   var nav = document.getElementById('ax-nav');
   if (burger && header) {
-    burger.addEventListener('click', function () {
-      var open = !header.classList.contains('is-open');
+    function setMenu(open) {
       header.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('ax-lock', open);
+    }
+    burger.addEventListener('click', function () {
+      var open = !header.classList.contains('is-open');
+      setMenu(open);
       if (open) {
         var first = nav && nav.querySelector('a');
         if (first) first.focus();
@@ -14,25 +18,20 @@
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && header.classList.contains('is-open')) {
-        header.classList.remove('is-open');
-        burger.setAttribute('aria-expanded', 'false');
+        setMenu(false);
         burger.focus();
       }
     });
-      if (nav) {
-        nav.addEventListener('click', function (event) {
-          if (event.target.closest('a')) {
-            header.classList.remove('is-open');
-            burger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-      document.addEventListener('click', function (event) {
-        if (!header.classList.contains('is-open') || header.contains(event.target)) return;
-        header.classList.remove('is-open');
-        burger.setAttribute('aria-expanded', 'false');
+    if (nav) {
+      nav.addEventListener('click', function (event) {
+        if (event.target.closest('a')) setMenu(false);
       });
     }
+    document.addEventListener('click', function (event) {
+      if (!header.classList.contains('is-open') || header.contains(event.target)) return;
+      setMenu(false);
+    });
+  }
 
   var stages = document.querySelectorAll('[data-stage-btn]');
   var panels = document.querySelectorAll('[data-stage-panel]');
@@ -45,6 +44,10 @@
       panels.forEach(function (panel) {
         panel.hidden = panel.getAttribute('data-stage-panel') !== id;
       });
+      var row = button.parentElement;
+      if (row && row.scrollWidth > row.clientWidth) {
+        row.scrollTo({ left: button.offsetLeft - 8, behavior: 'smooth' });
+      }
     });
   });
 
