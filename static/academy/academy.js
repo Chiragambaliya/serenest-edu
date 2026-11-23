@@ -65,6 +65,24 @@
     });
   });
 
+  var dock = document.createElement('nav');
+  dock.className = 'ax-dock';
+  dock.setAttribute('aria-label', 'Academy');
+  var here = location.pathname.replace(/\/$/, '');
+  [
+    ['/academy/undergraduate/', 'Study', '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5" stroke="currentColor" stroke-width="1.7"/></svg>'],
+    ['/academy/postgraduate/', 'Specialty', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8M9 3v6l-4 10h14L15 9V3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'],
+    ['/academy/doctors/', 'Doctors', '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="9" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 19c.6-2.4 2.2-3.6 4-3.6s3.4 1.2 4 3.6M12 19c.6-2.4 2.2-3.6 4-3.6s3.4 1.2 4 3.6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>'],
+    ['/academy/3d-lab/', 'Lab', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.6 6.2L20 10l-6.4 1.8L12 18l-1.6-6.2L4 10l6.4-1.8L12 2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>']
+  ].forEach(function (item) {
+    var link = document.createElement('a');
+    link.href = item[0];
+    link.innerHTML = item[2] + '<span>' + item[1] + '</span>';
+    if (here === item[0].replace(/\/$/, '')) link.setAttribute('aria-current', 'page');
+    dock.appendChild(link);
+  });
+  document.body.appendChild(dock);
+
   function focusDetail() {
     var id = location.hash.replace('#', '');
     var panel = id ? document.getElementById(id) : null;
