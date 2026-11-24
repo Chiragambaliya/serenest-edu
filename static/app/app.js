@@ -48,7 +48,22 @@
 
   /* ---------- progress helpers ---------- */
   const doneFor = (id) => state.done[id] || [];
-  const pct = (c) => Math.round((doneFor(c.id).length / c.lessons.length) * 100);
+  const pct = (c) => (c.lessons.length ? Math.round((doneFor(c.id).length / c.lessons.length) * 100) : 0);
+  /* Prefer a course that actually has notes and a quiz. The flagship cohort is a syllabus, not a lesson. */
+  function studyTarget() {
+    const full = COURSES.filter((c) => c.full && c.lessons.length);
+    const open = (c) => pct(c) < 100;
+    const started = full.find((c) => doneFor(c.id).length && open(c));
+    if (started) return started;
+    return full.find(open) || COURSES.find((c) => c.lessons.length && open(c)) || COURSES[0];
+  }
+  function lessonGo(c) {
+    const next = c.lessons.findIndex((_, i) => !doneFor(c.id).includes(i));
+    if (c.full && next !== -1) {
+      return { href: `#lesson/${c.id}/${next}`, label: doneFor(c.id).length ? 'Continue lesson' : 'Start lesson', next };
+    }
+    return { href: `#course/${c.id}`, label: next === -1 ? 'Review course' : 'Open course', next };
+  }
   const totalLessons = () => Object.values(state.done).reduce((a, l) => a + l.length, 0);
   const todayCount = () => state.log[dayKey(new Date())] || 0;
   function streak() {
@@ -107,6 +122,11 @@
     const title = v === 'course' || v === 'lesson' ? (COURSES.find((c) => c.id === arg) || {}).title : TABS.find((t) => t.id === v)?.label;
     document.title = `${title || 'Today'} · Serenest Academy`;
     window.scrollTo(0, 0);
+    const panel = $(`[data-view="${v}"]`);
+    if (panel) {
+      panel.tabIndex = -1;
+      panel.focus({ preventScroll: true });
+    }
   }
 
   /* ---------- TODAY ---------- */
@@ -149,14 +169,15 @@
 
     $('[data-conf-long]').textContent = `${fmtConf({ weekday: 'short', day: 'numeric', month: 'short' })} · 6:00 PM IST · Free`;
 
-    const c = COURSES.find((x) => doneFor(x.id).length && pct(x) < 100) || COURSES.find((x) => pct(x) < 100) || COURSES[0];
-    const next = c.lessons.findIndex((_, i) => !doneFor(c.id).includes(i));
+    const c = studyTarget();
+    const go = lessonGo(c);
+    const nextLine = go.next === -1 ? 'All lessons complete' : `Lesson ${go.next + 1} · ${esc(c.lessons[go.next])}`;
     $('[data-continue]').innerHTML = `
       <span class="label">${doneFor(c.id).length ? 'Continue' : 'Start here'}</span>
       <h3>${esc(c.title)}</h3>
-      <div class="row"><span>${next === -1 ? 'All lessons complete' : `Lesson ${next + 1} · ${esc(c.lessons[next])}`}</span><b>${pct(c)}%</b></div>
+      <div class="row"><span>${nextLine}</span><b>${pct(c)}%</b></div>
       <div class="bar"><i style="width:${pct(c)}%"></i></div>
-      <div><a class="btn btn-ink" href="#course/${c.id}">Open course ${icon('arrow')}</a></div>`;
+      <div><a class="btn btn-ink" href="${go.href}">${go.label} ${icon('arrow')}</a></div>`;
   }
   const hm = (m) => (m >= 60 ? `${Math.floor(m / 60)}hr ${m % 60}min` : `${m}min`);
 
@@ -165,12 +186,23 @@
     .map(([x, y, s]) => `<span style="left:${x}%;height:${y}px"></span><svg style="left:calc(${x}% - ${s / 2}px);top:${y}px;width:${s}px;height:${s}px"><use href="#i-spark"/></svg>`).join('');
 
   /* ---------- LEARN ---------- */
+  function courseCard(c) {
+    const kind = c.flagship ? 'Flagship · ' : c.full ? '<b class="new-tag">✦ Full course</b> ' : 'Outline · ';
+    const meta = c.full
+      ? `${c.lessons.length} lessons · notes & quizzes`
+      : `${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}`;
+    return `<a class="card course ${c.flagship ? 'card-apricot' : 'glass'}" href="#course/${c.id}">
+        <div class="meta"><span>${kind}${meta}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
+        <h3>${esc(c.title)}</h3>
+        <p>${esc(c.desc)}</p>
+      </a>`;
+  }
   function renderLearn(track) {
     const mbbs = track === 'mbbs';
     $('[data-courses]').classList.toggle('subjects', mbbs);
     $('[data-track-tabs]').innerHTML = `
-      <a class="seg" href="#learn" aria-current="${!mbbs}">Mental health</a>
-      <a class="seg" href="#learn/mbbs" aria-current="${mbbs}">MBBS &amp; NEET-PG</a>`;
+      <a class="seg" href="#learn"${mbbs ? '' : ' aria-current="page"'}>Mental health</a>
+      <a class="seg" href="#learn/mbbs"${mbbs ? ' aria-current="page"' : ''}>MBBS &amp; NEET-PG</a>`;
     $('[data-learn-title]').innerHTML = mbbs ? 'MBBS &amp; <span style="white-space:nowrap">NEET-PG</span>' : 'Learn';
     if (mbbs) {
       const ready = SUBJECTS.filter((x) => FULL[x.id]).length;
@@ -178,7 +210,7 @@
         const c = COURSES.find((k) => k.id === x.id);
         const on = !!(c && c.full);
         return on ? `
-        <a class="card subject glass" href="#course/${x.id}" style="text-decoration:none">
+        <a class="card subject glass" href="#course/${x.id}">
           <div class="meta"><span>${String(i + 1).padStart(2, '0')} · ${esc(x.year)}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
           <h3>${esc(x.name)}</h3><p>${c.lessons.length} lessons · MCQs</p>
         </a>` : `
@@ -193,13 +225,16 @@
         </div>`;
       return;
     }
-    $('[data-courses]').innerHTML = COURSES.filter((c) => c.track === 'mh').map((c) => `
-      <a class="card course ${c.flagship ? 'card-apricot' : 'glass'}" href="#course/${c.id}" style="text-decoration:none">
-        <div class="meta"><span>${c.flagship ? 'Flagship · ' : c.full ? '<b class="new-tag">✦ Full course</b> ' : ''}${c.full ? c.lessons.length + ' lessons · notes & quizzes' : `${c.weeks} week${c.weeks > 1 ? 's' : ''}${c.mode ? ' · ' + esc(c.mode) : ''}`}</span><span class="ring" style="--p:${pct(c)}" aria-label="${pct(c)}% complete"></span></div>
-        <h3>${esc(c.title)}</h3>
-        <p>${esc(c.desc)}</p>
-      </a>`).join('') + `
-      <a class="card course card-teal mbbs-promo" href="#learn/mbbs" style="text-decoration:none">
+    const mh = COURSES.filter((c) => c.track === 'mh');
+    const groups = [
+      ['', mh.filter((c) => c.flagship)],
+      ['Study now', mh.filter((c) => c.full && !c.flagship)],
+      ['Outlines<span>Titles only. Notes and quizzes are in the full courses.</span>', mh.filter((c) => !c.full && !c.flagship)],
+    ];
+    $('[data-courses]').innerHTML = groups.filter(([, list]) => list.length).map(([label, list]) =>
+      `${label ? `<h2 class="learn-label">${label}</h2>` : ''}${list.map(courseCard).join('')}`
+    ).join('') + `
+      <a class="card course card-teal mbbs-promo" href="#learn/mbbs">
         <div class="meta"><span>New track</span></div>
         <h3>MBBS &amp; NEET-PG: 1st year + Psychiatry</h3>
         <p>Anatomy, Physiology, Biochemistry and Psychiatry: high-yield lessons and MCQs.</p>
@@ -236,6 +271,9 @@
         <button class="lesson glass" data-lesson="${i}" aria-pressed="${done.includes(i)}">
           <span class="tick">${icon('check')}</span><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="lt">${esc(l)}</span>
         </button>`).join('')}</div>
+      ${f ? '' : `<p class="outline-note">${c.flagship
+        ? 'This is the live cohort syllabus. Apply on WhatsApp for the next dates. Notes and quizzes for these topics are in the full courses.'
+        : 'These titles are an outline. Tapping one marks it studied. It does not open notes. For notes and a quiz, open a full course.'}</p>`}
       <div class="detail-actions">
         ${f ? `<a class="btn btn-ink" href="#lesson/${c.id}/${next === -1 ? 0 : next}">${next === -1 ? 'Review lessons' : done.length ? 'Continue: lesson ' + (next + 1) : 'Start course'} ${icon('arrow')}</a>
                <button class="btn btn-ghost" data-apply>Certificate on WhatsApp</button>`
@@ -269,6 +307,7 @@
         <span class="label">Lesson ${i + 1} of ${n} · ${L.mins} min${done ? ' · ✓ Completed' : ''}</span>
         <h1 class="display">${esc(L.title)}</h1>
         <div class="bar"><i style="width:${Math.round(((i + (done ? 1 : 0)) / n) * 100)}%"></i></div>
+        <button type="button" class="lesson-jump" data-jump>Skip to the quiz</button>
       </header>
 
       <article class="lesson-body">
@@ -280,10 +319,11 @@
       <aside class="card card-teal keypoints"><span class="label">Key points</span><ul>${L.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></aside>
       <form class="card glass quiz" data-quiz>
         <span class="label">Check yourself · ${L.quiz.length} questions</span>
+        <p class="quiz-rule">${Math.ceil((L.quiz.length * 2) / 3)} of ${L.quiz.length} correct completes the lesson.</p>
         ${L.quiz.map((q, qi) => `<fieldset data-q="${qi}"><legend>${qi + 1}. ${esc(q.q)}</legend>
           ${q.o.map((o, oi) => `<label class="opt"><input type="radio" name="q${qi}" value="${oi}"><span>${esc(o)}</span></label>`).join('')}
           <p class="why" hidden></p></fieldset>`).join('')}
-        <div class="quiz-foot"><button class="btn btn-ink" type="submit">Check answers</button><span class="score" data-score aria-live="polite"></span></div>
+        <div class="quiz-foot"><button class="btn btn-ink" type="submit">Check answers</button><button class="btn btn-ghost" type="button" data-retry hidden>Try again</button><span class="score" data-score aria-live="polite"></span></div>
       </form>
       <nav class="lesson-nav">
         ${i > 0 ? `<a class="btn btn-ghost" href="#lesson/${c.id}/${i - 1}">${icon('back')} Previous</a>` : '<span></span>'}
@@ -291,33 +331,57 @@
       </nav>
       <p class="fine">Educational content for students and clinicians. Not medical advice; confirm current product labelling and guidelines.</p>`;
 
+    const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+    $('[data-jump]', root).addEventListener('click', () => {
+      $('[data-quiz]', root).scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+    });
     $('[data-quiz]', root).addEventListener('submit', (e) => {
       e.preventDefault();
       const form = e.currentTarget;
-      let right = 0, answered = 0;
+      const picks = L.quiz.map((_, qi) => {
+        const picked = $(`input[name="q${qi}"]:checked`, form);
+        return picked ? Number(picked.value) : null;
+      });
+      const out = $('[data-score]', form);
+      if (picks.some((v) => v === null)) { out.textContent = `Answer all ${L.quiz.length} questions first.`; return; }
+      let right = 0;
       L.quiz.forEach((q, qi) => {
         const fs = $(`[data-q="${qi}"]`, form);
         const opts = $$('.opt', fs);
-        opts.forEach((lab) => { lab.classList.toggle('right', false); lab.classList.toggle('wrong', false); });
-        const picked = $(`input[name="q${qi}"]:checked`, fs);
-        if (!picked) return;
-        answered++;
-        const v = Number(picked.value);
+        opts.forEach((lab) => lab.classList.remove('right', 'wrong'));
+        const v = picks[qi];
         if (v === q.a) right++;
         opts[q.a].classList.add('right');
-        if (v !== q.a) picked.closest('.opt').classList.add('wrong');
+        if (v !== q.a) opts[v].classList.add('wrong');
         const why = $('.why', fs);
         why.hidden = false;
         why.textContent = (v === q.a ? 'Correct. ' : 'Not quite. ') + q.why;
       });
-      const out = $('[data-score]', form);
-      if (answered < L.quiz.length) { out.textContent = `Answer all ${L.quiz.length} questions first.`; return; }
-      const pass = right >= Math.ceil((L.quiz.length * 2) / 3);
-      out.textContent = `${right} of ${L.quiz.length} correct${pass ? ' · lesson complete ✦' : ' · read the explanations and try again'}`;
-      if (pass && !doneFor(c.id).includes(i)) {
-        toggleLesson(c.id, i);
-        toast(todayCount() >= state.goal ? 'Daily goal reached ✦' : `Lesson done · ${todayCount()} of ${state.goal} today`);
-      }
+      const need = Math.ceil((L.quiz.length * 2) / 3);
+      const pass = right >= need;
+      out.textContent = `${right} of ${L.quiz.length} correct${pass ? ' · lesson complete ✦' : ` · ${need} completes the lesson`}`;
+      $('[data-retry]', form).hidden = pass;
+      if (!pass) return;
+      $$('input', form).forEach((inp) => { inp.disabled = true; });
+      if (doneFor(c.id).includes(i)) return;
+      toggleLesson(c.id, i);
+      const label = $('.detail-head .label', root);
+      if (label) label.textContent = `Lesson ${i + 1} of ${n} · ${L.mins} min · ✓ Completed`;
+      const bar = $('.detail-head .bar i', root);
+      if (bar) bar.style.width = `${Math.round(((i + 1) / n) * 100)}%`;
+      toast(todayCount() >= state.goal ? 'Daily goal reached ✦' : `Lesson done · ${todayCount()} of ${state.goal} today`);
+    });
+    $('[data-retry]', root).addEventListener('click', () => {
+      const form = $('[data-quiz]', root);
+      $$('.opt', form).forEach((lab) => lab.classList.remove('right', 'wrong'));
+      $$('.why', form).forEach((w) => { w.hidden = true; w.textContent = ''; });
+      $$('input', form).forEach((inp) => { inp.checked = false; inp.disabled = false; });
+      $('[data-score]', form).textContent = '';
+      $('[data-retry]', form).hidden = true;
+      const first = $('fieldset', form);
+      if (first) first.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'nearest' });
+      const firstInput = $('input', form);
+      if (firstInput) firstInput.focus();
     });
   }
 
@@ -370,11 +434,26 @@
       const h = Math.min(100, (n / state.goal) * 100);
       return `<div class="wbar ${o === 0 ? 'today' : ''}" title="${n} lessons"><span class="track"><span class="fill" style="height:${h}%"></span></span>${DOW[d.getDay()].slice(0, 2).toUpperCase()}</div>`;
     }).join('');
-    const finished = COURSES.filter((c) => pct(c) === 100).length;
+    const finished = COURSES.filter((c) => c.lessons.length && pct(c) === 100).length;
     $('[data-stats]').innerHTML = [[streak(), 'Day streak'], [totalLessons(), 'Lessons'], [finished, 'Completed']]
       .map(([v, l]) => `<div class="card glass stat"><b>${v}</b><span>${l}</span></div>`).join('');
-    $('[data-course-progress]').innerHTML = `<span class="label">Programs</span>` + COURSES.map((c) => `
-      <a class="cp-row" href="#course/${c.id}"><div class="row"><span>${esc(c.title)}</span><span>${pct(c)}%</span></div><div class="bar"><i style="width:${pct(c)}%"></i></div></a>`).join('');
+    const row = (c) => {
+      const go = lessonGo(c);
+      return `<a class="cp-row" href="${go.href}"><div class="row"><span>${esc(c.title)}</span><span>${pct(c)}%</span></div><div class="bar"><i style="width:${pct(c)}%"></i></div></a>`;
+    };
+    const byProgress = (a, b) => pct(b) - pct(a) || a.title.localeCompare(b.title);
+    const active = COURSES.filter((c) => doneFor(c.id).length && pct(c) < 100).sort(byProgress);
+    const doneCourses = COURSES.filter((c) => c.lessons.length && pct(c) === 100).sort(byProgress);
+    const target = studyTarget();
+    const showHero = !active.length && !doneCourses.length && target;
+    const ready = COURSES.filter((c) => c.full && c.lessons.length && !doneFor(c.id).length && pct(c) < 100 && !(showHero && c.id === target.id));
+    const hero = showHero ? `
+      <p class="empty-note">Nothing marked yet. One lesson is about fifteen minutes, with notes and a short quiz.</p>
+      <a class="btn btn-ink empty-cta" href="${lessonGo(target).href}">Start: ${esc(target.title)} ${icon('arrow')}</a>` : '';
+    $('[data-course-progress]').innerHTML = hero
+      + (active.length ? `<span class="label">In progress</span>${active.map(row).join('')}` : '')
+      + (doneCourses.length ? `<span class="label">Completed</span>${doneCourses.map(row).join('')}` : '')
+      + (ready.length ? `<span class="label">Ready to start</span>${ready.map(row).join('')}` : '');
   }
 
   /* ---------- PROFILE ---------- */
